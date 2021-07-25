@@ -10,19 +10,9 @@
  * @return {number}
  */
 var reverse = function(x) {
-  let r = 0;
+  const r = Number.parseInt(Math.abs(x).toString().split("").reverse().join("")) * Math.sign(x);
 
-  if (x < 0) {
-    r = -Number.parseInt((-x + "").split("").reverse().join(""));
-  } else {
-    r =  Number.parseInt((x + "").split("").reverse().join(""));
-  }
-
-  if (r >= -Math.pow(2, 31) && r <= (Math.pow(2, 31) - 1)) {
-    return r;
-  }
-
-  return 0;
+  return r >= -Math.pow(2, 31) && r <= (Math.pow(2, 31) - 1) ? r :0;
 };
 
-Module.exports = reverse;
+module.exports = reverse;
