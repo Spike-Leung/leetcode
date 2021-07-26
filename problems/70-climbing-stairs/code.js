@@ -8,19 +8,32 @@
  * n = 1 , 1
  * n = 2 , 2
  * n > 2 , f(n) = f(n-1) + f(n-2)
+ *
+ * 1. 递归
+ * 2. 备忘录 （降低时间复杂度）
+ * 3. dp表 （降低空间复杂度）
+ *
  */
 
 /**
  * @param {number} n
  * @return {number}
  */
-var climbStairs = function(n) {
-  if (n === 1 || n === 2) {
-    return n;
+var climbStairs = function (n) {
+  function climbStairsWithMemo(memo, n) {
+    if (n === 1 || n === 2) {
+      return n;
+    }
+
+    if (!memo[n]) {
+      memo[n] =
+        climbStairsWithMemo(memo, n - 1) + climbStairsWithMemo(memo, n - 2);
+    }
+
+    return memo[n];
   }
 
-  return climbStairs(n - 1) + climbStairs(n - 2);
+  return climbStairsWithMemo({}, n);
 };
-
 
 module.exports = climbStairs;
