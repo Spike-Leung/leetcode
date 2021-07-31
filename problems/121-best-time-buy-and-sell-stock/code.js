@@ -9,18 +9,22 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-  const minBuyIn = [];
+  let currentMinBuy = 0;
+  let prevMinBuy = 0;
+  let maxProfit = 0;
 
   prices.forEach((p, index) => {
     if (index === 0) {
-      minBuyIn[index] = prices[0];
+      prevMinBuy = prices[0];
       return;
     }
 
-    minBuyIn[index] = Math.min(p, minBuyIn[index - 1]);
+    currentMinBuy = Math.min(prices[index - 1], prevMinBuy);
+    maxProfit = Math.max(maxProfit, p - currentMinBuy);
+    prevMinBuy = currentMinBuy;
   });
 
-  return Math.max(...prices.map((p, index) => p - minBuyIn[index]), 0);
+  return maxProfit;
 };
 
 module.exports = maxProfit;
