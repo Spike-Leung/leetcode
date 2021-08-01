@@ -1,7 +1,7 @@
 /**
  * 122. Best Time to Buy and Sell Stock II
  *
- * http://portal.dclingcloud.com:8061/dokuwiki/doku.php?id=%E4%B8%8A%E6%B5%B7%E7%A0%94%E5%8F%91:weekly_status
+ * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
  *
  * 画图可以知，就是求所有上涨阶段的差值的和
  */
