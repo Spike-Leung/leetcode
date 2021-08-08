@@ -11,47 +11,24 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  if (n === 0) {
-    return;
-  }
+  const sortedArr = [];
+  let p1 = 0;
+  let p2 = 0;
 
-  if (m === 0 || nums1[m - 1] < nums2[0]) {
-    nums2.forEach((num, index) => (nums1[m + index] = num));
-    return;
-  }
-
-  if (nums1[0] > nums2[n - 1]) {
-    for (let i = 0; i < m; i++) {
-      nums1[m + i] = nums1[i];
+  while (p1 < m || p2 < n) {
+    if (p1 === m) {
+      sortedArr.push(nums2[p2++]);
+    } else if (p2 === n) {
+      sortedArr.push(nums1[p1++]);
+    } else if (nums1[p1] >= nums2[p2]) {
+      sortedArr.push(nums2[p2++]);
+    } else {
+      sortedArr.push(nums1[p1++]);
     }
-
-    nums2.forEach((num, index) => {
-      nums1[index] = num;
-    });
-
-    return;
   }
 
-  const lastNums1 = nums1[m - 1];
-  let index1 = 0;
-  let index2 = 0;
-  let curr = nums1[0];
-  let next = nums2[0];
-
-  while (index2 < n) {
-    if (nums1[index1] === 0 && nums2[index2] > lastNums1) {
-      nums1[index1] = nums2[index2];
-      index2++;
-    } else if (nums1[index1] > nums2[index2]) {
-      for (let i = (n + m) - 1; i > index1; i--) {
-        nums1[i] = nums1[i - 1];
-      }
-
-      nums1[index1] = nums2[index2];
-      index2++;
-    }
-
-    index1++;
+  for (let i = 0; i < m + n; i++) {
+    nums1[i] = sortedArr[i];
   }
 };
 
