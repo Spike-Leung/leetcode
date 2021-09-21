@@ -9,28 +9,22 @@
  */
 var searchInsert = function (nums, target) {
   let left = 0;
-  let right = nums.length;
+  let right = nums.length - 1;
 
-  while (left < right) {
+  while (left <= right) {
     const mid = left + Math.floor((right - left) / 2);
     const midVal = nums[mid];
 
     if (midVal === target) {
       return mid;
     } else if (midVal > target) {
-      right = mid;
+      right = mid - 1;
     } else if (midVal < target) {
       left = mid + 1;
     }
   }
 
-  const insertIndex = nums[right] > target ? right : right + 1;
-
-  if (insertIndex > nums.length) {
-    return nums.length;
-  }
-
-  return insertIndex;
+  return left;
 };
 
 module.exports = searchInsert;
