@@ -7,8 +7,29 @@
  * @param {number} target
  * @return {number[]}
  */
-var searchRange = function(nums, target) {
-  let left = 0;
+var searchRange = function (nums, target) {
+  const NOT_FOUND = [-1, -1];
+  const firstIndex = leftBound(nums, target);
+
+  if (firstIndex === -1) {
+    return NOT_FOUND;
+  }
+x
+  const lastIndex = leftBound(nums, target + 1, firstIndex + 1) - 1;
+
+  if (
+    firstIndex <= lastIndex &&
+    nums[firstIndex] === target &&
+    nums[lastIndex] === target
+  ) {
+    return [firstIndex, lastIndex];
+  }
+
+  return NOT_FOUND;
+};
+
+function leftBound(nums, target, initLeft = 0) {
+  let left = initLeft;
   let right = nums.length - 1;
 
   while (left <= right) {
@@ -16,7 +37,7 @@ var searchRange = function(nums, target) {
     const midVal = nums[mid];
 
     if (midVal === target) {
-      right =  mid - 1;
+      right = mid - 1;
     } else if (midVal > target) {
       right = mid - 1;
     } else if (midVal < target) {
@@ -24,32 +45,7 @@ var searchRange = function(nums, target) {
     }
   }
 
-  const firstIndex = left === nums.length ? -1 : left;
-
-  if (firstIndex === -1 || nums[firstIndex] !== target) {
-    return [-1, -1];
-  }
-
-  let leftLast = firstIndex + 1;
-  let rightLast = nums.length - 1;
-
-  while (leftLast <= rightLast) {
-    const mid = Math.floor((rightLast - leftLast) / 2) + leftLast;
-    const midVal = nums[mid];
-
-    if (midVal === target) {
-      leftLast = mid + 1;
-    } else if (midVal > target) {
-      rightLast = mid - 1;
-    } else if (midVal < target) {
-      leftLast = mid + 1;
-    }
-  }
-
-  const lastIndex = leftLast - 1;
-
-  return [firstIndex, lastIndex];
-
-};
+  return left;
+}
 
 module.exports = searchRange;
