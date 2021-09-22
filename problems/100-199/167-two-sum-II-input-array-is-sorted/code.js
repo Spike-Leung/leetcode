@@ -7,7 +7,7 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(numbers, target) {
+var twoSum = function (numbers, target) {
   for (let i = 0; i < numbers.length; i++) {
     let num1 = numbers[i];
     let num2 = target - num1;
@@ -30,4 +30,21 @@ var twoSum = function(numbers, target) {
   }
 };
 
-module.exports = twoSum;
+var twoSum2 = function (numbers, target) {
+  let left = 0;
+  let right = numbers.length - 1;
+
+  while (left < right) {
+    const sum = numbers[left] + numbers[right];
+
+    if (sum === target) {
+      return [left + 1, right + 1];
+    } else if (sum < target) {
+      left += 1;
+    } else if (sum > target) {
+      right -= 1;
+    }
+  }
+};
+
+module.exports = twoSum2;
