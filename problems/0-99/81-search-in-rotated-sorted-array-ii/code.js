@@ -32,11 +32,9 @@ var search = function(nums, target) {
         right = mid - 1;
       }
     } else {
-      if (checkIsSame(nums, left, mid, midVal)) {
-        left = mid + 1;
-      } else {
-        right = mid - 1;
-      }
+      // https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/solution/sou-suo-xuan-zhuan-pai-xu-shu-zu-ii-by-l-0nmp/
+      left++;
+      right--;
     }
   }
 
