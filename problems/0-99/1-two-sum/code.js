@@ -8,24 +8,17 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-  let sumIndexArr = [];
-  let i = 0;
-  let j = 1;
+  const map = {};
 
-  while (i < nums.length) {
-    while(j < nums.length) {
-      if (nums[i] + nums[j] === target) {
-        sumIndexArr = [i, j];
-      }
-
-      j++;
+  for (let i = 0; i < nums.length; i++) {
+    if (map[target - nums[i]] !== undefined) {
+      return [map[target - nums[i]], i];
     }
 
-    i++;
-    j = i + 1;
+    map[nums[i]] = i;
   }
 
-  return sumIndexArr;
+  throw new Error("Not Found");
 };
 
 module.exports = twoSum;
