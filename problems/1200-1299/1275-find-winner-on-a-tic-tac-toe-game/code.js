@@ -9,7 +9,12 @@
 var tictactoe = function(moves) {
   const indexArr = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
   const flatFillArr = Array.from({ length: 9 }).fill("");
+  const moveLength = moves.length;
   let result = "";
+
+  if (moveLength < 5) {
+    return "Pending";
+  }
 
   moves.forEach((m, index) => {
     const [r, c] = m;
@@ -32,7 +37,7 @@ var tictactoe = function(moves) {
     return false;
   });
 
-  return result || (moves.length === 9 ? "Draw" : "Pending");
+  return result || (moveLength === 9 ? "Draw" : "Pending");
 };
 
 module.exports = tictactoe;
