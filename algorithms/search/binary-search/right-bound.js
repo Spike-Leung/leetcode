@@ -1,3 +1,4 @@
+/*
 const rightBound = function rightBound(nums, target) {
   let left = 0;
   let right = nums.length;
@@ -22,6 +23,31 @@ const rightBound = function rightBound(nums, target) {
 
   // 因为命中 midVal === target 时， left = mid + 1，循环结束时，midVal 即 nums[left - 1] 有可能是 target, 需要判断一下
   return nums[left - 1] === target ? left - 1 : -1;
+}
+*/
+
+const rightBound = function rightBound(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = left + Math.floor((right - left) / 2);
+    const midVal = nums[mid];
+
+    if (midVal === target) {
+      left = mid + 1;
+    } else if (midVal > target) {
+      right = mid - 1;
+    } else if (midVal < target) {
+      left = mid + 1;
+    }
+  }
+
+  if (right < 0 || nums[right] !== target) {
+    return -1;
+  }
+
+  return right;
 }
 
 module.exports = rightBound;
