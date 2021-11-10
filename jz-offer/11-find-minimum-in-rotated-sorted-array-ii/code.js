@@ -35,7 +35,7 @@ var minArray = function(numbers) {
     // 中间值如果大于等于左边的值，意味着中间值在左边的数组，反之则在右边数组
     if (numbers[mid] >= numbers[left]) {
       left = mid;
-    } else if (numbers[mid] < numbers[right]) {
+    } else if (numbers[mid] <= numbers[right]) {
       right = mid;
     }
   }
