@@ -30,9 +30,7 @@ function accumulateCount(rows, columns, maximum, row, column, visited) {
 
   return 1 + (
     accumulateCount(rows, columns, maximum, row + 1, column, visited) +
-    accumulateCount(rows, columns, maximum, row - 1, column, visited) +
-    accumulateCount(rows, columns, maximum, row, column + 1, visited) +
-    accumulateCount(rows, columns, maximum, row, column - 1, visited)
+    accumulateCount(rows, columns, maximum, row, column + 1, visited)
   )
 }
 
