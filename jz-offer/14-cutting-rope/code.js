@@ -19,6 +19,7 @@ var cuttingRope = function (n) {
     product[i] = 0;
 
     for (j = 1; j <= half; j++) {
+      // 每次遍历，j 都变化，对应的 product[i] 也会变化，比较时也要比较之前计算的 product[i]
       product[i] = Math.max(product[i], j * (i - j), j * product[i - j]);
     }
   }
