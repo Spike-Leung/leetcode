@@ -1,0 +1,12 @@
+刚看到题，二叉树对称即树镜像后和原来的树一样。就想着遍历将树镜像，再和原来的树进行比较，但这样毕竟遍历
+次数多，而且需要额外的空间存储镜像后的树，显然不好。
+
+剑指 Offer 的做法是，定义一种遍历方法，类似前序遍历，但先遍历右节点，再遍历左节点。正好和前序遍历的顺序
+相反，相当于得到镜像后的前序遍历。再比较两次遍历的结果，相同才是对称的。
+
+[[https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/solution/mian-shi-ti-28-dui-cheng-de-er-cha-shu-di-gui-qing/][leetcode 题解]] 则是采用递归遍历的方法。要满足对称二叉树，对于任一的 L 和 R：
+  - L.val == R.val
+  - L.left.val == R.right.val
+  - L.right.val == R.left.val
+
+从头到底进行递归判断，处理一些特殊情况后便可知道是否对称。
