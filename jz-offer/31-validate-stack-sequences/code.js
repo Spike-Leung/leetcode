@@ -3,36 +3,20 @@
  * @param {number[]} popped
  * @return {boolean}
  */
-var validateStackSequences = function(pushed, popped) {
-  const cacheStack = [];
-  let pushIndex = pushed.length - 1;
+// https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/
+var validateStackSequences = function (pushed, popped) {
+  const stack = [];
+  let popIndex = 0;
 
-  while (popped.length > 0) {
-    if (cacheStack.length > 0 && cacheStack[cacheStack.length - 1] === pushed[pushIndex]) {
-      cacheStack.pop();
-      pushIndex--;
+  pushed.forEach((p) => {
+    stack.push(p);
+    while (stack.length && stack[stack.length - 1] === popped[popIndex]) {
+      stack.pop();
+      popIndex++;
     }
+  });
 
-    const pop = popped.shift();
-
-    if (pop === pushed[pushIndex]) {
-      pushIndex--;
-    } else {
-      cacheStack.push(pop);
-    }
-  }
-
-  if (cacheStack.length) {
-    for (let i = cacheStack.length - 1; i >= 0; i--) {
-      if (cacheStack[i] === pushed[pushIndex]) {
-        pushIndex--;
-      } else {
-        break;
-      }
-    }
-  }
-
-  return pushIndex === -1;
+  return stack.length === 0;
 };
 
 module.exports = validateStackSequences;

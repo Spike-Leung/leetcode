@@ -1,0 +1,5 @@
+[leetcode 题解](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/)
+
+使用一个辅助栈，模拟压入弹出的过程，如果模拟成功则弹出队列正确。
+
+要考虑辅助栈的入栈和出栈行为，需要做什么。
