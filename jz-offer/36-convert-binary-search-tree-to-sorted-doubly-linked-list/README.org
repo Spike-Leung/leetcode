@@ -8,3 +8,9 @@
 
   那么可以分别对左右子树进行中序遍历，遍历过程中，设置节点之间的双向连接，把节点的 left 和
   right 指针调整。然后返回左右子树的 head 和 tail，再和根节点进行连接。
+
+* 总结
+  - [[https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/solution/mian-shi-ti-36-er-cha-sou-suo-shu-yu-shuang-xian-5/][剑指 Offer 36. 二叉搜索树与双向链表（中序遍历，清晰图解）]]
+  - 递归没搞清楚，树的递归遍历还需要加深练习
+  - 涉及到链表，又是双向链表，可以联想到双指针，考虑到相邻节点，可以想到 pre 和 cur 去不断
+    建立相邻节点的关系。

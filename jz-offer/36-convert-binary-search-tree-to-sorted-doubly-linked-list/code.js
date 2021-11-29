@@ -4,73 +4,35 @@
  * @return {Node}
  */
 var treeToDoublyList = function (root) {
-  if (!root) {
-    return root;
+  if (root === null) {
+    return null;
   }
 
-  if (!root.left && !root.right) {
-    root.left = root;
-    root.right = root;
-    return root;
+  function dfs(cur) {
+    if (cur === null) {
+      return;
+    }
+
+    dfs(cur.left, pre, head);
+
+    if (pre === null) {
+      head = cur;
+    } else {
+      pre.right = cur;
+      cur.left = pre;
+    }
+
+    pre = cur;
+
+    dfs(cur.right, pre, head);
   }
 
-  let leftHead = root,
-    leftTail = root,
-    rightHead = root,
-    rightTail = root;
+  let pre = null, head = null;
 
-  if (root.left) {
-    ({ head: leftHead, tail: leftTail } = traverseInOrder(root.left));
-  }
+  dfs(root, pre, head);
 
-  if (root.right) {
-    ({ head: rightHead, tail: rightTail } = traverseInOrder(root.right));
-  }
+  head.left = pre;
+  pre.right = head;
 
-  if (root.left) {
-    leftTail.right = root;
-    root.left = leftTail;
-  }
-
-  if (root.right) {
-    root.right = rightHead;
-    rightHead.left = root;
-  }
-
-  leftHead.left = rightTail;
-  rightTail.right = leftHead;
-
-  return leftHead;
+  return head;
 };
-
-/**
- * @param {Node} root
- * @param {Node} parent
- * @return { Node head, Node tail }
- */
-function traverseInOrder(root) {
-  let head = root, tail = root;
-
-  if (root.left && !root.left.left && !root.left.right) {
-    head = root.left;
-  }
-
-  if (root.right && !root.right.left && !root.right.right) {
-    tail = root.right;
-  }
-
-  if (root.left) {
-    ({ head } = traverseInOrder(root.left));
-    root.left.right = root;
-  }
-
-  if (root.right) {
-    ({ tail } = traverseInOrder(root.right));
-    root.right.left = root;
-  }
-
-  return {
-    head,
-    tail,
-  };
-}
