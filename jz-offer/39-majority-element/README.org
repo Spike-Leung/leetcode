@@ -1,0 +1,6 @@
+* 排序
+  数组排序后，占据数组长度一半以上的数字肯定位于中间，获取中点即为答案。
+* 哈希表
+  统计所有数字出现的次数，再找到次数大于一半的数字。
+* 摩尔投票法 （最佳）
+  [[https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/solution/mian-shi-ti-39-shu-zu-zhong-chu-xian-ci-shu-chao-3/][剑指 Offer 39. 数组中出现次数超过一半的数字（摩尔投票法，清晰图解）]]

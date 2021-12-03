@@ -23,7 +23,7 @@ function mergeSortedArrays(leftArr, rightArr) {
       leftIndex++;
     } else {
       minElement = rightArr[rightIndex];
-      rightIndex++
+      rightIndex++;
     }
 
     sortedArray.push(minElement);
