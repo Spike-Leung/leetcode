@@ -1,0 +1,22 @@
+首先想到的是将所有的数保存到数组，然后排序，根据数量的奇偶，返回数组的中间数。
+
+但这样做需要获取中位数的时候的时候都对数组进行排序, 需要 O(NlogN) 的时间复杂度。
+
+考虑到一旦排序后，其实排序好的数字就不需要重新排序了，当新增一个数字，只要找到它
+在数组的位置进行插入即可。从顺序数组中找位置，可以用二分查找 O(logN), 插入时，
+插入位置后的元素都要移动，需要 O(N), 总的时间复杂度时 O(N).
+
+再进一步考虑，其实要获取中位数，只要关心中间的一个或者两个数字，假如从中间分开数组，
+左边数组的最后一位是左边数组的最大值，右边数组的第一位是右边数组的最小值，只要根据
+这两个值计算就可以得到中位数。
+
+这种关心一个最大值最小值，不关心其他位置的数据结构，可以考虑最大堆和最小堆，而堆的插入
+和插入和弹出是需要 O(logN), 要比上面两种实现要好。
+
+因此这道题就变成了实现最大堆，最小堆，同时，添加时要保证两个堆的数量平衡，最大堆和最小堆的
+数量平衡，最大值和最小值对应的才是中位数。
+
+* 参考
+  - [[https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/heap][javascript-algorithm / heap]]
+  - [[https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/mian-shi-ti-41-shu-ju-liu-zhong-de-zhong-wei-shu-y/][面试题41. 数据流中的中位数（优先队列 / 堆，清晰图解）]]
+  - [[https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/tu-xie-zheng-li-bao-li-fa-er-fen-cha-zhao-shou-don/][【吐血整理】暴力法+二分查找+手动实现大小堆(桥接模式) | JavaScript实现]]
