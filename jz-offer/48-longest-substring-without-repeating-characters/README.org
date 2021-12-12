@@ -1,0 +1,14 @@
+[[https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/][面试题48. 最长不含重复字符的子字符串（动态规划 / 双指针 + 哈希表，清晰图解）]]
+
+求最值，还是可以考虑动态规划。
+
+记 dp[i] 表示到第 i 个字符的最长字串长度。
+
+如果 str[i] 没有出现过，那么长度加 1 即 dp[i] = dp[i - 1] + 1
+如果 str[i] 出现过，记与上一次出现的下标的距离为 d，
+  - 如果 d > dp[i - 1], 即虽然重复出现了，但是不在 dp[i - 1] 的字串中, 那么长度加 1， 即 dp[i] = dp[i - 1] + 1
+  - 否则表示 str[i] 在 dp[i - 1] 的字串中出现，那么最长长度只能是 d
+
+所以 dp[i]:
+1. dp[i - 1] + 1 (如果没有出现过，或者 d > dp[i - 1])
+2. d (如果出现在上一个最长字串中)
