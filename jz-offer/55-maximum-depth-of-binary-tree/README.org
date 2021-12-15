@@ -1,0 +1,9 @@
+[[https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/][面试题55 - I. 二叉树的深度（后序遍历、层序遍历，清晰图解）]]
+
+* DFS 深度优先遍历
+  前序，中序，后序遍历。关键点是，树的深度为左子树深度和右子树深度的最大值 + 1
+
+  可以用递归或者栈实现。
+
+* BFS 广度优先遍历
+  关键点是每遍历完一层，则深度 + 1，可以用队列去实现。
