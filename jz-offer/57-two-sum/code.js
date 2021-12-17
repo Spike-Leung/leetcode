@@ -8,11 +8,11 @@ var twoSum = function(nums, target) {
   let right = nums.length - 1;
 
   while (left < right) {
-    const sum = nums[left] + nums[right];
+    const rightTarget = target - nums[left];
 
-    if (sum === target) {
+    if (nums[right] === rightTarget) {
       break;
-    } else if (sum < target) {
+    } else if (nums[right] < rightTarget) {
       left++;
     } else {
       right--;
