@@ -1,0 +1,3 @@
+实现思路和[[https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/][剑指 Offer 59 - I. 滑动窗口的最大值（单调队列）]]异曲同工。
+
+[[https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/solution/jian-zhi-offer-59-ii-dui-lie-de-zui-da-z-0pap/][剑指 Offer 59 - II. 队列的最大值（单调双向队列，清晰图解]]
