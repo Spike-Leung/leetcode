@@ -1,0 +1,4 @@
+[[https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/solution/mian-shi-ti-66-gou-jian-cheng-ji-shu-zu-biao-ge-fe/][剑指 Offer 66. 构建乘积数组（表格分区，清晰图解）]]
+
+这题如果能想到把乘积以表格形式展开，就会发现可以通过两次循环，
+累计下三角形和上三角形的乘积得到最终的结果。
