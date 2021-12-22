@@ -11,48 +11,36 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-  const head = new ListNode();
-  let headPointer = head;
+  let head,tail;
   let l1Pointer = l1;
   let l2Pointer = l2;
+  let carry = 0;
 
-  while (l1Pointer !== null && l2Pointer !== null) {
-    let sum = l1Pointer.val + l2Pointer.val;
+  while (l1Pointer || l2Pointer) {
+    let l1Val = l1Pointer ? l1Pointer.val : 0;
+    let l2Val = l2Pointer ? l2Pointer.val : 0;
+    let sum = l1Val + l2Val + carry;
 
-
-    headPointer.val += sum;
-
-    if (headPointer.val >= 10) {
-      headPointer.val %= 10;
-      headPointer.next = new ListNode(1);
+    if (!head) {
+      head = tail = new ListNode(sum % 10);
+    } else {
+      tail.next = new ListNode(sum % 10);
+      tail = tail.next;
     }
 
-    l1Pointer = l1Pointer.next;
-    l2Pointer = l2Pointer.next;
+    carry = Math.floor(sum / 10);
 
-    if (headPointer.next === null && (l1Pointer !== null || l2Pointer !== null)) {
-      headPointer.next = new ListNode();
+    if (l1Pointer) {
+      l1Pointer = l1Pointer.next;
     }
 
-    headPointer = headPointer.next;
+    if (l2Pointer) {
+      l2Pointer = l2Pointer.next;
+    }
   }
 
-  let leftPointer = l1Pointer || l2Pointer || null;
-
-  while (leftPointer !== null) {
-    if (headPointer.next === null && leftPointer.next !== null) {
-      headPointer.next = new ListNode();
-    }
-
-    headPointer.val += leftPointer.val;
-
-    if (headPointer.val >= 10) {
-      headPointer.val %= 10;
-      headPointer.next = new ListNode(1);
-    }
-
-    leftPointer = leftPointer.next;
-    headPointer = headPointer.next;
+  if (carry > 0) {
+    tail.next = new ListNode(carry);
   }
 
   return head;
