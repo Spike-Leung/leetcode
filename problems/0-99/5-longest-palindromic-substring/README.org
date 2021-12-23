@@ -7,3 +7,6 @@
 
   dp[i][j] 表示下标 i 到 j 构成的字串是否为回文，需要用一个二维数组存储，
   做题事可以画一个表格填写，有助理解。
+
+* 双指针
+  [[https://github.com/labuladong/fucking-algorithm/blob/master/%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E7%B3%BB%E5%88%97/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.md][如何寻找最长回文子串]]
