@@ -9,8 +9,7 @@ var longestPalindrome = function(s) {
 
   let length = 1;
   let begin = 0;
-  const columns = Array.from({ length: s.length }).fill(false);
-  let dp = Array.from({ length: s.length }).fill(columns);
+  let dp = new Array(s.length).fill(0).map(() => new Array(s.length).fill(false));
 
   // 初始化对角线，i = i , 只有一个元素时，肯定是回文
   for (let i = 0; i < s.length; i++) {

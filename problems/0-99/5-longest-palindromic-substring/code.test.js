@@ -30,3 +30,9 @@ const subStr4 = "acca";
 test(`Longest palindrome substring of ${str4} is ${subStr4}`, () => {
   expect(longestPalindrome(str4)).toBe(subStr4);
 });
+
+const str5 = "abcba";
+const subStr5 = "abcba";
+test(`Longest palindrome substring of ${str5} is ${subStr5}`, () => {
+  expect(longestPalindrome(str5)).toBe(subStr5);
+});
