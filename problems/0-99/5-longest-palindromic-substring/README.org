@@ -1,0 +1,9 @@
+[[https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/][最长回文子串]]
+
+* 动态规划
+  如果一个子串能形成回文，那么去掉头尾的一个字符，剩下的字串也能构成回文。
+
+  根据以上的特性可以总结出状态转换方程，通过动态规划求出结果。
+
+  dp[i][j] 表示下标 i 到 j 构成的字串是否为回文，需要用一个二维数组存储，
+  做题事可以画一个表格填写，有助理解。
