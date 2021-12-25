@@ -1,0 +1,5 @@
+[[https://leetcode-cn.com/problems/zigzag-conversion/solution/zzi-xing-bian-huan-by-jyd/][Z 字形变换（清晰图解）]]
+
+观察发现，在 Z 字变化过程中，字符是按照行下标从小到大（向下），再从大到小（向上）排列的，
+可以根据这个特性去遍历字符串，每一行定义一个数组，当遍历到哪一行就把字符放进去，最后，字符
+都会被放进自己所在的行里，拼接即可。
