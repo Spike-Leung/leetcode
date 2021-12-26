@@ -3,7 +3,7 @@ const isMatch = require("./code");
 const p = "a";
 const s = "aa";
 test(`${p} not match ${s}`, () => {
-  expect(isMatch(s, p)).toBe(false)
+  expect(isMatch(s, p)).toBe(false);
 });
 
 const p1 = "a*";
