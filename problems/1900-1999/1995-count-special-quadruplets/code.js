@@ -3,25 +3,19 @@
  * @return {number}
  */
 var countQuadruplets = function(nums) {
+  const hash = {};
+  const length = nums.length;
   let count = 0;
 
-  for (let d = 3; d < nums.length; d++) {
-    for (let c = 2; c < d; c++) {
-      if (nums[c] >= nums[d]) {
-        continue;
-      }
+  for (let b = length - 3; b > 0; b--) {
+    for (let d = b + 2; d < length; d++) {
+      const diff = nums[d] - nums[b + 1];
+      hash[diff] ? hash[diff]++ : (hash[diff] = 1);
+    }
 
-      for (let b = 1; b < c; b++) {
-        if (nums[b] + nums[c] >= nums[d]) {
-          continue;
-        }
-
-        for (let a = 0; a < b; a++) {
-          if (nums[a] + nums[b] + nums[c] === nums[d]) {
-            count++;
-          }
-        }
-      }
+    for (let a = 0; a < b; a++) {
+      const sum = nums[a] + nums[b];
+      count += hash[sum] ? hash[sum] : 0;
     }
   }
 
