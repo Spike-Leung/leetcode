@@ -4,32 +4,26 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-  const dp = [[""], ["()"]];
-  const map = {
-    "": true,
-    "()": true,
-  };
+  const res = [];
 
-  for (let i = 2; i <= n; i++) {
-    dp[i] = [];
+  function dfs(left, right, str) {
+    if (left === 0 && right === 0) {
+      res.push(str);
+      return;
+    }
 
-    dp[i - 1].forEach((s) => {
-      const chars = s.split("");
+    if (left > 0) {
+      dfs(left - 1, right, str + "(");
+    }
 
-      for (let j = 0; j < chars.length; j++) {
-        const newStr = chars.slice(0, j + 1).join("") + "()" + chars.slice(j + 1).join("");
-
-        if (map[newStr]) {
-          continue;
-        } else {
-          map[newStr] = true;
-          dp[i].push(newStr);
-        }
-      }
-    });
+    if (right > left) {
+      dfs(left, right - 1, str + ")");
+    }
   }
 
-  return dp[n];
+  dfs(n, n, "");
+
+  return res;
 };
 
 module.exports = generateParenthesis;
