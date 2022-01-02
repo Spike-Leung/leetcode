@@ -1,0 +1,17 @@
+[[https://leetcode-cn.com/problems/elimination-game/solution/wo-hua-yi-bian-jiu-kan-dong-de-ti-jie-ni-k2uj/][我花一遍就看懂的题解，你也可以！]]
+
+解法还是去模拟，但相比用数组去删除元素模拟，这个解法用一个 head 指针去标记
+当前数组的第一个元素。
+
+当从左往右删除的时候，第一个元素会被删除，head 要移动到下一个不被删除的元素，
+即 head = head + step
+
+(step 为当前删除的元素的跨度，第一轮是 1，第二轮是 2，第三轮是 4，可以通过
+观察得出结论，即 step = step * 2)
+
+当从右往左删除时，如果 n % 2 不为 0，则数组的第一个元素也会被删除，此时 head
+也要移动，head = head + step
+
+每次删除后，数组长度会减少一半， n = Math.floor(n / 2)。
+
+当数组长度为 1 时，此时 head 指向的元素就是最后一个元素。

@@ -17,3 +17,9 @@ const lastNum2 = 1;
 test(`Last remaining if [2, ${n2}] is ${lastNum2}`, () => {
   expect(lastRemaining(n2)).toBe(lastNum2);
 });
+
+const n3 = 5;
+const lastNum3 = 2;
+test(`Last remaining if [3, ${n3}] is ${lastNum3}`, () => {
+  expect(lastRemaining(n3)).toBe(lastNum3);
+});

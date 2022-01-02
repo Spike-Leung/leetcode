@@ -4,32 +4,21 @@
  * @return {number}
  */
 var lastRemaining = function(n) {
-  if (n === 1) {
-    return 1;
-  }
+  let head = 1;
+  let step = 1;
+  let left = true;
 
-  let arr = new Array(n).fill(0).map((i, index) => index + 1);
-  let isFromLeft = true;
-
-  while (arr.length > 1) {
-    const leftArr = [];
-
-    if (isFromLeft) {
-      for (let i = 0; i < arr.length; i += 2) {
-        arr[i + 1] && (leftArr.push(arr[i + 1]));
-      }
-      arr = leftArr;
-    } else {
-      for (let i = arr.length - 1; i > 0; i -= 2) {
-        arr[i - 1] && (leftArr.unshift(arr[i - 1]));
-      }
-      arr = leftArr;
+  while (n > 1) {
+    if (left || n % 2 === 1) {
+      head += step;
     }
 
-    isFromLeft = !isFromLeft;
+    step <<= 1;
+    n >>= 1;
+    left = !left;
   }
 
-  return arr[0];
+  return head;
 };
 
 module.exports = lastRemaining;
