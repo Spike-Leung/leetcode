@@ -1,0 +1,5 @@
+* [[https://en.wikipedia.org/wiki/Zeller%27s_congruence][Zeller's congruence]]
+
+* 模拟
+  题目给出的范围是 [1971, 2100], 可以计算给出的日期到 1970 年最后一天的天数，
+  知道 1970 年最后一天的星期，再用天数取模就可以知道给出的日期是星期几。
