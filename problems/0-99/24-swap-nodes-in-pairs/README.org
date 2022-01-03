@@ -1,0 +1,5 @@
+* 递归
+  - [[https://leetcode-cn.com/problems/swap-nodes-in-pairs/solution/liang-liang-jiao-huan-lian-biao-zhong-de-jie-di-91/][两两交换链表中的节点]]
+* 迭代
+  设置三个指针，分别指向相邻的第一，第二个节点，还有一个指针指向两个相邻节点的上一个节点。
+  不断去迭代这三个指针完成交换。
