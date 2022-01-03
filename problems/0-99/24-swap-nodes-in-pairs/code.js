@@ -11,29 +11,14 @@
  * @return {ListNode}
  */
 var swapPairs = function(head) {
-  if (!head) {
-    return null;
-  }
-
-  if (head.next === null) {
+  if (!head || !head.next) {
     return head;
   }
 
-  let first = head;
-  let second = first.next;
-  let prev = null;
+  let next = head.next;
 
-  head = second;
+  head.next = swapPairs(next.next);
+  next.next = head;
 
-  while (second !== null) {
-    first.next = second.next;
-    second.next = first;
-    prev = first;
-
-    first = first.next;
-    second = first !== null ? first.next : null;
-    second !== null && (prev.next = second);
-  }
-
-  return head;
+  return next;
 };
