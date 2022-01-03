@@ -4,7 +4,7 @@
  * @param {number} year
  * @return {string}
  */
-var dayOfTheWeek = function (day, month, year) {
+var dayOfTheWeek2 = function (day, month, year) {
   // In zeller's Formula, 0 = Saturday, 1 = Sunday, 2 = Monday, ..., 6 = Friday
   const weeks = [
     "Saturday",
@@ -34,8 +34,46 @@ var dayOfTheWeek = function (day, month, year) {
       5 * J) %
     7;
 
-  console.log(week);
   return weeks[week];
+};
+
+var dayOfTheWeek = function (day, month, year) {
+  // 1970-12-31 是星期四
+  const weeks = [
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+  ];
+  const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  let days = 0;
+
+  let isSpecialYear = (year) =>
+    (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+
+  for (let i = 1971; i < year; i++) {
+    if (isSpecialYear(i)) {
+      days += 366;
+    } else {
+      days += 365;
+    }
+  }
+
+  for (let i = 1; i < month; i++) {
+    if (i === 2 && isSpecialYear(year)) {
+      days += 29;
+    } else {
+      days += months[i - 1];
+    }
+  }
+
+  days += day;
+
+  return weeks[days % 7];
 };
 
 module.exports = dayOfTheWeek;
