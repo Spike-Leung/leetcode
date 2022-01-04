@@ -1,0 +1,20 @@
+[[https://leetcode-cn.com/problems/cat-and-mouse/solution/mao-he-lao-shu-by-leetcode-solution-444x/][猫和老鼠]]
+
+博奕和动态规划的问题。
+
+博奕就是输赢或者打平，题目中说两者都以最佳状态，最佳状态就是，
+我能赢就赢，赢不了就争取打平，无可奈何才选择输。
+
+dp[mouse][cat][turns] 表示在 turns 这一轮，mouse 和 cat 所在位置的结果，
+
+如果 mouse = 0, 说明 mouse 走到洞口，mouse 胜利。
+
+如果 mouse = cat && cat != 0, 表示 cat 抓住了老鼠，cat 赢。
+
+mouse != cat, 则需要判断下一个 turns，两者按照最佳状态去走是什么情况。
+
+当 turns >= 2n (n 代表 graphs 中节点的个数)，以为着 mouse 走了 n 个节点，
+cat 也走了 n 个节点，当 mouse 和 cat 再继续走，那就意味着走到一个之前走过
+的节点了。没法去赢，只能去迂回，这就算打平了。
+
+因此，当 turns >= 2n 则表示 mouse 和 cat 打平了。
