@@ -4,55 +4,23 @@
  * @return {string}
  */
 var modifyString = function (s) {
-  const chars = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
+  const chars = [...s];
+  const length = chars.length;
 
-  let index = 0;
-  const sArr = s.split("");
+  for (let i = 0; i < length; i++) {
+    if (chars[i] === "?") {
+      for (let j = 0; j < 3; j++) {
+        const char = String.fromCharCode('a'.charCodeAt() + j);
 
-  while (index < sArr.length) {
-    if (sArr[index] === "?") {
-      const prevChar = sArr[index - 1] || "";
-      const nextChar = sArr[index + 1] || "";
-
-      for (let i = 0; i < chars.length; i++) {
-        if (chars[i] !== prevChar && chars[i] !== nextChar) {
-          sArr[index] = chars[i];
+        if (chars[i - 1] != char && chars[i + 1] != char) {
+          chars[i] = char;
           break;
         }
       }
     }
-
-    index++;
   }
 
-  return sArr.join("");
+  return chars.join("");
 };
 
 module.exports = modifyString;

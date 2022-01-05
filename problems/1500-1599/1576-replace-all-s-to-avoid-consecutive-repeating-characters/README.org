@@ -1,2 +1,6 @@
 模拟即可，扫描一遍字符串，扫描到 ~?~ 的时候，从 a-z 中找一个字符
 和 ~?~ 前后的字符不一样，替换掉就可以了。
+
+- [[https://leetcode-cn.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/solution/ti-huan-suo-you-de-wen-hao-by-leetcode-s-f7mp/][替换所有的问号]]，因为只要和前后两个字符不一样就可以了，实际上不需要
+  遍历所有 a - z 去判断，在 3 个字符内就能找到和前后不一样的了, 只需要
+  遍历 3 次去找到和前后不一样的字符。
