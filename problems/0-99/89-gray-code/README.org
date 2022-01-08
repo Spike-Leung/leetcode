@@ -1,0 +1,13 @@
+* 思路
+题目只给了 n 为1，2 的结果，可以看看 3 的可能结果，经过观察可以发现，
+其实 n 的结果，可以由 n - 1 的结果得到。
+
+n 位比 n - 1 多了 1 位，这一位可以是 0， 也可以是 1.
+
+前 n / 2 个，可以顺序遍历 n - 1 的结果，在最高位加一个 0.
+
+后 n / 2 个，可以倒序遍历 n - 1 的结果，在最高位加一个 1.
+
+* 参考
+  - [[https://en.wikipedia.org/wiki/Gray_code][Gray Code]]
+  - [[https://leetcode-cn.com/problems/gray-code/solution/gray-code-jing-xiang-fan-she-fa-by-jyd/][Gray Code （镜像反射法，图解）]]
