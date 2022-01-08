@@ -4,21 +4,18 @@
  * @return {number[]}
  */
 var grayCode = function(n) {
-  let dp = [[], [0, 1], [0, 1, 3, 2]];
+  let head = 1;
+  let codes = [0];
 
-  for (let i = 3; i <= n; i++) {
-    dp[i] = [];
-
-    for (let j = 0; j < dp[i - 1].length; j++) {
-      dp[i].push(dp[i - 1][j] << 1);
+  for (let i = 1; i <= n; i++) {
+    for (let j = codes.length - 1; j >= 0; j--) {
+      codes.push(codes[j] + head);
     }
 
-    for (let j = dp[i - 1].length - 1; j >= 0; j--) {
-      dp[i].push((dp[i - 1][j] << 1) + 1);
-    }
+    head <<= 1;
   }
 
-  return dp[n];
+  return codes;
 };
 
 module.exports = grayCode;
