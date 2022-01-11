@@ -10,42 +10,66 @@ var isEscapePossible = function (blocked, source, target) {
     return true;
   }
 
+  const n = blocked.length;
+  const maxArea = (n * (n - 1)) / 2;
+  const blockedSet = new Set();
+  blocked.forEach((b) => blockedSet.add(convert(b[0], b[1])));
+
+  return (
+    bfs(source, target, blockedSet, maxArea) &&
+    bfs(target, source, blockedSet, maxArea)
+  );
+};
+
+function bfs(source, target, blockedSet, maxArea) {
+  const dirs = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  const visitedSet = new Set();
   const maxIndex = Math.pow(10, 6);
-  const blockedSet = {};
-  const visitedSet = {};
+  const queue = [source];
 
-  blocked.forEach((b) => (blockedSet[b.join(",")] = true));
+  visitedSet.add(convert(source[0], source[1]));
 
-  let count = 0;
+  while (queue.length > 0) {
+    const point = queue.pop();
 
-  function move(x, y) {
-    if (x === target[0] && y === target[1]) {
-      return true;
+    for (let dir of dirs) {
+      const x = point[0] + dir[0];
+      const y = point[1] + dir[1];
+      const pos = convert(x, y);
+
+      if (
+        x >= 0 &&
+        x < maxIndex &&
+        y >= 0 &&
+        y < maxIndex &&
+        !blockedSet.has(pos) &&
+        !visitedSet.has(pos)
+      ) {
+        if (x === target[0] && y === target[1]) {
+          return true;
+        }
+
+        visitedSet.add(pos);
+
+        if (visitedSet.size > maxArea) {
+          return true;
+        }
+
+        queue.push([x, y]);
+      }
     }
-
-    const pos = `${x},${y}`;
-    if (
-      blockedSet[pos] ||
-      visitedSet[pos] ||
-      x < 0 ||
-      y < 0 ||
-      x >= maxIndex ||
-      y >= maxIndex
-    ) {
-      return false;
-    }
-
-    visitedSet[pos] = true;
-
-    const res =
-      move(x + 1, y) || move(x - 1, y) || move(x, y - 1) || move(x, y + 1);
-
-    delete visitedSet[pos];
-
-    return res;
   }
 
-  return move(source[0], source[1]);
-};
+  return false;
+}
+
+function convert(x, y) {
+  return x * 1000001 + y;
+}
 
 module.exports = isEscapePossible;
