@@ -1,0 +1,17 @@
+这种设计嵌套层次的，看着有点 BFS 的感觉，容易想到可能要用栈来进行存储。
+
+维护两个栈，一个栈保存层级(levelStack)，一个栈保存实际的对象(objStack)。
+
+当遍历数组构造对象时，得现有一个对象存在。
+
+因此，初始化 ObjStack 为 [Object.create(null)]， 包含一个空对象。
+相应的，需要往 levelStack 中放入一个小于所有 level 的层级, [{ level: -2 }],
+这样，当 levelStack 不断出栈恢复上一个层级时，始终有一个层级在，和最外层的对象对应。
+
+当层级逐步嵌套时，往 levelStack 推入新的层级，并且往 objStack 推入对应层的对象
+(parent[key] = Object.create(null), 在父层对象上(没推入新值前的栈顶对象就是父层对象)，
+创建一个新的 key，对应一个新的空对象 )
+
+当层级不是继续嵌套时(level < levelStack.top.level)，则 levelStack 要出栈，退回到合适的层级，
+因此需要一个 while 循环不断出栈，同时 objStack 也得跟着出栈，出栈时，如果 key 对应的值是一个
+空对象，则将其设置为 null
