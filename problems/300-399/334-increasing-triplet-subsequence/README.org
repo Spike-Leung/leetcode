@@ -1,0 +1,15 @@
+* 双向遍历
+  - [[https://leetcode-cn.com/problems/increasing-triplet-subsequence/solution/di-zeng-de-san-yuan-zi-xu-lie-by-leetcod-dp2r/][递增的三元子序列]]
+  #+BEGIN_QUOTE
+  如果数组 nums 中存在一个下标 i 满足 1 ≤ i < n− 1 使得在 nums[i] 左边
+  存在一个元素小于 nums[i], 并且 nums[i] 右边存在一个元素大于 nums[i],
+  则数组 nums 中存在递增的三元子序列。
+  #+END_QUOTE
+  维护两个数组 leftMin, rightMax, 当 leftMin[i] 表示 [0, i] 之间最小的
+  数，rightMax[i] 表示 [i, n - 1] 之间最大的数。
+
+  可以通过左右两遍遍历，得到 leftMin 和 rightMax, 再遍历一次数组，判断
+  是否存在一个 nums[i], 使得 nums[i] > leftMin[i - 1] && nums[i] <
+  rightMax[i + 1] 成立，如果存在，则存在递增三元子序列。
+* 贪心
+  - [[https://leetcode-cn.com/problems/increasing-triplet-subsequence/solution/di-zeng-de-san-yuan-zi-xu-lie-by-leetcod-dp2r/][递增的三元子序列]]
