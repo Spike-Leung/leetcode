@@ -10,5 +10,7 @@
 
 例如当前 i 有 20 个，i 下一个可以拼接 a,e,o,u, 所以，下一个子母组合，a,e,o,u 至少有 20 次。
 
+一个要注意的点是，取模要每次的结果都进行取模，不能只针对最后的返回结果。
+
 * 参考
   - [[https://leetcode-cn.com/problems/count-vowels-permutation/solution/gong-shui-san-xie-yi-ti-shuang-jie-xian-n8f4o/][宫水三叶】一题双解 :「线性 DP」&「矩阵快速幂」]] 题解写法更简洁，还有另一种解决思路
