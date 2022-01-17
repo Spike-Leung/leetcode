@@ -1,0 +1,15 @@
+* 思路
+  最初的思路是排序，然后去最开始两个计算时间差，但是考虑不周全，排在最前面的两个时间，
+  时间差不一定是最少的。所以还是得遍历一遍去计算相邻的时间差，以及第一个和最后一个的
+  时间差。
+
+  此外，题解还用了 [[https://zh.wikipedia.org/wiki/%E9%B4%BF%E5%B7%A2%E5%8E%9F%E7%90%86][鸽巢原理]], 当数量超过最大组合 1440 时，必然有重复的时间，直接返回 0.
+
+  一开始以为是考排序的，还写了个快排，其实只要用自带的 sort 也可以。
+
+  至于计算差值，也是写了个函数去算，也是写复杂了，由于计算相邻的，只要计算两个的分钟数，
+  相减即可。
+
+* 参考
+  - [[https://leetcode-cn.com/problems/minimum-time-difference/solution/zui-xiao-shi-jian-chai-by-leetcode-solut-xolj/][最小时间差]] -官方题解
+  - [[https://zh.wikipedia.org/wiki/%E9%B4%BF%E5%B7%A2%E5%8E%9F%E7%90%86][鸽巢原理]] - wikipedia
