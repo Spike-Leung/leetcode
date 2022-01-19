@@ -5,34 +5,18 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function(nums, k) {
-  const map = {};
-  const limit = Math.min(k, nums.length - 1);
-  let left = 0;
-  let right = 1;
+  const set = new Set();
 
-  map[nums[left]] = true;
+  for (let i = 0; i < nums.length; i++) {
+    if (i > k) {
+      set.delete(nums[i - k - 1]);
+    }
 
-  for (right; right <= limit; right++) {
-    if (map[nums[right]]) {
+    if (set.has(nums[i])) {
       return true;
     }
 
-    map[nums[right]] = true;
-  }
-
-  delete map[nums[left]];
-  left++;
-
-  while (right < nums.length) {
-    if (map[nums[right]]) {
-      return true;
-    }
-
-    map[nums[right]] = true;
-
-    delete map[nums[left]];
-    left++;
-    right++;
+    set.add(nums[i]);
   }
 
   return false;
