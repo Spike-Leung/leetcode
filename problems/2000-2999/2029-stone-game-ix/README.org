@@ -1,0 +1,8 @@
+* 思路
+  - 这种输赢的，就是博奕相关的题目，最佳策略就是争取赢。因此，解题关键是明确双方的
+    胜利条件。
+  - 涉及取余，可以网余数方向考虑，能想到分成余数为 0, 1, 2 三类的数字
+  - 接着就是要分类讨论，找到胜利条件，可以用一些较小的数据去模拟博奕的情况，分析出胜利条件。
+* 参考
+  - [[https://leetcode-cn.com/problems/stone-game-ix/solution/gong-shui-san-xie-fen-qing-kuang-tao-lun-h1oa/][【宫水三叶】分情况讨论博弈题]]
+  - [[https://leetcode-cn.com/problems/stone-game-ix/solution/shi-pin-ti-jie-kan-liao-da-lao-ti-jie-zh-ls25/][【小松漫步】看了大佬题解，终于理解清楚了]]
