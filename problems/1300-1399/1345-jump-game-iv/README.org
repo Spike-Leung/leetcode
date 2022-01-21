@@ -1,0 +1,16 @@
+* 思路
+  从起点出发，可以走左右，或者等值跳跃，可以看作一个无向图，找到第一个元素到最后一个元素的
+  最小跳跃步骤，相当于在图中找最短路径，可以想到用 BFS 去解决。
+
+  但是只是用 BFS，时间复杂度为 O(V+E)，其中 V 为图的顶点数，E 为图的边数。E 可以达到 O(n^2),
+  直接 BFS 会超时。
+
+  因此还需要做一些优化：
+
+  - 使用一个 set 记录访问过的点，访问过的不再入队列
+  - 用一个 map 去记录所有等值的 index，一次性遍历这些值，然后把他们从 map 中移出，
+    保证这些重复值只遍历一次。
+* 参考
+  - [[https://leetcode-cn.com/problems/jump-game-iv/solution/tiao-yue-you-xi-iv-by-leetcode-solution-zsix/][跳跃游戏 IV]]
+  - [[https://leetcode-cn.com/problems/jump-game-iv/solution/gong-shui-san-xie-noxiang-xin-ke-xue-xi-q9tb1/][【宫水三叶の相信科学系列】关于首次等值跳后移除元素的正确性证明（含双向 BFS）]]
+  - [[https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/bfs-de-shi-yong-chang-jing-zong-jie-ceng-xu-bian-l/][BFS 的使用场景总结：层序遍历、最短路径问题]]
