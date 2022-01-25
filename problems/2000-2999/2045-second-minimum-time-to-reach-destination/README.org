@@ -1,0 +1,39 @@
+* 思路
+  由于每一段路径之间的时间是一样的，就意味着路径越长，时间越长。第二短时间，
+  就是找第二短路径，找到路径后，再根据路径长度计算时间即可。
+
+  题解初始化了一个 n + 1 长度的二维数组，path[n][0] 表示到 n 的最短路径，
+  path[n][1] 表示到 n 的第二短路径。
+
+  用一个数组 graphs 存储当前节点的下一个可走的节点 graphs[n] = [a, b, c]
+  表示 n 的下一个节点可以走 a, b, c 任意一个。
+
+  从起点开始，用 BFS 遍历可以走的下一个节点 next，并且计算到下一个节点的路径长度 nextLen，
+
+  如果 nextLen 比 paths[next][0] 小，意味着 nextLen 是到达下一个节点的最短路径。
+
+  如果 nextLen 比 paths[next][0] 大，并且 nextLen 比 paths[next][1] 小，意味着 nextLen 是第二
+  短的路径。
+
+  最后得到 paths[n][1] 就是到达 n 的第二短路径。
+
+  得到路径后，就要根据路径计算时间。
+
+  时间 = 路径长度 * time + 等待红灯的时间
+
+  参考  [[https://leetcode-cn.com/problems/second-minimum-time-to-reach-destination/solution/yu-niang-niang-bfsji-yi-hua-sou-suo-by-y-vacx/][【钰娘娘】BFS+记忆化搜索]]，可以画个时间段的图，容易发现，记当前累计时间为 t，
+  如果 t / change 为奇数，意味着当前需要等待红灯，等到当前这个红灯结束。结束的时间，
+  即经过 x 个 change 的时间。 x = (t / change) + 1， 红灯结束时间为 x * change.
+  红灯结束后，才可以继续走，再累计 time。
+
+  于是有：
+  #+BEGIN_SRC js
+    if (Number.parseInt(res / change, 10) % 2 === 1) {
+      res = (Number.parseInt(res / change, 10) + 1) * change;
+    }
+
+    res += time;
+  #+END_SRC
+* 参考
+  - [[https://leetcode-cn.com/problems/second-minimum-time-to-reach-destination/solution/dao-da-mu-de-di-de-di-er-duan-shi-jian-b-05i0/][到达目的地的第二短时间]]
+  - [[https://leetcode-cn.com/problems/second-minimum-time-to-reach-destination/solution/yu-niang-niang-bfsji-yi-hua-sou-suo-by-y-vacx/][【钰娘娘】BFS+记忆化搜索]]
