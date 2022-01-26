@@ -1,0 +1,7 @@
+* 思路
+  根据空格分割出多个 token，对每个 token 进行有效性判断。
+
+  做的时候要多考虑各种组合情况。
+
+* 参考
+  - [[https://leetcode-cn.com/problems/number-of-valid-words-in-a-sentence/solution/ju-zi-zhong-de-you-xiao-dan-ci-shu-by-le-hvow/][句子中的有效单词数]]
