@@ -1,0 +1,11 @@
+* 思路
+  水地的值是固定的，总是 0，因此，可以基于水地出发，去确定周围的值。
+
+  水地有很多个，要确定所有其他位置的值，可以采用 BFS，这就是一个多源 BFS 的题目。
+
+  每一轮 BFS，后者都比上一轮的高度 +1。
+
+  在 JavaScript 中，直接用栈（数组），执行 push，shift 操作，会超时，可以通过一个临时变量，
+  记录下一层的所有点，使用 for 遍历，可以避免超时的问题.
+* 参考
+  - [[https://leetcode-cn.com/problems/map-of-highest-peak/solution/di-tu-zhong-de-zui-gao-dian-by-leetcode-jdkzr/][地图中的最高点]]
