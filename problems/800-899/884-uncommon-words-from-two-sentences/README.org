@@ -1,0 +1,9 @@
+* 思路
+  #+BEGIN_QUOTE
+  如果某个单词在其中一个句子中恰好出现一次，在另一个句子中却没有出现，那么这个单词就是不常见的。
+  #+END_QUOTE
+  可以总结为，在两个句子里，这个单词只出现过一次。
+
+  因此，只要去遍历两个句子，用哈希表记录单词出现次数，返回只出现一次的单词即可。
+* 参考
+  - [[https://leetcode-cn.com/problems/uncommon-words-from-two-sentences/solution/liang-ju-hua-zhong-de-bu-chang-jian-dan-a8bmz/][两句话中的不常见单词]]
