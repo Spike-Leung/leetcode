@@ -1,0 +1,10 @@
+* 思路
+  可以肯定，k 是有小于 k 的 Fibonacci 数字构成的，因此，可以先生成小于 k 的所有 Fibonacci 数字。
+
+  然后每次找到比 k 次小的数字，尽可能的用大数字去构成，就可以使得数字的数目尽可能小。从数组中找到
+  比 k 小的数字，数组又是有序的，就可以考虑用二分法，每次找到次小的数字，不断地缩小 k 并累计数目，
+  知道 k 为 0， 返回数目即可。
+
+  官方答案更简单，但需要掌握数学证明。
+* 参考
+  - [[https://leetcode-cn.com/problems/find-the-minimum-number-of-fibonacci-numbers-whose-sum-is-k/solution/he-wei-k-de-zui-shao-fei-bo-na-qi-shu-zi-shu-mu-by/][和为 K 的最少斐波那契数字数目]]
