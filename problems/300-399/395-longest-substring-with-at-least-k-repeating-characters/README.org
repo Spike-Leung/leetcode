@@ -1,0 +1,7 @@
+* 思路
+** 分治
+   每日中有一题： [[https://leetcode-cn.com/problems/longest-nice-substring/solution/zui-chang-de-mei-hao-zi-zi-fu-chuan-by-l-4l1t/][最长的美好子字符串]]，题解中的解法就是分治，和这题类似。
+
+   要找子串所有字符都有 k 个或以上，可以根据小于 k 个的字符进行分段，答案肯定在分段中，递归去找。
+* 参考
+  - [[https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/solution/zhi-shao-you-kge-zhong-fu-zi-fu-de-zui-c-o6ww/][至少有K个重复字符的最长子串]]
