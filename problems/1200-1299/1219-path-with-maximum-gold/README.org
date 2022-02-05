@@ -1,0 +1,10 @@
+* 思路
+  这道题和 [[https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/][剑指 Offer 12. 矩阵中的路径]] 差不多，由于要不清楚从哪里开始开采，需要遍历
+  所有位置，从不为 0 的格子开始，向四个方向开采。最后取其中开采黄金最大值。
+
+  向四个方向开采，可以想到用 BFS 或者 DFS，那么用哪个呢？ 由于不是找最短路径，而且需要
+  开采到头才能得到最大值，因此得用 DFS。
+
+  由于开采过的不能重复开采，需要维护一个哈希表，记录开采过的格子，当返回时再把其重置回去。
+* 参考
+  - [[https://leetcode-cn.com/problems/path-with-maximum-gold/solution/huang-jin-kuang-gong-by-leetcode-solutio-f9gg/][黄金矿工]]
