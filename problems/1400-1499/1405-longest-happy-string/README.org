@@ -1,0 +1,12 @@
+* 思路
+  如果要长度最长，应该优先分配数量多的字符，不然最后数量多的剩下来，很容易出现三个连续的情况。
+
+  当分配了数量最多的，就要送其他字符中选一个，同样也从剩余字符中选数量最多的。
+
+  这道题就是一个贪心算法，具体实现参考 [[https://leetcode-cn.com/problems/longest-happy-string/solution/zui-chang-kuai-le-zi-fu-chuan-by-leetcod-5nde/][最长快乐字符串]] 。
+
+  题解的思路是先按照数量大小排序，然后依次遍历，如果数量大于 0，并且没有选择过(和当前最后两个字符不同)，则选择。
+
+  如果选择过则跳过。
+* 参考
+  - [[https://leetcode-cn.com/problems/longest-happy-string/solution/zui-chang-kuai-le-zi-fu-chuan-by-leetcod-5nde/][最长快乐字符串]]
