@@ -1,0 +1,7 @@
+* 思路
+  遍历链表，每遍历 K 个对这 K 个当作一个小的链表进行反转，然后再和原来的头尾节点重新
+  连接。想法容易，实现不容易，很多细节。
+
+  题解中，额外创造一个 head 的前节点，想法很妙。
+* 参考
+  - [[https://leetcode-cn.com/problems/reverse-nodes-in-k-group/solution/k-ge-yi-zu-fan-zhuan-lian-biao-by-leetcode-solutio/][K 个一组翻转链表]]
