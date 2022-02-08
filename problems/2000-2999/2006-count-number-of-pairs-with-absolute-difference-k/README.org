@@ -1,0 +1,14 @@
+* 思路
+  由于数据量少，最直接就是双重循环暴力解，时间复杂度为 O(n ^ 2)
+
+  但如果数据量很大，显然这部是一个合适的解法。
+
+  题解中给出一种哈希表解决的办法：
+
+  满足 |i - j| = k 相当于 i = j - k 或 i = j + k, 因此可以一次遍历，并且用一个哈希表
+  记录遍历过的数字出现的次数。每次遍历，设当前遍历元素为 a，判断 a + k 和 a - k 在哈希表，
+  如果在，则累计对应的数目。
+
+  这样就可以把时间复杂度降低为 O(n) 了
+* 参考
+  - [[https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/solution/chai-de-jue-dui-zhi-wei-k-de-shu-dui-shu-xspo/][差的绝对值为 K 的数对数目]]
