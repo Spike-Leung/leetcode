@@ -23,3 +23,11 @@ const res2 = [1, 1, 0];
 test(`In ${n2} x ${n2} grid, with lamps: ${lamps2}, queries: ${queries2}, result should be ${res2}`, () => {
   expect(gridIllumination(n2, lamps2, queries2)).toEqual(res2);
 });
+
+const n3 = 5;
+const lamps3 = [[0, 0], [1, 0]];
+const queries3 = [[1, 1], [1, 1]];
+const res3 = [1, 0];
+test(`In ${n3} x ${n3} grid, with lamps: ${lamps3}, queries: ${queries3}, result should be ${res3}`, () => {
+  expect(gridIllumination(n3, lamps3, queries3)).toEqual(res3);
+});

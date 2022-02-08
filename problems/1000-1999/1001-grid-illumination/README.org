@@ -1,0 +1,35 @@
+* 思路
+  要判断 queries 的点是否亮着，需要知道那些地方是亮的，因此设置一个哈希表(allLights)存储所有亮的点，
+  那么就可以在 O(1) 的时间判断 queries 的点是否亮着。
+
+  同时，query 之后，需要把 query 的点以及周围的 8 个点关闭。如果关闭的不是 lamp，其实关
+  不关都一样，只要 lamp 没关，lamp 照耀的横竖斜的格子都是亮的。
+
+  因此，关闭的时候，关键是判断是不是 lamp，如果是 lamp，在把 lamp 关闭的同时，要把和他关联的
+  格子从 allLights 中移出。
+
+  为了方便判断关闭的有没有 lamps，同样需要一个 哈希表 lampMap 去存储所有的 lamp，同时由于关闭 lamp 时
+  还要把相关的格子关闭，所以还要记录每个 lamp 照亮了那些格子。于是有这样的结构：
+
+  lampMap = { lamp1: Set(), lamp2: set() }
+
+  lampMap 表示有那些 lamp，每个 lamp 对应一个 Set，包含了点亮的格子。
+
+  而 allLights 也是一个 Set，可以由所有的 lamp 的 Set 构成。
+
+  循环判断 queries 是否点亮，判断是否关闭 lamp，维护 lampMap，allLights, 最终返回结果即可。
+
+  但是上面的思路，需要存储所有点亮的格子，占用了很多空间，提交时直接内存溢出了。
+
+  而题解则给出了一种非常节省空间的解决方法。不需要存储所有的点，把行，列，斜线都看成是一条线，
+  用横座标及数量组成一个 Map，表示当前横座标有多少个 lamp，纵座标同理。而斜线，可以利用直线公式 ~y = kx + b~
+  => ~b = y - kx~ 进而用斜距代表斜线，如果 query 的点通过直线公式计算斜距为 b，则意味着 query 的点
+  在直线上，以及是亮着的。判断 query 是否亮着，只要判断 query 的横座标对应的 Map，看是否有大于 0 的值，
+  有则意味着横座标对应的行亮着。
+
+  当关闭 query 的时候，如果也关闭了 lamp，则把 lamp 对应的斜线，行，列 的值减少一个。
+
+  通过线代替点，减少了很多空间，想法很妙。
+* 参考
+  - [[https://leetcode-cn.com/problems/grid-illumination/solution/wang-ge-zhao-ming-by-leetcode-solution-7omu/][网格照明]]
+  - [[https://leetcode-cn.com/problems/grid-illumination/solution/gong-shui-san-xie-ha-xi-biao-xian-ying-s-s48d/][【宫水三叶】哈希表 + 线映射模拟题]]
