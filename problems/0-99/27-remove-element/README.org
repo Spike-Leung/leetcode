@@ -1,0 +1,6 @@
+* 思路
+  遍历一次，将等于 val 的值设置为一个较大值，然后排序放到后面，记录个数，返回时进行截取。
+
+  但这样做了很多操作，其实双指针遍历一次就能完成了。
+* 参考
+  - [[https://leetcode-cn.com/problems/remove-element/solution/yi-chu-yuan-su-by-leetcode-solution-svxi/][移除元素]]
