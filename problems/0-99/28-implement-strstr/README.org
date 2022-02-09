@@ -1,0 +1,9 @@
+* 思路
+** 朴素解法
+   枚举所有 haystack 的起始点，和 needle 的第一个字符比较，如果匹配，则枚举 needle 和 hayStack
+   起始点后的字符，看是否也都匹配，如果都匹配，则返回起始点的下标，不匹配则从下一个起始点判断。
+
+   时间复杂度是 O(n * m), 一顿暴力猛如虎，一看提交 5% :)
+
+* 参考
+  - [[https://leetcode-cn.com/problems/implement-strstr/solution/shi-xian-strstr-by-leetcode-solution-ds6y/][实现 strStr()]]
