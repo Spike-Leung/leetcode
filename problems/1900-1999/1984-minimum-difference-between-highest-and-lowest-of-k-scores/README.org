@@ -1,0 +1,8 @@
+* 思路
+  排序，然后从长度为 k 的滑动窗口中，计算最大值和最小值的差值，返回最小者。
+
+  为什么要排序，因为排序后，选择了连续的 k 个数，此时有最大值 x，如果用这 k 个数
+  以外的其他数替换这 k 个数任一一个，差值肯定会变大，因为从这 k 个数取，要不取到更小的数，
+  要不去到更大的数。因此，在排序数组中连续的 k 个数，肯定能获取到最小差值。
+* 参考
+  - [[https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/solution/xue-sheng-fen-shu-de-zui-xiao-chai-zhi-b-oodu/][学生分数的最小差值]]
