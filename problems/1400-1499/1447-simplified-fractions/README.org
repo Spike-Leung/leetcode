@@ -1,0 +1,5 @@
+* 思路
+  遍历可能的分子和分母，然后判断分子和分母相除的最大公约数是否为 1，是则为最简分数。
+* 参考
+  - [[https://leetcode-cn.com/problems/simplified-fractions/solution/zui-jian-fen-shu-by-leetcode-solution-98zy/][最简分数]]
+  - [[https://zhuanlan.zhihu.com/p/31824895][漫画算法：辗转相除法是什么鬼？]]
