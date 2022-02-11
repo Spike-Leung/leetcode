@@ -4,6 +4,12 @@
    起始点后的字符，看是否也都匹配，如果都匹配，则返回起始点的下标，不匹配则从下一个起始点判断。
 
    时间复杂度是 O(n * m), 一顿暴力猛如虎，一看提交 5% :)
+** KPM 算法
+  - [[https://www.bilibili.com/video/av81151415/?p=1][[算法] 轻松掌握 kmp]] - bilibili@邋遢大哥233
+    最容易理解的视频
+  - [[https://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html][字符串匹配的 KMP 算法]] - ruanyifeng
+  - [[https://leetcode-cn.com/problems/implement-strstr/solution/duo-tu-yu-jing-xiang-jie-kmp-suan-fa-by-w3c9c/][多图预警 详解 KMP 算法]] - leetcode
+  - [[https://www.zhihu.com/question/21923021/answer/281346746][如何更好地理解和掌握 KMP 算法?]] - 知乎@海纳
 
 * 参考
   - [[https://leetcode-cn.com/problems/implement-strstr/solution/shi-xian-strstr-by-leetcode-solution-ds6y/][实现 strStr()]]

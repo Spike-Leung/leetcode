@@ -5,34 +5,52 @@
  * @return {number}
  */
 var strStr = function(haystack, needle) {
-  if (needle === "") {
+  if (needle.length === 0) {
     return 0;
   }
+  return kmp(haystack, needle);
+};
 
-  const n = haystack.length;
-  let index = 0;
+function kmp(s, p) {
+  const n = s.length;
+  const m = p.length;
 
-  while (index < n) {
-    if (needle[0] === haystack[index]) {
-      let needleIndex = 0;
-      let m = needle.length;
+  const pmt = new Array(m).fill(0);
+  let i = 1, j = 0;
 
-      while (needleIndex < m) {
-        if (needle[needleIndex] != haystack[index + needleIndex]) {
-          break;
-        }
-        needleIndex++;
-      }
-
-      if (needleIndex === m) {
-        return index;
+  while (i < m) {
+    if (p[i] === p[j]) {
+      pmt[i++] = ++j;
+    } else {
+      if (j > 0) {
+        j = pmt[j - 1];
+      } else {
+        i++;
       }
     }
+  }
 
-    index++;
+  i = 0;
+  j = 0;
+
+  while (i < n) {
+    if (s[i] === p[j]) {
+      i++;
+      j++;
+
+      if (j === m) {
+        return i - j;
+      }
+    } else {
+      if (j > 0) {
+        j = pmt[j - 1];
+      } else {
+        i++;
+      }
+    }
   }
 
   return -1;
-};
+}
 
 module.exports = strStr;
