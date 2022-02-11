@@ -1,0 +1,12 @@
+* 思路
+  使用 BFS 或者 DFS，从外边缘开始遍历，将整个 grid 遍历一遍，把能够到达的陆地标记为 true，
+  其他都为 false。
+
+  然后再遍历一遍 grid，累积值为 false 的陆地的个数。
+
+  时间复杂度为 O(m * n)，BFS 或者 DFS 需要遍历所有格子一次，为 m*n, 累积有那些 false 的陆地，
+  也要遍历一次 grid，总的时间复杂度是 O(mn)
+
+  空间复杂度也是 O(mn)
+* 参考
+  - [[https://leetcode-cn.com/problems/number-of-enclaves/solution/fei-di-de-shu-liang-by-leetcode-solution-nzs3/][飞地的数量]]
