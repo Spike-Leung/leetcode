@@ -1,0 +1,10 @@
+* 思路
+  数组是排序的，要求时间复杂度是 O(logN) 空间复杂度是 O(1), 很容易想到用二分查找。
+
+  目标值数量只有一个，而且是有序的，所以目标值一定比左边的数大，比右边的数小。
+  当找到的数和左边或者右边是相同的，则判断找到的数对应的数量，既然目标只有一个，那么包含
+  目标的那一般，数量肯定是奇数。判断那一遍的数量是奇数，去收缩搜索范围。
+
+  尽管做出来了，但是没有[[https://leetcode-cn.com/problems/single-element-in-a-sorted-array/solution/you-xu-shu-zu-zhong-de-dan-yi-yuan-su-by-y8gh/][题解]]中简洁。
+* 参考
+  - [[https://leetcode-cn.com/problems/single-element-in-a-sorted-array/solution/you-xu-shu-zu-zhong-de-dan-yi-yuan-su-by-y8gh/][有序数组中的单一元素]]
