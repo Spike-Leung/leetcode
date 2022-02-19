@@ -1,0 +1,2 @@
+* 参考
+  - [[https://leetcode-cn.com/problems/pancake-sorting/solution/jian-bing-pai-xu-by-leetcode-solution-rzzu/][煎饼排序]]
