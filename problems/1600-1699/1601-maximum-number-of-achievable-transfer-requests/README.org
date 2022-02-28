@@ -1,0 +1,11 @@
+* 思路
+  对于每一个请求，有两种选择，允许或者拒绝。而需要知道最大的请求数目，
+  需要对每一个请求都处理完。
+
+  因此可以考虑用 dfs，每次递归决定选择，或者不选择。结束条件是当处理完
+  所有的请求。统计合法(所有楼的净变化为 0)的组合的数量，比较得到最大值。
+
+  而这种两种选择，也可以考虑二进制，通过 0，1 表示选择与否，总共有 2 ^ m
+  种组合，对每一个组合验证合法性，统计数量，比较得到最大值。
+* 参考
+  - [[https://leetcode-cn.com/problems/maximum-number-of-achievable-transfer-requests/solution/zui-duo-ke-da-cheng-de-huan-lou-qing-qiu-ae0e/][最多可达成的换楼请求数目]]
