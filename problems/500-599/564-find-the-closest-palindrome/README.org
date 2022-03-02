@@ -1,0 +1,2 @@
+* 参考
+  - [[https://leetcode-cn.com/problems/find-the-closest-palindrome/solution/gong-shui-san-xie-tan-xin-fen-xi-shang-x-vtr6/][上下界分析 + 边界处理]]
