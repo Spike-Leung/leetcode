@@ -1,0 +1,2 @@
+* 参考
+  - [[https://github.com/Yuanyuanyuanc/aYuan-learning-notes/issues/2][JS实现一个带并发限制的异步调度器Scheduler]]
