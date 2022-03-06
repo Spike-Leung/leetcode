@@ -1,0 +1,8 @@
+[[https://leetcode-cn.com/problems/find-good-days-to-rob-the-bank/][2100. 适合打劫银行的日子]]
+
+* 思路
+  想知道有哪些天，它前 time 警卫是非递增的，后 time 天警卫是非递减的。
+  可以先预处理数据，分别用两个数组，prev，next,
+  prev[i] 表示前 i 天，有多少天是非递增的，
+  next[i] 表示后 i 天，有多少天是非递减的，
+  然后在遍历一遍，判断是否存在一天满足 prev[i] >= time && next[i] <= time 即可。
