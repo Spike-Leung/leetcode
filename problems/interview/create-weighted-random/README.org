@@ -1,0 +1,2 @@
+* 参考
+  - [[https://leetcode-cn.com/problems/random-pick-with-weight/][528. 按权重随机选择]] 就是这道题，用前缀和+二分查找实现
