@@ -1,0 +1,20 @@
+* 思路
+  预处理盘子的数量，用一个数组 places, places[i] 表示到第 i 个元素，前面总共有多少个盘子。
+
+  例如 s = "**|" 则 places = [1, 2, 2];
+
+  这是利用了前缀和的思想，前缀和适用于快速计算某段下标区间的元素数量。
+
+  然后用一个数组存储蜡烛的下标 candles = [3, 5, 20]，显然蜡烛下表是递增的，可以利用二分查找，
+  找到子区间 [left, right] 中，最左边的蜡烛和最右边的蜡烛下标。
+
+  根据蜡烛下标，去查询 places，places[rightCandleIndex] - places[leftCandleIndex]
+  就是子区间 [left, right] 包含的盘子数量。
+
+  更进一步，s 确定时，蜡烛的位置也是确定的，可以维护两个数组，left，right，
+  预处理每个位置左侧的第一个蜡烛的位置，和右侧第一个蜡烛的位置，这样可以免去二分查找，直接从
+  left ，right 中找到区间对应的两侧蜡烛位置。
+
+* 参考
+  - [[https://leetcode-cn.com/problems/plates-between-candles/solution/zha-zhu-zhi-jian-de-pan-zi-by-leetcode-s-ejst/][蜡烛之间的盘子]]
+  - [[https://leetcode-cn.com/problems/plates-between-candles/solution/gong-shui-san-xie-er-fen-qian-zhui-he-yu-0qt0/][【宫水三叶】二分 & 前缀和 运用题]]
