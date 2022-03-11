@@ -1,0 +1,4 @@
+* 思路
+  DFS 同时遍历两棵树比较即可。
+* Refs
+  - [[https://leetcode-cn.com/problems/same-tree/solution/xiang-tong-de-shu-by-leetcode-solution/][相同的树]]
