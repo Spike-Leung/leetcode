@@ -1,0 +1,24 @@
+* 思路
+** 递归
+   按照左，根，右的顺序，进行递归即可
+** 遍历
+   遍历的思路是模拟递归的栈的操作。
+
+   - 建一个栈
+   - 从根节点开始遍历，根节点入栈。
+   - 如果有左节点，左节点入栈。 [root, left]
+   - 当没有更多的左节点，开始出栈。 left 出栈 => [root], root 出栈 []
+   - 如果出栈元素是某个根节点，判断是否有右节点，如果有，则右节点入栈。 root有右节点 [right], right 出栈 []
+   - 遍历直到栈为空，或者没有剩下任何节点
+
+
+   - []
+   - [root]
+   - [root, left]
+   - [root] (left 出栈)
+   - [] (root 出栈)
+   - [right] (有右节点，入栈)
+   - [] (right 出栈)
+   - 出栈顺序: left root right (这就是中序遍历的顺序)
+* Refs
+  - [[https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/er-cha-shu-de-zhong-xu-bian-li-by-leetcode-solutio/][二叉树的中序遍历]]
