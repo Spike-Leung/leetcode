@@ -1,0 +1,11 @@
+* 实现方法
+  - 递归
+  - 遍历，用栈模拟递归
+    - 使用 Set 记录遍历过的根节点
+    - 使用 prev 标记访问过的节点
+    - 使用 unshift 插入值，从顶向下输出
+  - Morris 遍历
+
+* 参考
+  - [[https://leetcode-cn.com/problems/binary-tree-postorder-traversal/solution/er-cha-shu-de-hou-xu-bian-li-by-leetcode-solution/][二叉树的后序遍历]]
+  - [[https://sningning.github.io/posts/4a4f5ebc/][Morris 遍历]]
