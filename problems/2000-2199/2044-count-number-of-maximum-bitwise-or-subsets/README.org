@@ -1,0 +1,13 @@
+* 思路
+  根据按位或运算的特点，最大值，就是所有数进行按位或运算的值。
+  按位或运算，对于原来位是 1 的没影响，对于原来是 0 的位，有可能变为 1，也就是数字会变大。
+  因此，全部数按位或运算，就是最大值 maxVal
+
+  接下来，由于数组长度为 16，不是很大，可以考虑遍历所有的子数组。
+
+  通过 dfs(pos, val)， pos 表示当前的遍历到第几个元素，val 是上一次遍历时的值。
+  对于每一个元素，可以选择，也可以不选，于是有 ~dfs(pos + 1, oVal | nums[pos])~ 和 ~dfs(pos + 1, oVal)~
+  当 ~pos == nums.length~ 时，已经遍历所有元素了，结束递归，判断是否等于 maxVal, 累计 count
+
+* 参考
+  [[https://leetcode-cn.com/problems/count-number-of-maximum-bitwise-or-subsets/solution/tong-ji-an-wei-huo-neng-de-dao-zui-da-zh-r6zd/][统计按位或能得到最大值的子集数目]]
