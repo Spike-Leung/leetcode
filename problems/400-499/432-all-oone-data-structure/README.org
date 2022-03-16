@@ -1,0 +1,56 @@
+* 思路
+  之前做了 [[https://leetcode-cn.com/problems/lru-cache/][146. LRU 缓存]] ，看了眼提示，哈希表 + 双向链表，很容易想到用 LRU 的套路去解决。
+
+  有了 LRU 的套路，很容易实现双向链表，以及哈希表和双向链表关联，快速定位节点。
+
+  但是 LRU 的做法，是每个 key 对应一个节点，对于这道题来说是不合适的。
+
+  要实现这道题的功能，需要维护一个具有单调性的双向链表，当需要取最大最小值时，就返回头尾对应的节点即可。
+
+  例如，实现一个单调递增的双向链表。从 head 到 tail， 节点的 value 递增。
+
+  而单调递增的东西，是数量，节点的设计如下：
+
+  #+begin_src js
+    function DoubleLinkedNode(value) {
+      this.keys = new Set(); // 存储达到这个 count 的 key
+      this.value = value; // 存储 count
+      this.next = null;
+      this.prev = null;
+    }
+  #+end_src
+
+  AllOne 初始化:
+
+  #+begin_src js
+    var AllOne = function() {
+      // 存储 key，value 为 DoublelinkedNode()
+      this.map = {};
+
+      // 虚拟头和尾，方便找到第一个和最后一个节点
+      this.head = new DoubleLinkedList();
+      this.tail = new DoubleLinkedList();
+
+      this.head.next = this.tail;
+      this.tail.prev = this.head;
+    };
+  #+end_src
+
+  执行 inc 的时候：
+
+  - 判断 key 是否存在，如果存在则找到对应的节点，由于是 inc，所以 value + 1，
+
+    看下一个节点的 value 是否为 value + 1， 如果是，则把 key 加入到下一个节点的 keys 中，表示 key 数量 + 1，
+    存到对应数量的节点里。
+
+    同时，从当前节点中的 keys 中，移除 key， 更新 map 。
+
+    如果下一个节点的值，不是 value + 1，表示没有对应的节点存储，则新建一个 value 为 value + 1 的节点，
+    更新节点的指向，从当前节点中的 keys 中，移除 key， 更新 map 。
+
+
+  总之就是把链表的每个节点，表示成数量为 x 的容器，当前 key 在 inc 或者 dec 的时候，看数量变成多少，就放到对应的
+  容器里。没有则创建容器。同时，维护这些容器的单调性。取最大最小时，则从头尾容器，任意取一个 key 即可。
+
+* 参考
+  -[[https://leetcode-cn.com/problems/all-oone-data-structure/solution/by-ac_oier-t26d/][【宫水三叶】数据结构运用题]]
