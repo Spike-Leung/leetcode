@@ -1,0 +1,11 @@
+* 思路
+  递归前序遍历二叉树，然后分类讨论子树情况：
+
+#+begin_src js
+  // 只有右节点，则左节点填充 (), 返回 `()(right)`
+  (!left && right) && (str += `()(${right})`);
+  // 只有左节点，空的右节点可以忽略，返回 `(left`)
+  (left && !right) && (str += `(${left})`);
+  // 左右节点都存在，返回 `(left)(right)`
+  (left &&  right) && (str += `(${left})(${right})`);
+#+end_src
