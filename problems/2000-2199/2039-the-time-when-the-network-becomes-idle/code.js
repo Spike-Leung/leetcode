@@ -5,55 +5,45 @@
  * @return {number}
  */
 var networkBecomesIdle = function (edges, patience) {
-  const edgesMap = new Map();
-  const minPathMap = new Map();
-
-  for (const [u, v] of edges) {
-    edgesMap.get(u) !== undefined
-      ? edgesMap.get(u).add(v)
-      : edgesMap.set(u, new Set([v]));
-
-    edgesMap.get(v) !== undefined
-      ? edgesMap.get(v).add(u)
-      : edgesMap.set(v, new Set([u]));
-  }
-
-  (function bfs() {
-    let length = 0;
-    let stack = [...edgesMap.get(0)];
-
-    while (stack.length) {
-      length++;
-      const nextStack = [];
-
-      for (let i = 0; i < stack.length; i++) {
-        const server = stack[i];
-
-        if (minPathMap.get(server) === undefined) {
-          minPathMap.set(server, length);
-        }
-
-        nextStack.push(
-          ...[...edgesMap.get(server)].filter(
-            (s) => s !== 0 && minPathMap.get(s) === undefined
-          )
-        );
-      }
-
-      stack = nextStack;
-    }
-  })();
-
+  const n = patience.length;
+  const edgesMap = Array.from({ length: n }, () => []);
+  const visited = new Set();
   let minTime = 0;
 
-  for (let i = 1; i < patience.length; i++) {
-    const path = minPathMap.get(i);
-    const time =
-      Math.floor((path * 2 - 1) / patience[i]) * patience[i] + 2 * path + 1;
+  for (const [u, v] of edges) {
+    edgesMap[u].push(v);
+    edgesMap[v].push(u);
+  }
 
-    if (time > minTime) {
-      minTime = time;
+  let length = 1;
+  let stack = edgesMap[0];
+  visited.add(0);
+
+  while (stack.length) {
+    const nextStack = [];
+
+    for (let i = 0; i < stack.length; i++) {
+      const server = stack[i];
+
+      if (visited.has(server)) {
+        continue;
+      }
+
+      const time =
+        Math.floor((length * 2 - 1) / patience[server]) * patience[server] +
+        2 * length +
+        1;
+
+      if (time > minTime) {
+        minTime = time;
+      }
+
+      visited.add(server);
+      nextStack.push(...edgesMap[server]);
     }
+
+    stack = nextStack;
+    length++;
   }
 
   return minTime;
