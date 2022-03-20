@@ -1,0 +1,5 @@
+* 思路
+  因为 BST 是有序的，利用中序遍历得到升序数组，双指针去检索是否存在两个数字的和为 k
+* 参考
+  - [[https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/solution/liang-shu-zhi-he-iv-shu-ru-bst-by-leetco-b4nl/][两数之和 IV - 输入 BST]]
+  出了双指针方法，还可以用哈希表.
