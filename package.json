@@ -5,9 +5,13 @@
   "author": "Spike <l-yanlei@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "plop": "plop new-problem"
   },
   "devDependencies": {
     "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "plop": "^3.0.5"
   }
 }

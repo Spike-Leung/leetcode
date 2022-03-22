@@ -1,0 +1,3 @@
+// {{ link }}
+
+module.exports = {{func}};
