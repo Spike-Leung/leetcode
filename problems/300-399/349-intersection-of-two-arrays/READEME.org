@@ -1,0 +1,12 @@
+* 思路
+  遍历一个数组，然后从另一个数组里找有没有相同的，有则添加到答案。
+  为了避免重复添加相同数字，需要一个哈希表维护已经添加的数字。
+
+  从一个数组中找元素，可以排序后二分查找。
+
+  也可以把两个数组都遍历一次生成哈希表，直接根据哈希表判断元素是否存在。
+
+  还可以两个数组排序后，双指针分别指向两个数组，移动指针进行判断。
+
+* 参考
+  - [[https://leetcode-cn.com/problems/intersection-of-two-arrays/solution/liang-ge-shu-zu-de-jiao-ji-by-leetcode-solution/][两个数组的交集]]
