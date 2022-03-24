@@ -1,0 +1,13 @@
+* 思路
+** 前缀和 + 二分查找
+   生成前缀和 sum，然后对每一个下标 i 进行二分查找，找到最小的 j，使得 sum[j] - sum[i - 1] >= target,
+   此时长度为 j - (i - 1), 保留最小的长度就是答案。
+** 滑动窗口
+   设置 l，r 两个指针，从下标 0 开始，累积 l ~ r 之间的和 sum， 当 sum >= target 的时候，得到一个长度，
+   此时，收缩左边界，l++， sum -= nums[l], 继续判断 sum >= target 是否成立，成立则更新长度。
+
+   当 sum < target 时，扩大右边界，r++, sum += nums[r], 继续判断 sum >= target 是否成立。
+
+   直到 r >= n 结束，返回长度。
+* 参考
+  - [[https://leetcode-cn.com/problems/minimum-size-subarray-sum/solution/chang-du-zui-xiao-de-zi-shu-zu-by-leetcode-solutio/][长度最小的子数组]]
