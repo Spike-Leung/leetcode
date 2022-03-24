@@ -1,0 +1,18 @@
+* 思路
+  题目理解起来有点绕，根据题意，字符都按照非递减排序的，可能会出现 ~aaabcfgjklllmm~ 这样的，
+  但不会出现 ~abcabc~ 这样的。
+
+  另外，还有一种情况，例如从 letters 是 ~ab~ , target 是 ~c~ ， 此时 c 比 ab 都大，题目说，
+  比较时是 *字母是依序循环出现*, 因此，可以理解为 ~ab~ c ~ab~, 因此，比 c 大的就是 a
+
+  由于字母都是非递减排序，可以考虑用二分法快速找到 c 所在的位置。
+
+  如果能在 letters 中找到，则返回即可。
+
+  如果 letters 中所有字符都比 target 小，则返回 letters 的第一个字符。
+  这种对应的就是左边界不断收缩，最终 left = letters.length.
+
+  此时可以利用取模运算 ~left % letters.length~ 统一两种情况的返回。
+
+* 参考
+  - [[https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/solution/xun-zhao-bi-mu-biao-zi-mu-da-de-zui-xiao-zi-mu-by-/][寻找比目标字母大的最小字母]]
