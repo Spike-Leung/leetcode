@@ -5,25 +5,23 @@
  */
 var sortColors = function(nums) {
   const n = nums.length;
-  let l = 0;
-  let r = 0;
+  let p0 = 0;
+  let p1 = 0;
 
-  while (r < n) {
-    if (nums[r] === 0) {
-      swap(nums, l, r);
-      l++;
+  for (let i = 0;  i < n; i++) {
+    if (nums[i] === 1) {
+      swap(nums, p1, i);
+      p1++;
+    } else if (nums[i] === 0) {
+      swap(nums, p0, i);
+
+      if (p0 < p1) {
+        swap(nums, p1, i);
+      }
+
+      p0++;
+      p1++;
     }
-    r++;
-  }
-
-  r = l;
-  while (r < n) {
-    if (nums[r] === 1) {
-      swap(nums, l, r);
-      l++;
-    }
-
-    r++;
   }
 
   return nums;
