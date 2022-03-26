@@ -1,0 +1,5 @@
+* 思路
+  类似[[https://leetcode-cn.com/problems/move-zeroes/][移动零]]这道题，定义双指针，遍历两次，第一次将所有的 0 交换到前面，第二次将所有的 1 交换到前面。
+
+* 参考
+  - [[https://leetcode-cn.com/problems/sort-colors/solution/yan-se-fen-lei-by-leetcode-solution/][颜色分类]]
