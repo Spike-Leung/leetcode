@@ -1,0 +1,18 @@
+* 思路
+  模拟题，根据题意进行模拟即可。
+
+  根据已有条件，可以算出  n 个数的和 nSum， 即 (rolls.length + n) * mean - (rolls 的和)
+
+  此时需要 nSum 是否可以拆分成 n 个数，判断条件是 nSum >= n && nSum  <= 6n (最小 1点 和 最大 6 点的边界情况)
+
+  如果 nSum 可以拆分成 n 个数，每个数的范围为 [1, 6], 为了避免超出 nSum，
+
+  可以首先计算一个 nSum / n 的平均数 avg ，先分配 n - 1 个数字，剩下的值 nSum - (n - 1) * avg, 如果不大于 6，
+  则直接分配给最后一个数。
+
+  如果大于 6，即最后一个数分配最大点数 6，还不能分配完，则最后一个数先分配 6，再把剩下的逐一分配个前面
+  还没达到 6 点的数，知道分配完。
+
+  （题解里有另一种更简洁的分配方法）
+* 参考
+  - [[https://leetcode-cn.com/problems/find-missing-observations/solution/zhao-chu-que-shi-de-guan-ce-shu-ju-by-le-0z7j/][找出缺失的观测数据]]
