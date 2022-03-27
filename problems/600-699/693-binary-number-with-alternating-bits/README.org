@@ -1,0 +1,20 @@
+* 思路
+  我的思路是先转成二进制的字符串表示，再遍历每一位做异或，如果是间隔的，每次异或都应该得到 1。
+
+  [[https://leetcode-cn.com/problems/binary-number-with-alternating-bits/solution/jiao-ti-wei-er-jin-zhi-shu-by-leetcode-s-bmxd/][题解]]的思路更简洁:
+
+  #+begin_src js
+      var hasAlternatingBits = function(n) {
+        // 右移并且异或得到 a
+        const a = n ^ (n >> 1);
+        // 判断 a 的二进制表示是不是都是 1
+        return (a & (a + 1)) === 0;
+    };
+  #+end_src
+
+  既然相邻是间隔的 0 和 1，那么只要把原数字右移一位，不就刚好和原数字错位了吗，
+  再和原数字进行异或操作，得到 a，只有当原数字都是间隔的，得到的 a 的二进制才会都是 1
+
+  如果 a 的二进制全部都是 1，那么 ~a & (a + 1)~ 应该为 0
+* 参考
+  - [[https://leetcode-cn.com/problems/binary-number-with-alternating-bits/solution/jiao-ti-wei-er-jin-zhi-shu-by-leetcode-s-bmxd/][交替位二进制数]]
