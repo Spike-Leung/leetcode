@@ -1,0 +1,6 @@
+* 思路
+  写一个方法，反转某个范围的字符。
+
+  然后找到要反转的范围，对所有地方进行反转即可。反转范围就是 2 * k 为起点，往后找 k 个字符
+* 参考
+  - [[https://leetcode-cn.com/problems/reverse-string-ii/solution/fan-zhuan-zi-fu-chuan-ii-by-leetcode-sol-ua7s/][反转字符串 II]]
