@@ -1,0 +1,4 @@
+* 思路
+  参考题解。
+* 参考
+  - [[https://leetcode-cn.com/problems/array-of-doubled-pairs/solution/er-bei-shu-dui-shu-zu-by-leetcode-soluti-2mqj/][二倍数对数组]]
