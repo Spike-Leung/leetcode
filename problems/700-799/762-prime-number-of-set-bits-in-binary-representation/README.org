@@ -1,0 +1,10 @@
+* 思路
+  模拟枚举。
+
+  统计每个数字包含二进制 1 的个数，可以把数字不断右移和 1 进行与操作，统计结果为 1 的次数，直到数字变为 0.
+
+  判断是否为质数，可以从 2 遍历到 Math.sqrt(num), 判断 num % i 是否为 0，如果能被 i 整除则不是质数。
+
+  如果不是质数，总能拆分成 x * y = num, 其中有 x <= Math.sqrt(num) , y >= Math.sqrt(numb)，因此只要遍历 2 ~ Math.sqrt(num) 即可
+* 参考
+  - [[https://leetcode-cn.com/problems/prime-number-of-set-bits-in-binary-representation/solution/er-jin-zhi-biao-shi-zhong-zhi-shu-ge-ji-jy35g/][二进制表示中质数个计算置位]]
