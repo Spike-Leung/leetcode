@@ -23,29 +23,32 @@ var sortedListToBST = function(head) {
     return null;
   }
 
-  let nodeValues = [];
-
-  while (head) {
-    nodeValues.push(head.val);
-    head = head.next;
-  }
-
-  return buildBST(nodeValues);
+  return buildBST(head);
 };
 
-function buildBST(arr) {
-  if (arr.length === 0) {
+function buildBST(left, right = null) {
+  if (left === right) {
     return null;
   }
 
-  const midIndex = Math.floor((arr.length - 1) / 2);
-  const midVal = arr[midIndex];
-  const root = new TreeNode(midVal);
-
-  root.left = buildBST(arr.slice(0, midIndex));
-  root.right = buildBST(arr.slice(midIndex + 1));
+  const midNode = getMidNode(left, right);
+  const root = new TreeNode(midNode.val);
+  root.left = buildBST(left, midNode);
+  root.right = buildBST(midNode.next, right);
 
   return root;
+}
+
+function getMidNode(left, right) {
+  let slow = left;
+  let fast = left;
+
+  while (fast !== right &&  fast.next !== right) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+
+  return slow;
 }
 
 module.exports = sortedListToBST;
