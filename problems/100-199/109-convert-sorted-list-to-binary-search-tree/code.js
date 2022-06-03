@@ -19,36 +19,36 @@
  * @return {TreeNode}
  */
 var sortedListToBST = function(head) {
-  if (head === null) {
-    return null;
+  const length = getLength(head);
+
+  function buildBST(left, right) {
+    if (left > right) {
+      return null;
+    }
+
+    const mid = left + Math.floor((right - left) / 2);
+    const root = new TreeNode();
+
+    root.left = buildBST(left, mid - 1);
+    root.val = head.val;
+    head = head.next;
+    root.right = buildBST(mid + 1, right);
+
+    return root;
   }
 
-  return buildBST(head);
+  return buildBST(0, length - 1);
 };
 
-function buildBST(left, right = null) {
-  if (left === right) {
-    return null;
+function getLength(head) {
+  let length = 0;
+
+  while (head) {
+    length++;
+    head = head.next;
   }
 
-  const midNode = getMidNode(left, right);
-  const root = new TreeNode(midNode.val);
-  root.left = buildBST(left, midNode);
-  root.right = buildBST(midNode.next, right);
-
-  return root;
-}
-
-function getMidNode(left, right) {
-  let slow = left;
-  let fast = left;
-
-  while (fast !== right &&  fast.next !== right) {
-    fast = fast.next.next;
-    slow = slow.next;
-  }
-
-  return slow;
+  return length;
 }
 
 module.exports = sortedListToBST;
