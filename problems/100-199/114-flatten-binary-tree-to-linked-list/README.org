@@ -1,0 +1,16 @@
+* 思路
+  最简单粗暴的办法是前序遍历，将每个节点存到数组，再遍历数组，修改节点的指针。
+  这需要遍历两次。
+
+  另一个办法是想到前序遍历，按照前序遍历的顺序，当有左子树的时候，会一
+  直遍历到左子树的最右叶子节点，然后再开始遍历右子树。
+
+  由于展开的链表也是前序遍历的顺序，当有左子树的时候，先找到左子树的最右叶子节点(predecessor)，
+  然后将 predecessor.right 指向当前节点（curr）的右子树，predecessor.right = curr.right
+
+  这样就可以将左右子树按照前序遍历的顺序连接起来。接着去修改 curr 的指针，依次处理每一个节点，
+  最后就能得到链表。
+
+* 参考
+  - [[https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/solution/er-cha-shu-zhan-kai-wei-lian-biao-by-leetcode-solu/][二叉树展开为链表]]
+  - [[https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--26/][详细通俗的思路分析，多解法]]
