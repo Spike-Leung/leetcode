@@ -1,0 +1,16 @@
+* 思路
+** 迭代(BFS)
+   最简单就是做一次 bfs，得到每一层的节点，然后一个个进行串联。但是需
+   要额外的空间存储每一层的节点，最多的时候需要存储最后一个层级的节点
+   N/2 个，空间复杂度为 O(N), 不符合题目的 O(1) 空间要求
+** 迭代改进
+   这是一颗完全二叉树，观察怎么连接 next 节点，参考[[https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/solution/dong-hua-yan-shi-san-chong-shi-xian-116-tian-chong/][动画演示+三种实
+   现 116. 填充每个节点的下一个右侧节点指针]] 中的图，可以发现，就两种情况：
+
+   - root.left.next = root.right
+   - root.right.next = root.next.left (root.next !== null)
+** 递归实现
+   - 第二种迭代方式的递归实现
+   - 另一种递归思路，参考题解动画理解。
+* 参考
+  - [[https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/solution/dong-hua-yan-shi-san-chong-shi-xian-116-tian-chong/][动画演示+三种实现 116. 填充每个节点的下一个右侧节点指针]]
