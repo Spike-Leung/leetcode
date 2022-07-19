@@ -17,19 +17,44 @@ var buildTree = function (preorder, inorder) {
     return null
   }
 
-  const rootVal = preorder[0]
-  const root = new TreeNode(rootVal)
-  const rootIndex = inorder.indexOf(rootVal)
-  const leftInorder = inorder.slice(0, rootIndex)
-  const leftInorderLength = leftInorder.length
+  const n = inorder.length
+  const index = {}
 
-  root.left = buildTree(preorder.slice(1, leftInorderLength + 1), leftInorder)
-  root.right = buildTree(
-    preorder.slice(leftInorderLength + 1),
-    inorder.slice(rootIndex + 1)
-  )
+  inorder.forEach((v, i) => {
+    index[v] = i
+  })
 
-  return root
+  function build(preorder, inorder, preStart, preEnd, inStart, inEnd) {
+    if (inStart > inEnd) {
+      return null
+    }
+
+    const rootVal = preorder[preStart]
+    const root = new TreeNode(rootVal)
+    const rootIndex = index[rootVal]
+    const leftSize = rootIndex - inStart
+
+    root.left = build(
+      preorder,
+      inorder,
+      preStart + 1,
+      preStart + leftSize,
+      inStart,
+      rootIndex - 1
+    )
+    root.right = build(
+      preorder,
+      inorder,
+      preStart + 1 + leftSize,
+      preEnd,
+      rootIndex + 1,
+      inEnd
+    )
+
+    return root
+  }
+
+  return build(preorder, inorder, 0, n - 1, 0, n - 1)
 }
 
 module.exports = buildTree
