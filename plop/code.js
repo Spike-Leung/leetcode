@@ -1,3 +1,3 @@
 // {{ link }}
 
-module.exports = {{func}};
+module.exports = {{func}}

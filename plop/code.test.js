@@ -1,5 +1,5 @@
-const {{ func }} = require("./code");
+const {{ func }} = require("./code")
 
 test(``, () => {
-  expect().toBe();
-});
+  expect().toBe()
+})
