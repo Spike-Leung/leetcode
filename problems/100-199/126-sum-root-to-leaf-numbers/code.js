@@ -12,21 +12,22 @@
  * @return {number}
  */
 var sumNumbers = function (root) {
+  return dfs(root, 0)
+}
+
+function dfs(root, preSum) {
   if (root === null) {
     return 0
   }
 
-  const nums = []
-  ;(function getNumber(root, prevNumber) {
-    if (root.left === null && root.right === null) {
-      nums.push(prevNumber + root.val)
-      return
-    }
+  const sum = preSum * 10 + root.val
 
-    root.left && getNumber(root.left, prevNumber + root.val)
-    root.right && getNumber(root.right, prevNumber + root.val)
-  })(root, "")
-
-  return nums.reduce((acc, curr) => (acc += +curr), 0)
+  // 已经是叶子节点了
+  if (root.left === null && root.right === null) {
+    return sum
+  } else {
+    return dfs(root.left, sum) + dfs(root.right, sum)
+  }
 }
+
 module.exports = sumNumbers
