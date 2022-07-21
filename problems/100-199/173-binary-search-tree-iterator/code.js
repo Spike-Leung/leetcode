@@ -11,37 +11,33 @@
  * @param {TreeNode} root
  */
 var BSTIterator = function(root) {
-  this.index = 0
-
-  const inorder = []
-
-  if (root !== null) {
-    (function dfs(root) {
-      if (!root) {
-       return
-      }
-
-      root.left && dfs(root.left)
-      inorder.push(root.val)
-      root.right && dfs(root.right)
-    }(root))
-  }
-
-  this.inorder = inorder
+  this.stack = []
+  this.curr = root
 };
 
 /**
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
-  return this.inorder[this.index++]
+  let val
+
+  while (this.curr) {
+    this.stack.push(this.curr)
+    this.curr = this.curr.left
+  }
+
+  const node = this.stack.pop()
+  val = node.val
+  this.curr = node.right
+
+  return val
 };
 
 /**
  * @return {boolean}
  */
 BSTIterator.prototype.hasNext = function() {
-  return this.inorder[this.index] !== undefined
+  return this.stack.length || this.curr !== null
 };
 
 /**

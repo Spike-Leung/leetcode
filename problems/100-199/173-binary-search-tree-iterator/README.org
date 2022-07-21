@@ -43,7 +43,25 @@
       return this.inorder[this.index] !== undefined
     };
   #+end_src
+** 迭代
+   上面的方法，每次都需要先遍历所有节点，有时这个迭代器只执行一两次，也许要遍历所有节点，
+   就有些浪费。如果能每次 next 的时候，就得到一个节点，而不用遍历全部，这样才比较合理。
 
+   而中序遍历，除了递归，还有迭代的形式，迭代需要用到栈来模拟递归过程
+
+   初始化时，初始一个栈 stack, 初始指针 curr，指向当前迭代到的元素
+
+   next() 的时候迭代一次，得到节点值
+
+   hasNext() 判断栈是否还有元素，或者当前指针非空
+
+   中序遍历迭代的过程：
+
+   - 一直遍历左节点，依次入栈，直到到达叶子节点
+   - 弹出栈顶元素，记录值，如果该元素有右子树，则将右子树的所有左节点入栈
+   - 重复，直到迭代完所有节点
+
+   入栈都是左子树的节点，栈最大就是树的高度，可以保证空间复杂度为 O(h)
 * 参考
   - [[https://leetcode.cn/problems/binary-search-tree-iterator/solution/er-cha-sou-suo-shu-die-dai-qi-by-leetcod-4y0y/][二叉搜索树迭代器]]
   -[[https://leetcode.cn/problems/binary-search-tree-iterator/solution/fu-xue-ming-zhu-dan-diao-zhan-die-dai-la-dkrm/][【负雪明烛】单调栈！迭代来自对递归的理解]]
