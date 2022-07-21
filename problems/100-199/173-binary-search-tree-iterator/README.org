@@ -1,0 +1,50 @@
+* 思路
+  题目是中序遍历，可以在构造时，中序便利存储结果到数组，以及记录下标。
+
+  next() 就是返回下标对应的值，同时下标后移一位
+
+  hasNext() 则判断下一个下表是否有值，或者下标是否在数组范围内。
+
+  #+begin_src js
+    /**
+     ,* @param {TreeNode} root
+     ,*/
+    var BSTIterator = function(root) {
+      this.index = 0
+
+      const inorder = []
+
+      if (root !== null) {
+        (function dfs(root) {
+          if (!root) {
+           return
+          }
+
+          root.left && dfs(root.left)
+          inorder.push(root.val)
+          root.right && dfs(root.right)
+        }(root))
+      }
+
+      this.inorder = inorder
+    };
+
+    /**
+     ,* @return {number}
+     ,*/
+    BSTIterator.prototype.next = function() {
+      return this.inorder[this.index++]
+    };
+
+    /**
+     ,* @return {boolean}
+     ,*/
+    BSTIterator.prototype.hasNext = function() {
+      return this.inorder[this.index] !== undefined
+    };
+  #+end_src
+
+* 参考
+  - [[https://leetcode.cn/problems/binary-search-tree-iterator/solution/er-cha-sou-suo-shu-die-dai-qi-by-leetcod-4y0y/][二叉搜索树迭代器]]
+  -[[https://leetcode.cn/problems/binary-search-tree-iterator/solution/fu-xue-ming-zhu-dan-diao-zhan-die-dai-la-dkrm/][【负雪明烛】单调栈！迭代来自对递归的理解]]
+  -[[https://leetcode.cn/problems/binary-search-tree-iterator/solution/xiang-jie-ru-he-dui-die-dai-ban-de-zhong-4rxj/][【宫水三叶】详解如何对「迭代版的中序遍历」来做等价拆分]]
