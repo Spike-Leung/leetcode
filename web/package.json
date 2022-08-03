@@ -11,7 +11,9 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "solutions": "workspace:*"
+    "react-markdown": "^8.0.3",
+    "solutions": "workspace:*",
+    "solution-parser": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

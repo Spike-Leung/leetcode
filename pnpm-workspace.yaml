@@ -1,3 +1,4 @@
 packages:
   - solutions
+  - solution-parser
   - web
