@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm -C web run dev",
-    "build": "pnpm -C solution-parser run start && pnpm -C web run build"
+    "dev": "pnpm run prepare && npm -C web run dev",
+    "prepare": "pnpm -C solution-parser run start",
+    "build": "pnpm run prepare && pnpm -C web run build"
   },
   "keywords": [],
   "author": "",
