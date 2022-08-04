@@ -1,30 +1,18 @@
-import ReactMarkdown from "react-markdown"
-import Markdown from "solution-parser/data/173-binary-search-tree-iterator.md?raw"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import Nav from "./components/Nav"
+import Header from "./components/Header"
+import Details from "./components/Details"
+import { useState } from "react"
 
 function App() {
+  const [problem, setProblem] = useState(null)
   return (
-    <ReactMarkdown
-      className="p-20"
-      children={Markdown}
-      components={{
-        code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || "")
-          return !inline && match ? (
-            <SyntaxHighlighter
-              children={String(children).replace(/\n$/, "")}
-              language={match[1]}
-              PreTag="div"
-              {...props}
-            />
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
-          )
-        },
-      }}
-    />
+    <div className="flex flex-col">
+      <Header />
+      <div className="flex flex-1">
+        <Nav setProblem={setProblem} />
+        <Details className="flex-1" problem={problem} />
+      </div>
+    </div>
   )
 }
 
