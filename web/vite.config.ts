@@ -11,6 +11,11 @@ export default defineConfig({
     react(),
     Unocss({
       presets: [presetUno(), presetIcons()],
+      theme: {
+        colors: {
+          leetcode: "#ffa116",
+        },
+      },
     }),
   ],
   resolve: {

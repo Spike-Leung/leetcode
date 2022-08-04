@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
     "react-syntax-highlighter": "^15.5.0",
     "solution-parser": "workspace:*",
-    "solutions": "workspace:*"
+    "solutions": "workspace:*",
+    "use-local-storage": "^2.3.6"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.7",
