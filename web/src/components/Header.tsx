@@ -8,7 +8,6 @@ function Header(props) {
       <span className="font-bold c-leetcode">Leetcode Solutions</span>
 
       <span className="flex-1" />
-      <Search />
       <button
         className="dark:i-carbon-moon i-carbon-sun ml4 text-xl cursor-pointer"
         onClick={toggleTheme}

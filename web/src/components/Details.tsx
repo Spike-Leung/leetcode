@@ -44,7 +44,7 @@ function Details(props) {
   }, [problem])
 
   return (
-    <div className="pt5 px1">
+    <div className="p5 of-auto w-full">
       <div className="mb3 flex items-center">
         <span className="font-bold">{detail.title}</span>
         <a

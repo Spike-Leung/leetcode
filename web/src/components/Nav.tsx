@@ -12,16 +12,18 @@ function Nav(props) {
   })
 
   return (
-    <div className="flex flex-col of-auto min-w-60 w-60 pt3">
+    <div className="flex flex-col of-hidden of-y-auto min-w-60 w-60 pt3">
       {problems.map(({ title }, index) => {
         return (
           <a
-            className="of-hidden text-ellipsis hover-c-leetcode cursor-pointer ws-nowrap px5 py1"
+            className="hover-c-leetcode cursor-pointer px5 py1"
             title={title}
             key={title}
             onClick={() => setProblem(problems[index])}
           >
-            {title}
+            <span className="text-ellipsis ws-nowrap w-full of-hidden inline-block">
+              {title}
+            </span>
           </a>
         )
       })}

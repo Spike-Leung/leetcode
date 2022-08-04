@@ -22,9 +22,9 @@ function App() {
 
   return (
     <AppContext.Provider value={{ theme }}>
-      <div className={`flex flex-col ${theme}`}>
+      <div className={`flex flex-col ${theme} h-full of-hidden`}>
         <Header toggleTheme={toggleTheme} />
-        <div className="flex flex-1">
+        <div className="flex flex-1 h-full of-hidden">
           <Nav setProblem={setProblem} />
           <Details className="flex-1" problem={problem} />
         </div>

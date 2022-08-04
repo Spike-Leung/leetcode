@@ -14,6 +14,10 @@ a {
   color: #4078f2;
 }
 
+html,body,#root {
+    height: 100vh;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
