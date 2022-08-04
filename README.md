@@ -24,3 +24,9 @@
   - 安装 [pnpm](https://pnpm.io/)
   - `pnpm i`
   - `pmpm run dev`
+
+### TODO
+  - [ ] 适配手机屏幕
+  - [ ] 搜索 (fuse)
+  - [ ] 优化加载速度
+  - [ ] 版本发布 (尝试一下 changset)
