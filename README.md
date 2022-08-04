@@ -21,6 +21,6 @@
   来，做了一个简单的页面用于呈现。
 
 ### 本地运行 web 页面
-    - 安装 [pnpm](https://pnpm.io/)
-    - `pnpm i`
-    - `pmpm run dev`
+  - 安装 [pnpm](https://pnpm.io/)
+  - `pnpm i`
+  - `pmpm run dev`
