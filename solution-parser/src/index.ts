@@ -16,13 +16,15 @@ fg.sync("../solutions/problems/**/code.*", {
     "../solutions/**/code.test.*",
   ],
 }).map(async (src) => {
-  const name = basename(dirname(src))
+  const path = dirname(src)
+  const name = basename(path)
 
   code.push(
     genObjectFromRaw({
       title: `"${name}"`,
       readme: `() => import("./problems/${name}.md?raw")`,
       code: `() => import("${src.slice(3)}?raw")`,
+      path: `"${path.slice(3)}"`,
     })
   )
 
