@@ -1,6 +1,10 @@
 import Search from "@/components/Search"
 
-function Header(props) {
+interface HeaderProps {
+  toggleTheme: () => void
+}
+
+function Header(props: HeaderProps) {
   const { toggleTheme } = props
 
   return (

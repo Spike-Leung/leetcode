@@ -1,6 +1,11 @@
 import { problemIndex } from "solution-parser/data/index"
+import { ProblemItem } from "@/types"
 
-function Nav(props) {
+interface NavProps {
+  setProblem: (problem: ProblemItem) => void
+}
+
+function Nav(props: NavProps) {
   const { setProblem } = props
 
   const problems = problemIndex.slice(0)

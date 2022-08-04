@@ -3,11 +3,12 @@ import useLocalStorage from "use-local-storage"
 import Nav from "@/components/Nav"
 import Header from "@/components/Header"
 import Details from "@/components/Details"
+import { ProblemItem } from "@/types"
 
 export const AppContext = createContext({ theme: "light " })
 
 function App() {
-  const [problem, setProblem] = useState(null)
+  const [problem, setProblem] = useState<ProblemItem>()
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
   const [theme, setTheme] = useLocalStorage(

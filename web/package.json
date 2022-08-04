@@ -22,6 +22,7 @@
     "@iconify-json/carbon": "^1.1.7",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/react-syntax-highlighter": "^15.5.4",
     "@unocss/preset-icons": "^0.45.3",
     "@unocss/preset-uno": "^0.45.3",
     "@vitejs/plugin-react": "^2.0.0",

@@ -42,10 +42,9 @@ importers:
       '@iconify-json/carbon': ^1.1.7
       '@types/react': ^18.0.15
       '@types/react-dom': ^18.0.6
-      '@unocss/preset-attributify': ^0.45.4
+      '@types/react-syntax-highlighter': ^15.5.4
       '@unocss/preset-icons': ^0.45.3
       '@unocss/preset-uno': ^0.45.3
-      '@unocss/transformer-attributify-jsx': ^0.45.4
       '@vitejs/plugin-react': ^2.0.0
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -70,10 +69,9 @@ importers:
       '@iconify-json/carbon': 1.1.7
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
-      '@unocss/preset-attributify': 0.45.4
+      '@types/react-syntax-highlighter': 15.5.4
       '@unocss/preset-icons': 0.45.3
       '@unocss/preset-uno': 0.45.3
-      '@unocss/transformer-attributify-jsx': 0.45.4
       '@vitejs/plugin-react': 2.0.0_vite@3.0.4
       typescript: 4.7.4
       unocss: 0.45.1_vite@3.0.4
@@ -954,6 +952,12 @@ packages:
       '@types/react': 18.0.15
     dev: true
 
+  /@types/react-syntax-highlighter/15.5.4:
+    resolution: {integrity: sha512-GYXA4nRBG4jTGFfYMLO2/yuqyOyaQ415oeJWw6akE5gipOEsGhvXFvWhsctGVMHzAfRI7e/J0B9cpqrfMOwZhA==}
+    dependencies:
+      '@types/react': 18.0.15
+    dev: true
+
   /@types/react/18.0.15:
     resolution: {integrity: sha512-iz3BtLuIYH1uWdsv6wXYdhozhqj20oD4/Hk2DNXIn1kFsmp9x8d9QB6FnPhfkbhd2PgEONt9Q1x/ebkwjfFLow==}
     dependencies:
@@ -1036,10 +1040,6 @@ packages:
     resolution: {integrity: sha512-S2b0pKDa2UUvehAm0XTl8WPetZUBbKFWgwphm2UNGeDjFQB7odEyj3Moej6EgXWlEosAH/z3x3hHkofmc8ggMQ==}
     dev: true
 
-  /@unocss/core/0.45.4:
-    resolution: {integrity: sha512-/LaVbM/gHbaCiGbvoFXeYZ7A+i1wKRZph/zfRsBLmzeBeLq0ZvkgSnOfYYnwxYSfWqq15W9h9TCHbfBZhZfZEQ==}
-    dev: true
-
   /@unocss/inspector/0.45.1:
     resolution: {integrity: sha512-JSXw4VRve25YVjfkE+4j5BiNBHX/pNl6GWNLHUtC4dbxkly7dGyH+W/IWxUupLQu0L+hISKdWiqKYSpDOQK96w==}
     dependencies:
@@ -1051,12 +1051,6 @@ packages:
     resolution: {integrity: sha512-xA5t6+HRHVxn5p8IFTFrlnxMldhw8H82Wvrd/Gw8zAK5PeZlFrkyKo2uyfjR+AcO2QuiICZylLgLwoxNJmj57Q==}
     dependencies:
       '@unocss/core': 0.45.1
-    dev: true
-
-  /@unocss/preset-attributify/0.45.4:
-    resolution: {integrity: sha512-3LutvllbUsID95Qth7IM5JUk2Z4YgDhW5WYMFMSQsTfKqd+CKWgTxRa/kFbnTGXCarWhohPIw6dIe6jRVIV0Pw==}
-    dependencies:
-      '@unocss/core': 0.45.4
     dev: true
 
   /@unocss/preset-icons/0.45.1:
@@ -1152,12 +1146,6 @@ packages:
     resolution: {integrity: sha512-aUkAhEDKEoa7FX/38bRDTxQaxYKBtvMNxk9zc7jwP9Ht7AA0QmdApDSmx5dqc8Za7DoCuJU8WGyglXWqRaPY+w==}
     dependencies:
       '@unocss/core': 0.45.1
-    dev: true
-
-  /@unocss/transformer-attributify-jsx/0.45.4:
-    resolution: {integrity: sha512-ygXCoASlIOWyEIpHm+ps37GQLMqlHOCGBrNOaM8mpOAVwqmbBIxW3aVHvt98MIjfELiXq5jGFGSXjmlFQvPrhQ==}
-    dependencies:
-      '@unocss/core': 0.45.4
     dev: true
 
   /@unocss/transformer-compile-class/0.45.1:

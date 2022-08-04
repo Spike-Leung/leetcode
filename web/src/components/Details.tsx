@@ -6,8 +6,14 @@ import {
   oneLight,
 } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { AppContext } from "@/App"
+import { ProblemItem } from "@/types"
 
-function Details(props) {
+interface DetailsProps {
+  problem?: ProblemItem
+  className?: string
+}
+
+function Details(props: DetailsProps) {
   const { problem } = props
 
   if (!problem) {
@@ -28,8 +34,6 @@ function Details(props) {
   }, [theme])
 
   useEffect(() => {
-
-
     Promise.all([problem.readme(), problem.code()]).then(([readme, code]) => {
       setDetails((prev) => {
         return {
@@ -56,13 +60,15 @@ function Details(props) {
 
       {detail.readme && (
         <details open>
-          <summary className="cursor-pointer hover-c-leetcode select-none">Readme</summary>
+          <summary className="cursor-pointer hover-c-leetcode select-none">
+            Readme
+          </summary>
           <ReactMarkdown
             children={detail.readme}
             components={{
-              h1: 'h3',
-              h2: 'h4',
-              code({ node, inline, className, children, ...props }) {
+              h1: "h3",
+              h2: "h4",
+              code({ node, inline, className, children }) {
                 const match = /language-(\w+)/.exec(className || "")
                 return !inline && match ? (
                   <SyntaxHighlighter
@@ -70,12 +76,9 @@ function Details(props) {
                     language={match[1]}
                     style={codeStyle}
                     PreTag="div"
-                    {...props}
                   />
                 ) : (
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
+                  <code className={className}>{children}</code>
                 )
               },
             }}
@@ -85,13 +88,14 @@ function Details(props) {
 
       {detail.code && (
         <details open>
-          <summary className="cursor-pointer hover-c-leetcode select-none">Code</summary>
+          <summary className="cursor-pointer hover-c-leetcode select-none">
+            Code
+          </summary>
           <SyntaxHighlighter
             children={detail.code}
             language={"typescript"}
             style={codeStyle}
             PreTag="div"
-            {...props}
           />
         </details>
       )}

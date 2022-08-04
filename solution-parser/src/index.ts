@@ -42,9 +42,6 @@ fg.sync("../solutions/problems/**/code.*", {
 
 fs.writeFileSync(
   `data/index.ts`,
-  `import React from "react"
-
-export const problemIndex = ${genArrayFromRaw(code)}
-`,
+  `export const problemIndex = ${genArrayFromRaw(code)}`,
   { encoding: "utf8" }
 )
