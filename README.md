@@ -16,7 +16,7 @@
 
 ### 查看题解
 
-  可以在 [leetcode solution](leetcode-spike-leung.vercel.app/)
+  可以在 [leetcode solution](https://leetcode-spike-leung.vercel.app/)
   这个页面查看当前的题解，把 solutions 里面关于 leetcode 的部分提取出
   来，做了一个简单的页面用于呈现。
 
