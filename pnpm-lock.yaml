@@ -10,12 +10,16 @@ importers:
       '@types/node': ^18.6.3
       fast-glob: ^3.2.11
       fs-extra: ^10.1.0
+      knitwork: ^0.1.2
       org-to-markdown: ^0.0.5
+      react: ^18.2.0
       solutions: workspace:*
       ts-node: ^10.9.1
       typescript: ^4.6.4
     dependencies:
+      knitwork: 0.1.2
       org-to-markdown: 0.0.5
+      react: 18.2.0
       solutions: link:../solutions
     devDependencies:
       '@types/node': 18.6.3
@@ -3439,6 +3443,10 @@ packages:
   /kleur/4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
+    dev: false
+
+  /knitwork/0.1.2:
+    resolution: {integrity: sha512-2ekmY2S/VB3YGVhrIFadyJQpkjMFSf48tsXCnA+kjs4FEQIT+5FLyOF0No/X58z/2E/VaMyeJfukRoVT4gMsfQ==}
     dev: false
 
   /kolorist/1.5.1:

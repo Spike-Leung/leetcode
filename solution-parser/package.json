@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "knitwork": "^0.1.2",
     "org-to-markdown": "^0.0.5",
     "solutions": "workspace:*"
   },
