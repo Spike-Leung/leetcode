@@ -1,5 +1,3 @@
-import Search from "@/components/Search"
-
 interface HeaderProps {
   toggleTheme: () => void
 }

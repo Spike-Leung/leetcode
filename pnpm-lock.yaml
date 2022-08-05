@@ -44,6 +44,7 @@ importers:
       '@unocss/preset-icons': ^0.45.3
       '@unocss/preset-uno': ^0.45.3
       '@vitejs/plugin-react': ^2.0.0
+      fuse.js: ^6.6.2
       react: ^18.2.0
       react-dom: ^18.2.0
       react-markdown: ^8.0.3
@@ -56,6 +57,7 @@ importers:
       vite: ^3.0.0
     dependencies:
       '-': 0.0.1
+      fuse.js: 6.6.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-markdown: 8.0.3_3hx2ussxxho4jajbwrd6gq34qe
@@ -2423,6 +2425,11 @@ packages:
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
+
+  /fuse.js/6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
