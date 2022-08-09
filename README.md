@@ -7,12 +7,11 @@
 - 督促自己去记录当时的解题思路
 
 ### 做题
-
-  - 进入到 solutions 目录
-  - `pnpm p`
-  - 根据提示生成模板，在 `solutions/problems/` 目录下，根据序号放到对应目录，包含 `code.js`, `code.test.js`, `README.org`
+  - `pnpm problem`
+  - 根据提示填写信息，plop 会在 `solutions/problems/` 目录下，根据序号
+    放到对应目录，包含 `code.js`, `code.test.js`, `README.org`
   - 在 `code.js` 中编码，`code.test.js` 写测试用例， `README.org` 记录解题思路
-  - `pnpm test 114-` 测试序号为 114 的题目
+  - `pnpm test-problem 114-` 测试序号为 114 的题目
 
 ### 查看题解
 
@@ -27,6 +26,5 @@
 
 ### TODO
   - [ ] 适配手机屏幕
-  - [ ] 搜索 (fuse)
   - [ ] 优化加载速度
   - [ ] 版本发布 (尝试一下 changset)

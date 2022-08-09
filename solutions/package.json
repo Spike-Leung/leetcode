@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "p": "plop new-problem"
+    "plop": "plop new-problem"
   },
   "devDependencies": {
     "jest": "^27.0.6",

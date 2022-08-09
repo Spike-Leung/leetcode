@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm run prepare && npm -C web run dev",
-    "prepare": "pnpm -C solution-parser run start",
-    "build": "pnpm run prepare && pnpm -C web run build"
+    "prepare": "pnpm -C solution-parser run build",
+    "build": "pnpm run prepare && pnpm -C web run build",
+    "problem": "pnpm -C solutions run plop",
+    "test-problem": "pnpm -C solutions run test"
   },
   "keywords": [],
   "author": "",
