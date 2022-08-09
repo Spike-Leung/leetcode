@@ -49,7 +49,7 @@ function Details(props: DetailsProps) {
 
   return (
     <div className="p5 of-auto w-full">
-      <div className="mb3 flex items-center">
+      <div className="mb5 flex items-center bg-gray-5 p5 b-rd-3 bg-op-10">
         <span className="font-bold">{detail.title}</span>
         <a
           className="i-carbon-link ml3 cursor-pointer"
@@ -59,7 +59,7 @@ function Details(props: DetailsProps) {
       </div>
 
       {detail.readme && (
-        <details open>
+        <details open className="bg-gray-5 bg-op-10 p5 b-rd-3 mb-5">
           <summary className="cursor-pointer hover-c-leetcode select-none">
             Readme
           </summary>
@@ -87,7 +87,7 @@ function Details(props: DetailsProps) {
       )}
 
       {detail.code && (
-        <details open>
+        <details open className="bg-gray-5 bg-op-10 p5 b-rd-3">
           <summary className="cursor-pointer hover-c-leetcode select-none">
             Code
           </summary>
