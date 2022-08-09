@@ -16,6 +16,12 @@ problems.sort((a: ProblemItem, b: ProblemItem) => {
   return serialA - serialB
 })
 
+const problemsMap = problems.reduce((acc: Record<string, ProblemItem>, curr) => {
+  acc[curr.title] = curr
+
+  return acc
+}, {})
+
 const fuse = new Fuse(problems, { keys: ["title"] })
 
 function Nav(props: NavProps) {
@@ -30,17 +36,6 @@ function Nav(props: NavProps) {
     return fuse.search(query).map(({ item }) => item as ProblemItem)
   }, [problems, query])
 
-  const handleKeyDown = useCallback((event: Event) => {
-
-  }, [])
-
-  useEffect(() => {
-    document.addEventListener("keyDown", handleKeyDown)
-
-    return () => {
-      document.removeEventListener("keyDown", handleKeyDown)
-    }
-  }, [])
 
   return (
     <div className="flex flex-col of-hidden min-w-60 w-60 pt3">
@@ -68,7 +63,7 @@ function Nav(props: NavProps) {
               className="hover-c-leetcode cursor-pointer py1"
               title={title}
               key={title}
-              onClick={() => setProblem(problems[index])}
+              onClick={() => setProblem(problemsMap[title])}
             >
               <span className="text-ellipsis ws-nowrap w-full of-hidden inline-block">
                 {title}
