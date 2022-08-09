@@ -1,0 +1,131 @@
+* 思路
+** DFS or BFS
+  最简单就是 DFS 或者 BFS 遍历计数。
+
+  以 DFS 为例，节点数量就是：根节点(~1~) + 左子树的节点数量(~countNodes(root.left)~) + 右子树的节点数量(~countNodes(root.right)~)
+
+  递归结束条件是节点不存在，返回 0: ~root =​=​= null~ return 0
+
+  需要遍历所有节点，时间复杂度为 O(N)
+
+  #+begin_src js
+    var countNodes = function(root) {
+      if (root === null) {
+        return 0
+      }
+
+      return 1 + countNodes(root.left) + countNodes(root.right)
+    };
+  #+end_src
+
+** 利用完全二叉树的特性
+   完全二叉树除了最后一层可能不是填满的，其余每层都是填满的，而且最后
+   一层节点都是从最左边开始排列。
+
+   另外，对于满完全二叉树，节点个数为 ~2 ^ h - 1~ ， h 为二叉树的高度。
+
+   观察可以发现，在完全二叉树中，是包含一些小的满二叉树的，利用满二叉
+   树的节点数计算公式，可以快速的算出来某个子树的节点个数，避免了遍历。
+
+   接下来的问题就是怎么分离出满二叉树。
+
+   子树无非就是左子树和右子树，那么什么情况下，左子树可以当做满二叉树？
+   什么情况右子树可以当满二叉树？
+
+   对于完全二叉树而言，根据最后一层的节点个数，会出现多种情况，观察可以发现：
+
+   记左子树的高度为 left ，记右子树的告诉为 right
+
+   当 ~left =​=​= right~ 的时候，意味着左子树是满的子树。
+
+   此时左子树的个数为 2 ^ left - 1, 再加上 root 节点，为 2 ^ left
+
+   当 ~left ​> right~ 的时候，意味着右子树是满的子树。
+
+   此时右子树的节点数为 2 ^ right - 1 + 1(root 节点) = 2 ^ right
+
+   接着对剩下的左或右子树进行递归处理即可。
+
+   #+begin_src js
+     var countNodes = function(root) {
+       if (root === null) {
+         return 0
+       }
+
+       const left = calcLevel(root.left)
+       const right = calcLevel(root.right)
+
+       if (left === right) {
+         // 1 << left 相当于 Math.pow(2, left)
+         return (1 << left) + countNodes(root.right)
+       } else {
+         return (1 << right) + countNodes(root.left)
+       }
+     };
+
+     function calcLevel(root) {
+       let level = 0
+
+       while (root !== null) {
+         level++
+         root = root.left
+       }
+
+       return level
+     }
+   #+end_src
+
+** 二分查找
+   还是根据完全二叉树的性质，记二叉树的高度为 h，除了最后一层，剩余层
+   的节点个数为 2 ^ (h - 1) - 1
+
+   最后一层的个数范围是 ~[1, 2 ^ (h - 1)]~, 这个范围是递增的，可以利用二
+   分查找，判断具体有多少个。
+
+   从这个范围任意找一个下标 k（1 <= k <= 2 ^ (h -1 )），判断这个下标对
+   应的节点是否存在。
+
+   如果存在，意味着最后一层的个数大于等于 k 个。
+
+   如果不存在，意味着最后一层的个数小于 k 个。
+
+   利用二分查找，找到最后一层，最后一个节点的下标，记为 t，则整棵树的
+   高度就是 ~2 ^ (h - 1) - 1 + t~
+
+   难点在于，怎么判断一个节点是否存在。
+
+   一种办法是从根节点出发，根据一些条件，判断这个节点应该在左子树还是
+   右子树，然后一直走到叶子节点，如果叶子节点不是 null，那就说明在树上。
+
+   怎么判断一个节点在左子树还是右子树呢？
+
+   对于每一层，可以根据高度计算出每一层的下标取值范围 [1, N]
+
+   然后从 [1, N] 中取一个中间值 mid，和目标节点下标 k 进行比较。
+
+   如果 k <= mid, 则节点在左边；否则节点在右边。
+
+   一层比完后，再用上一层的高度进行比较。
+
+   例如，树的高度是 4，即有 4 层。
+
+   最后一层的下标取值范围就是  [1, 2 ^ 3 = 8], mid 为 4，设 k 为 7
+
+   此时 mid(4) < k(7), 所以目标节点应该在右边，那么此时从根节点往右边走，root = root.right
+
+   root 往右走后，高度就变成了 3
+
+   此时的最后一层下标取值范围是 [1, 2 ^ 2 = 4], mid 为 2。
+
+   因为层数变少了，而且是右子树，所以 k 也要跟着变化，在第 3 层，k 对
+   应的值应该是 7(之前的k) - 4(之前的mid) = 3
+
+   此时 mid(2) < k(3), 所以目标节点在右边，root = root.right
+
+   依次类推，直到高度变成 1， 只剩下一个节点，这个节点就是目标节点，判
+   断目标节点是否为 null，从而知道目标节点是否在树上。
+
+
+* 参考
+  - [[https://leetcode.cn/problems/count-complete-tree-nodes/solution/chang-gui-jie-fa-he-ji-bai-100de-javajie-fa-by-xia/][常规解法和击败100%的Java解法]]
+  - [[https://leetcode.cn/problems/count-complete-tree-nodes/solution/c-san-chong-fang-fa-jie-jue-wan-quan-er-cha-shu-de/][C++ 三种方法解决完全二叉树的节点个数]]
