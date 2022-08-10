@@ -1,0 +1,24 @@
+* 思路
+  存在 next 指针，就需要去充分利用 next 指针。
+
+  操作的时候，总是先操作好上一层，再操作下一层，于是在操作下一层的时候，
+  上一层已经通过 next 指针连起来了。
+
+  遍历上一层的每一个节点 node, 将 node.left = node.right
+
+  如果 node.right 不存在，则通过 next 指针，看 node.next.left 是否存在，
+  node.next.right 是否存在，如果不存在，则继续沿着 next 指针往下找。
+
+  同时，需要记录当前遍历到哪个 node，用于下一次的操作。
+
+  当一层结束时，就遍历下一层。需要记录下一层的第一个节点。
+
+  当没有下一层节点时，就结束。
+
+  [[https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/solution/bfsjie-jue-zui-hao-de-ji-bai-liao-100de-yong-hu-by/][题解]]中归纳的很好，其实就是把每一层看作是一条链表，遍历上一层的链表，
+  去连接下一层的链表。
+
+  为了方便从上一层转移到下一层，创建一个哑节点 dummy，指向下一层的第一个节点。
+
+* 参考
+  - [[https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/solution/bfsjie-jue-zui-hao-de-ji-bai-liao-100de-yong-hu-by/][BFS解决（最好的击败了100%的用户)]]
