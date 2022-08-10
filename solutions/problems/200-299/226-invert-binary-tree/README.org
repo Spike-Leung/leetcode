@@ -1,0 +1,8 @@
+* 思路
+  递归交换。
+
+  将 root 的左右子树交换，交换后，对左右子树进行相同的操作，很容易就想到递归去实现。
+
+  当 root =​=​= null 的时候递归结束。
+* 参考
+  - [[https://leetcode.cn/problems/invert-binary-tree/solution/dong-hua-yan-shi-liang-chong-shi-xian-226-fan-zhua/][动画演示 两种实现 226. 翻转二叉树]]
