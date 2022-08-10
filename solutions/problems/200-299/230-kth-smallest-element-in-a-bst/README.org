@@ -1,0 +1,66 @@
+* 思路
+  利用二叉搜索树的性质，进行中序遍历，当遍历到第 k 个节点，对应的就是第 k 小的元素。
+
+  中序遍历递归：
+  #+begin_src js
+    var kthSmallest = function(root, k) {
+      let target = null
+
+      function dfs(root) {
+        target === null && root.left && dfs(root.left)
+        k--
+        if (k === 0) {
+          target = root.val
+        }
+        target === null && root.right && dfs(root.right)
+      }
+
+      dfs(root)
+
+      return target
+    };
+  #+end_src
+
+  中序遍历非递归实现：
+  #+begin_src js
+    var kthSmallest = function(root, k) {
+      const stack = []
+
+      while (root || stack.length > 0) {
+        while(root) {
+          stack.push(root)
+          root = root.left
+        }
+
+        const node = stack.pop()
+
+        if (--k === 0) {
+          return node.val
+        }
+
+        root = root.right
+      }
+
+      return -1
+
+    }
+  #+end_src
+
+** 优化频繁地查找第 k 小的值
+   如果需要频繁地找第 K 小的值，用中序遍历的方法，每次都要遍历一次。
+
+   之所以要遍历，是因为不知道当前节点是树中的第几个节点。
+
+   如果需要频繁查询，可以对树处理，记录以每个结点为根结点的子树的结点数。
+
+   当访问到一个节点时，判断其左数的节点个数。
+
+   如果 left < k - 1, 则 k 应该在右子树里，继续搜索右子树，k = k -
+   left - 1 (减去左子树节点数 + 根节点)
+
+   如果 left = k - 1, 则当前的节点即为第 k 小的节点
+
+   如果 left > k - 1, 则目标节点在左子树，继续搜索左子树
+* 参考
+  - [[https://leetcode.cn/problems/kth-smallest-element-in-a-bst/solution/er-cha-sou-suo-shu-zhong-di-kxiao-de-yua-8o07/][二叉搜索树中第K小的元素]]
+  - [[https://leetcode.cn/problems/kth-smallest-element-in-a-bst/solution/gong-shui-san-xie-yi-ti-san-jie-pai-xu-y-8uah/][宫水三叶】一题三解 :「排序」&「优先队列」&「中序遍历」]]
