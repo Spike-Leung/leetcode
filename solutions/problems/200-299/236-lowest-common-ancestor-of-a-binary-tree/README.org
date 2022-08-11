@@ -1,0 +1,67 @@
+* 思路
+  比较笨的办法是，DFS 遍历树，找到从 root 到 p 和 q 的路径。
+
+  然后比较 pathQ 和 pathP，找到深度最深的共同节点，即为祖先节点。
+
+  #+begin_src js
+    var lowestCommonAncestor = function (root, p, q) {
+      const pathP = getNodePath(root, p)
+      const pathQ = getNodePath(root, q)
+      const length = Math.min(pathQ.length, pathP.length)
+
+      for (let i = 0; i < length; i++) {
+        if (pathP[i].val !== pathQ[i].val) {
+          return pathP[i - 1]
+        }
+      }
+
+      return pathP[length - 1]
+    }
+
+    function getNodePath(root, target) {
+      let res
+
+      function dfs(root, path = []) {
+        if (root === null) {
+          return
+        }
+
+        path.push(root)
+
+        if (root.val === target.val) {
+          res = path
+          return
+        }
+
+        dfs(root.left, path.slice(0))
+        dfs(root.right, path.slice(0))
+      }
+
+      dfs(root, [])
+
+      return res
+    }
+  #+end_src
+
+  尝试了一下，上面的代码会爆内存，因为找路径时，多次复制数组，占据了太多空间。
+
+  按照 [[https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/][236. 二叉树的最近公共祖先（DFS ，清晰图解）]]的思路，递归前序遍历，
+  从底到顶回溯，返回 left，right 中是否包含 q，q，再和 root 进行比较。
+
+  思考的出发点是，最近公共祖先可能的情况：
+
+  - 在 root 异侧
+  - 都在左树
+  - 都在右树
+
+  于是可以考虑查找左树，右树是否有 p，q，和 root 进行判断。
+
+  分为几种情况：
+
+  - left，right 中都包含 p，q，说明 p，q 在 root 异侧，root 为公共祖先
+  - left，right 都不包含，没有公共祖先
+  - left 包含，right 不包含，说明公共祖先在左树，返回左数回溯得到的组先
+  - left 不包含，right 包含，祖先在右数，返回右树得到的祖先
+
+* 参考
+  - [[https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/][236. 二叉树的最近公共祖先（DFS ，清晰图解）]]
