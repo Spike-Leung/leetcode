@@ -1,0 +1,52 @@
+* 思路
+  注意到这是一棵二叉搜索树，而且节点唯一。
+
+  那么，任意两个节点，只有三种情况：
+
+  - 都在左子树，此时最近公共祖先就是较大的节点
+  - 都在右子树，此时最近公共祖先就是较小的节点
+  - 在根节点的左右，此时最近公共祖先就是根节点
+
+  从根节点开始递归：
+
+  - 如果 p < node < q || p < q(node) || p(node) < q , 则 node 为祖先
+  - 如果 p < q < node, 则递归左子树
+  - 如果 node < p < q, 递归右子树
+
+    #+begin_src js
+      var lowestCommonAncestor = function(root, p, q) {
+        if (root === null) {
+          return root
+        }
+        let smallNode, largeNode, res
+
+        if (p.val > q.val) {
+          smallNode = q
+          largeNode = p
+        } else {
+          smallNode = p
+          largeNode = q
+        }
+
+        function dfs(root, small, large) {
+          if (root.val === small.val || root.val === large.val || (root.val > small.val && root.val < large.val)) {
+            res = root
+            return
+          }
+
+          if (root.val > large.val) {
+            dfs(root.left, small, large)
+          }
+
+          if (root.val < small.val) {
+            dfs(root.right, small, large)
+          }
+        }
+
+        dfs(root, smallNode, largeNode)
+
+        return res
+      }
+    #+end_src
+* 参考
+  - [[https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/solution/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-26/][二叉搜索树的最近公共祖先]]
