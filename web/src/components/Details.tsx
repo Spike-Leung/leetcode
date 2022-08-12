@@ -5,6 +5,7 @@ import {
   oneDark,
   oneLight,
 } from "react-syntax-highlighter/dist/esm/styles/prism"
+import Loading from "@/components/Loading"
 import { AppContext } from "@/App"
 import { ProblemItem } from "@/types"
 
@@ -29,11 +30,14 @@ function Details(props: DetailsProps) {
     path: "",
   })
 
+  const [loading, setLoading] = useState(false)
+
   const codeStyle = useMemo(() => {
     return theme === "dark" ? oneDark : oneLight
   }, [theme])
 
   useEffect(() => {
+    setLoading(true)
     Promise.all([problem.readme(), problem.code()]).then(([readme, code]) => {
       setDetails((prev) => {
         return {
@@ -44,6 +48,8 @@ function Details(props: DetailsProps) {
           path: problem.path,
         }
       })
+
+      setLoading(false)
     })
   }, [problem])
 
@@ -58,7 +64,9 @@ function Details(props: DetailsProps) {
         />
       </div>
 
-      {detail.readme && (
+      {loading && <Loading />}
+
+      {!loading && detail.readme && (
         <details open className="bg-gray-5 bg-op-10 p5 b-rd-3 mb-5">
           <summary className="cursor-pointer hover-c-leetcode select-none">
             Readme
@@ -86,7 +94,7 @@ function Details(props: DetailsProps) {
         </details>
       )}
 
-      {detail.code && (
+      {!loading && detail.code && (
         <details open className="bg-gray-5 bg-op-10 p5 b-rd-3">
           <summary className="cursor-pointer hover-c-leetcode select-none">
             Code
