@@ -1,0 +1,50 @@
+* 思路
+  这题需要一丢图论的知识，把树当成一个有向图，其出度和入度应该是相等。
+
+  [[https://leetcode.cn/problems/verify-preorder-serialization-of-a-binary-tree/solution/shou-hua-tu-jie-cong-ling-yi-ge-jiao-du-2rnzg/][『手画图解』从另一个角度看二叉树 | 有向图 | 入度 出度 | leetcode.331]] 就是利用出度入度相等去验证的。
+
+  对于一个节点而言：
+
+  - 入度: 指向这个节点的边的数量
+  - 出度：从这个节点指向别的节点的边的数量
+
+  对于每个节点：
+
+  - 空节点：提供 1 入度，0 个出度。
+  - 非空节点：提供 1 个入度，2 个出度 (根节点 0 个入度)
+
+  对于一个合法序列，还没遍历到最后时（最后应该是一个空节点，空节点提供 1 个入度，0 个出度），入度不应该超过出度。
+
+  依靠这个性质，遍历序列，统计入度出度，设 diff = 出度 - 入度，则总有 diff >= 0
+
+  #+begin_src js
+    var isValidSerialization = function (preorder) {
+      const stack = [1]
+      const nodes = preorder.split(",")
+
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i]
+
+        if (stack.length === 0) {
+          return false
+        }
+
+        stack[stack.length - 1] -= 1
+        if (stack[stack.length - 1] === 0) {
+          stack.pop()
+        }
+
+        if (node !== "#") {
+          stack.push(2)
+        }
+      }
+
+      return stack.length === 0
+    }
+  #+end_src
+
+* 参考
+  - [[https://oi-wiki.org/graph/concept/#%E5%BA%A6%E6%95%B0][度数]] @OI Wiki
+  - [[https://leetcode.cn/problems/verify-preorder-serialization-of-a-binary-tree/solution/shou-hua-tu-jie-cong-ling-yi-ge-jiao-du-2rnzg/][『手画图解』从另一个角度看二叉树 | 有向图 | 入度 出度 | leetcode.331]]
+  - [[https://leetcode.cn/problems/verify-preorder-serialization-of-a-binary-tree/solution/yan-zheng-er-cha-shu-de-qian-xu-xu-lie-h-jghn/][验证二叉树的前序序列化]]
+  - [[https://leetcode.cn/problems/verify-preorder-serialization-of-a-binary-tree/solution/pai-an-jiao-jue-de-liang-chong-jie-fa-zh-66nt/][拍案叫绝的两种解法：「栈」和「入度出度」]]
