@@ -22,7 +22,7 @@ function Modal(props: ModalProps) {
       />
 
       <div
-        className={`bg-gray-3 dark:bg-gray-7 absolute bottom-0 left-0 right-0 p5 b-rd-3 transition-all duration-200 ease-out max-w-screen max-h-75vh overflow-auto scrolls`}
+        className={`bg-gray-3 dark:bg-gray-7 absolute bottom-0 left-0 right-0 p5 b-rd-3 transition-all duration-200 ease-out max-w-screen max-h-65vh overflow-auto scrolls`}
         style={visible ? {} : transform}
       >
         {children}
