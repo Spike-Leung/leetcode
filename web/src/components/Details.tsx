@@ -48,7 +48,7 @@ function Details(props: DetailsProps) {
   }, [problem])
 
   return (
-    <div className="p5 of-auto w-full">
+    <div className="of-auto w-full">
       <div className="mb5 flex items-center bg-gray-5 p5 b-rd-3 bg-op-10">
         <span className="font-bold">{detail.title}</span>
         <a
