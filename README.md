@@ -24,7 +24,3 @@
   - `pnpm i`
   - `pmpm run dev`
 
-### TODO
-  - [ ] 适配手机屏幕
-  - [ ] 优化加载速度
-  - [ ] 版本发布 (尝试一下 changset)
