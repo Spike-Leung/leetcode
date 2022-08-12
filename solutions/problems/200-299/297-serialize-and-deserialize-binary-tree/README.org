@@ -1,0 +1,92 @@
+* 思路
+** DFS
+   DFS 前序遍历，对于 null 的节点，标志为 X，从而得到一颗满二叉树的序列。
+
+   选择前序遍历，因为前序是 根->左->右 的顺序，便于反序列化时定位根节点
+   #+begin_src js
+     var serialize = function(root) {
+       if (root === null) {
+         return "X"
+       }
+
+       const left = serialize(root.left)
+       const right = serialize(root.right)
+
+       return `${root.val},${left},${right}`
+     };
+
+     var deserialize = function(data) {
+       const list = data.split(",")
+
+       function buildTree(list) {
+         const rootVal = list.shift()
+
+         if (rootVal === "X") {
+          return null
+         }
+
+         const node = new TreeNode(rootVal)
+
+         node.left = buildTree(list)
+         node.right = buildTree(list)
+
+         return node
+       }
+
+       return buildTree(list)
+     };
+   #+end_src
+** BFS
+   #+begin_src js
+     var serialize = function(root) {
+       const res = []
+
+       const queue = [root]
+
+       while (queue.length) {
+         const node = queue.shift()
+
+         if (node === null) {
+           res.push("X")
+         } else {
+           res.push(node.val)
+           queue.push(node.left)
+           queue.push(node.right)
+         }
+       }
+
+       return res.join(",")
+     };
+
+     var deserialize = function(data) {
+       if (data === "X") return null
+
+       const list = data.split(",")
+       const root = new TreeNode(list[0])
+       let cursor = 1
+       const queue = [root]
+
+       while (cursor < list.length) {
+         const node = queue.shift()
+
+         const leftVal = list[cursor]
+         const rightVal = list[cursor + 1]
+
+         if (leftVal !== "X") {
+           node.left = new TreeNode(leftVal)
+           queue.push(node.left)
+         }
+
+         if (rightVal !== "X") {
+           node.right = new TreeNode(rightVal)
+           queue.push(node.right)
+         }
+
+         cursor += 2
+       }
+
+       return root
+     };
+   #+end_src
+* 参考
+  - [[https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/solution/shou-hui-tu-jie-gei-chu-dfshe-bfsliang-chong-jie-f/][『手画图解』剖析DFS、BFS解法 | 二叉树的序列化与反序列化]]
