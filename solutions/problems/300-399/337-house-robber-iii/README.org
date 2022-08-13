@@ -1,0 +1,93 @@
+* 思路
+  根据题意，打劫的节点之间不能直接相连，那就隔着偷就好了。
+
+  这样的话，相当于隔层偷，把每一层的所有节点都偷了，取累积的最大值。
+
+  但是还有个问题，是隔一个节点偷，还是隔两个， 三个节点偷呢？
+
+  还是不能简单的 BFS 去算。
+
+  因为要隔着偷，考虑从不同节点出发开始偷：
+
+  - 从根节点：总值就是根节点加上隔一个节点后偷到的最大值: root +
+    rob(root.left.left) + rob(root.left.right) +
+    rob(root.right.left) + rob(root.right.right)
+
+  - 不从根节点: 总值就是: rob(root.left) + rob(root.right)
+
+  #+begin_src js
+    var rob = function(root) {
+      if (root === null) {
+        return 0
+      }
+
+      let money = root.val
+
+      if (root.left) {
+        money += (rob(root.left.left) + rob(root.left.right))
+      }
+
+      if (root.right) {
+        money += (rob(root.right.left) + rob(root.right.right))
+      }
+
+      return Math.max(money, (rob(root.left) + rob(root.right)))
+    };
+  #+end_src
+
+  基础用例跑过了，但提交后超时了，说明还需要进行优化。
+
+  可以发现，在计算过程中，其实有重复的计算，例如 root.left, 会在作为根
+  和作为子节点时，都计算一次。为了减少计算，可以使用一个 Map，将计算过
+  的结果暂存起来。
+
+  #+begin_src js
+    var rob = function(root) {
+      const map = new Map()
+
+      function dfs(root) {
+        if (root === null) {
+          return 0
+        }
+
+        if (map.has(root)) {
+          return map.get(root)
+        }
+
+        let money = root.val
+
+        if (root.left) {
+          money += (dfs(root.left.left) + dfs(root.left.right))
+        }
+
+        if (root.right) {
+          money += (dfs(root.right.left) + dfs(root.right.right))
+        }
+
+        map.set(root, Math.max(money, (dfs(root.left) + dfs(root.right))))
+
+        return map.get(root)
+      }
+
+      return dfs(root)
+    };
+  #+end_src
+
+  暂存后能跑过了，用时 88ms，只击败了 7.34%， 应该还有可优化的空间。
+
+  性能损耗是因为每计算一个节点，都得递归下去找孙子节点，是从顶向下去求
+  解的。可以考虑从底向上的形式求解。思路参考[[https://leetcode.cn/problems/house-robber-iii/solution/san-chong-fang-fa-jie-jue-shu-xing-dong-tai-gui-hu/][三种方法解决树形动态规划问题]]。
+
+  每个节点有两种状态：
+
+  - 偷这个节点，因为不能相连，不能偷子节点
+  - 不偷这个节点，偷子节点
+
+  可以得出每个节点能偷到的值：
+  - 偷这个节点： node.val + 左子节点不偷时的值 + 右节点不偷时的值
+  - 不偷这个节点：偷左节点时的最大值（左节点也可能偷或者不偷, 有可能不偷时值更大） + 偷右节点时的最大值
+
+  可以用两个 map，steal 和 notSteal 存储每个节点偷和不偷的值，最终结果就是 Math.max(steal.get(root), notSteal.get(root))
+* 参考
+  - [[https://leetcode.cn/problems/house-robber-iii/solution/da-jia-jie-she-iii-by-leetcode-solution/][打家劫舍 III]]
+  - [[https://leetcode.cn/problems/house-robber-iii/solution/san-chong-fang-fa-jie-jue-shu-xing-dong-tai-gui-hu/][三种方法解决树形动态规划问题]]
