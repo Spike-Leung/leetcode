@@ -1,0 +1,72 @@
+* 思路
+    如果不是嵌套的，判断 hasNext 和 next 是很简单的，维护一个 index，
+    然后判断即可。
+
+    现在是嵌套的，那就初始化时，将数组拍平即可就递归一下 list，用
+    isInteger 判断是否是嵌套列表，解构一下。
+
+    #+begin_src js
+      var NestedIterator = function(nestedList) {
+        this.index = 0
+        const res = []
+
+        function dfs(list) {
+          if (list.length === 0) {
+            return
+          }
+
+          for (const val of list) {
+            if (val.isInteger()) {
+              res.push(val.getInteger())
+            } else {
+              dfs(val.getList())
+            }
+          }
+        }
+
+        dfs(nestedList)
+
+        this.list = res
+      };
+
+
+      /**
+       ,* @this NestedIterator
+       ,* @returns {boolean}
+       ,*/
+      NestedIterator.prototype.hasNext = function() {
+        return this.list[this.index] !== undefined
+      };
+
+      /**
+       ,* @this NestedIterator
+       ,* @returns {integer}
+       ,*/
+      NestedIterator.prototype.next = function() {
+        const val = this.list[this.index]
+
+        this.index += 1
+
+        return val
+      };
+
+    #+end_src
+
+    初始化时间复杂度是 O(N), next 和 hasNext 时间复杂度是 O(1), 空间复杂度为 O(N)
+
+    虽然通过了，但这么做，不太符合迭代器的概念，迭代器不应该是先将值全
+    部存一遍再迭代，如果先拍平存储，后面 list 改变了，迭代的值就不是改
+    变的值，而是存储的值了。
+
+    递归变迭代的办法，就是用栈模拟递归，同理，可以用模拟初始化时的递归过程，实现迭代器。
+
+    具体来说：
+
+    - 初始化： 将 nestedList 不拍平直接倒序入栈，例如 [1, [2,3]], 倒序入栈后得到 [​[2, 3], 1], 栈顶元素为 1
+    - hasNext: 判断栈顶元素是否为 integer，是则返回 true；如果是 list，则弹出元素，将其倒序入栈，再判断栈顶元素
+    - next：返回栈顶元素
+
+    在 JS 中，可以利用 shift, unshfit 等方法操作数组，实现栈的操作。
+* 参考
+    - [[https://leetcode.cn/problems/flatten-nested-list-iterator/solution/bian-ping-hua-qian-tao-lie-biao-die-dai-ipjzq/][扁平化嵌套列表迭代器]]
+    - [[https://leetcode.cn/problems/flatten-nested-list-iterator/solution/fu-xue-ming-zhu-xiang-jie-ti-yi-shu-li-d-n4qa/][【负雪明烛】详解题意，梳理递归和迭代两种思路]]
