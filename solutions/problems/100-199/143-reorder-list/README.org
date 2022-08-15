@@ -1,0 +1,47 @@
+* 思路
+    看到是栈相关的题目，就想着怎么用栈去实现，但想复杂了。
+
+    想着遍历链表将节点入栈，这样栈顶就是链表尾部的元素。
+
+    依次弹出栈里的元素，调整链表的指针指向，当弹出一半的时候，就表示调整结束。
+
+    #+begin_src js
+      var reorderList = function (head) {
+        if (head !== null) {
+          const stack = []
+          let popCount = 0
+          let p = head
+
+          while (p !== null) {
+            stack.push(p)
+            p = p.next
+          }
+
+          const n = stack.length
+          p = head
+          let next = null
+          while (p !== null && popCount < Math.floor(n / 2)) {
+            next = p.next
+            p.next = stack.pop()
+            p.next.next = next
+            p = next
+            popCount++
+          }
+          p.next = null
+        }
+      }
+    #+end_src
+
+    官方题解的思路更简单。
+
+    一种做法时，将链表先依次存入到数组，数组就可以方便地随机读取，不断地交换下标即可。
+
+    另一种做法时，观察结果发现，结果要求的链表，相当于原链表的左半端和
+    反转后的右半端合并后的结果。
+
+    因此，先找到链表的中点，再将右半部分进行反转，最后合并两个链表即可。
+
+    这种做法综合应用了快慢指针找中点，反转链表，合并链表，能练习到更多的知识。
+
+* 参考
+  - [[https://leetcode.cn/problems/reorder-list/solution/zhong-pai-lian-biao-by-leetcode-solution/][重排链表]]
