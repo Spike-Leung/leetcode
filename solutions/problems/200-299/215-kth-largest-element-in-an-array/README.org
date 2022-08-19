@@ -1,0 +1,30 @@
+* 思路
+  找第 k 大的元素，最简单的就是排序，然后返回第 nums[n - k].
+  这样的时间复杂度是 O(NlogN), 主要是 sort 函数快排的时间。
+
+  但实际上，并不需要完全排序数组。
+
+  每一次的快排，都能确定一个元素的位置 index，
+
+  [left, index) 中的值都小于等于 nums[index],
+
+  (index, right] 中的值都大于等于 nums[index]
+
+  找到这个 index 后，可以判断 index 和 target (n - k) 之间的关系，
+
+  如果 index = target 则说明分割点恰好是要找的值
+
+  如果 index < target, 意味着 target 在 (index, right] 这半边，继续从 (index, right) 搜索
+
+  如果 index > target 则从 [left, index) 搜索。
+
+  每一次，问题的规模都会变为原来的一半，第一次时间复杂度为 n，下一层变为一半 n/2，...
+
+  总的时间就是 n + n/2 + n/4 + .... = 2n, 时间复杂度为 O(n)
+
+
+* 参考
+  - [[https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/partitionfen-er-zhi-zhi-you-xian-dui-lie-java-dai-/][通过 partition 减治 + 优先队列（Java）]]
+  - https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/60294/Solution-explained/343833
+  - https://en.wikipedia.org/wiki/1/2_%2B_1/4_%2B_1/8_%2B_1/16_%2B_%E2%8B%AF
+  - [[https://www.programiz.com/dsa/master-theorem][Master theorem (analysis of algorithms)]] 可以利用这个定理计算复杂度
