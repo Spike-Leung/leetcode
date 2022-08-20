@@ -5,18 +5,21 @@
  */
 var moveZeroes = function (nums) {
   const n = nums.length;
-  let l = 0;
-  let r = 0;
 
-  while (r < n) {
-    if (nums[r] !== 0) {
-      swap(nums, l ,r);
-      l++;
+  let i = 0;
+  // all in [0, j) are not equals to 0
+  // all in [j, i) are equals to 0
+  let j = 0;
+
+  while (i < n) {
+    if (nums[i] !== 0) {
+      swap(nums, j++, i)
     }
-    r++;
+
+    i++
   }
 
-  return nums;
+  return nums
 };
 
 function swap(nums, a, b) {
