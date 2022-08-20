@@ -1,21 +1,15 @@
 * 思路
-  类似[[https://leetcode-cn.com/problems/move-zeroes/][移动零]]这道题，定义双指针，遍历两次，第一次将所有的 0 交换到前面，第二次将所有的 1 交换到前面。
+  利用快速排序的思路，1 作为 pivot，将等于 1 的都放在中间，等于 0 的放
+  在左边，等于 2 的放在右边。
 
-** 改进
-   上面的方法需要遍历两次，其实可以优化成一次遍历。
+  遍历数组，如果 nums[i] 等于 0，则交换到左边，交换后继续遍历
 
-   设置两个指针，p0, 用来交换 0， p1, 用来交换 1.
+  如果 nums[i] 等于 1，则继续遍历
 
-   遍历 nums，
+  如果 nums[i] 等于 2，则交换到右边，再看交换回来的值
 
-   如果 nums[i] == 1, 则和 p1 交换，交换后 p1++
+  当 i 到达右边数组的边界时，遍历结束。
 
-   如果 nums[i] == 0, 则和 p0 交换，交换后 p0++，同时 p1++ (因为 1 排在 0 之后，前面增加了 0，则 1 的交换位置也被挤后一个位置)
-
-   由于连续的 0 后是连续的 1，p0 有可能会指向连续 1 的开头，于是 i 和 p0 交换时，可能会把前面排好的 1 交换到后面的位置。
-
-   因此，当 p0 < p1 时，p0 和 i 交换后，为了避免 1 被放到后面，此时把放到后面的 1 （对应 i），再放回到此时 1 的末尾，即 p1 的位置，
-
-   也就是当 p0 < p1 时，p0 和 i 交换，之后 p1 再和 i 交换一次。完成交换后, p0++, p1++
 * 参考
   - [[https://leetcode-cn.com/problems/sort-colors/solution/yan-se-fen-lei-by-leetcode-solution/][颜色分类]]
+  - [[https://leetcode.cn/problems/sort-colors/solution/kuai-su-pai-xu-partition-guo-cheng-she-ji-xun-huan/][快速排序的子过程 partition（重点在设计循环不变量）]]
