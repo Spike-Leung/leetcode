@@ -1,0 +1,42 @@
+* 思路
+** 动态规划
+   从头到尾，每次取一个子串，头尾以及去掉头尾后的子串，是否满足回文，统计符合回文的数量。
+
+   #+begin_src js
+     var countSubstrings = function(s) {
+       const n = s.length
+       const dp = Array(n).fill(0).map(() => Array(n).fill(false))
+       let ans = 0
+
+       for (let j = 0; j < n; j++) {
+         for (let i = 0; i <= j; i++) {
+           // s[i] === s[j] && j - 1 < 2 对应单个字符
+           // s[i] === s[j] && dp[i+1][j-1] 对应 2 个相同字符，或者两边是相同字符，中间也是回文子串的情况
+           if (s[i] === s[j] && (j - i < 2 || dp[i+1][j-1])) {
+             dp[i][j] = true
+             ans++
+           }
+         }
+       }
+
+       return ans
+     };
+   #+end_src
+
+   时间复杂度为 O(n ^ 2), 遍历一遍字符串取值 j，然后再遍历一次 [0, j] 判断回文。
+
+   需要一个二维数组存储 dp 结果，空间复杂度为 O(n ^ 2)
+** 中心扩散
+   从字符串中选择一个中心，从中心往两边扩散，每次向两边选一个字符，如
+   果 s[left] + s[center] + s[right] 符合回文，则找到一个回文子串。
+
+   遍历完所有的中心，也就找完了所有的子串。
+
+   中心可能是一个字符，也可能是两个字符。
+
+   时间复杂度 O(n ^ 2), 要遍历 2n - 1 个中心点，每次遍历扩散整个字符串，即 (2n - 1) * n
+
+   不需要 dp 存储结果，空间复杂度为 O(1)
+
+* 参考
+  - [[https://leetcode.cn/problems/palindromic-substrings/solution/liang-dao-hui-wen-zi-chuan-de-jie-fa-xiang-jie-zho/][两道回文子串的解法（详解中心扩展法）]]
