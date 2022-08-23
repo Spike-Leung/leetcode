@@ -1,0 +1,35 @@
+* 思路
+** 辅助数组
+观察可以找到反转后的规律： matrix[row][col] = matrix[n - col -1][row]
+
+但是，因为直接赋值会导致覆盖的元素丢失，可以考虑先用一个辅助数组，将反转后的位置保存起来。
+
+再遍历 matrix 修改为反转数组的值。
+
+但是题目不允许使用额外空间，因此这个方法行不通。
+#+begin_src js
+  var rotate = function (matrix) {
+    const n = matrix.length
+
+    const res = Array(n)
+          .fill(0)
+          .map(() => Array(n).fill(0))
+
+    for (let row = 0; row < n; row++) {
+      for (let col = 0; col < n; col++) {
+        res[row][col] = matrix[n - col - 1][row]
+      }
+    }
+
+    for (let row = 0; row < n; row++) {
+      for (let col = 0; col < n; col++) {
+        matrix[row][col] = res[row][col]
+      }
+    }
+  }
+#+end_src
+** 翻转替代旋转
+观察发现，可通过翻转实现旋转的效果，先水平翻转一次，再沿着对角线翻转一次，就是旋转 90 度的样子。
+
+* 参考
+  - [[https://leetcode.cn/problems/rotate-image/solution/xuan-zhuan-tu-xiang-by-leetcode-solution-vu3m/][旋转图像]]
