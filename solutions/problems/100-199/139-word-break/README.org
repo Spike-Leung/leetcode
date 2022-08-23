@@ -1,0 +1,4 @@
+* 思路
+
+* 参考
+  - [[https://leetcode.cn/problems/word-break/solution/shou-hui-tu-jie-san-chong-fang-fa-dfs-bfs-dong-tai/][「手画图解」剖析三种解法: DFS, BFS, 动态规划 |139.单词拆分]]
