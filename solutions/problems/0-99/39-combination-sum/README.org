@@ -1,0 +1,20 @@
+* 思路
+  candidates = [2,3,6,7]， target = 7，res = [[2,2,3],[7]]
+
+  考虑，假如选一个 2，那么 target 就变成了 5，问题变成了 candidates = [2,3,6,7]， target = 5
+
+  当选择 n 个元素，使得 target 刚好等于 0，那么这 n 个元素也就构成一组答案。
+
+  容易想到可以递归去做，递归结束条件是选择一个 candidate 后，target <= 0, 当 target 恰好等于 0，则记录一个答案。
+
+  递归条件是，选择一个 candidate，target 变成 target - candidate
+
+  又因为 [2,2,3] 和 [2,3,2], [3,2,2] 属于一个答案
+
+  当选择 2 时，其实已经处理了所有包含 2 的组合。
+
+  因此，当选择 3 作为 candidate 时，就不需要考虑 2 这个元素了。
+
+  可以添加标志，确定这次选择从什么地方开始选，忽略前面选过的。
+* 参考
+  - [[https://leetcode.cn/problems/combination-sum/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-2/][回溯算法 + 剪枝（回溯经典例题详解）]]
