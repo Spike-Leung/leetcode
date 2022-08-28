@@ -1,0 +1,7 @@
+* 思路
+  排序，然后遍历每一个区间，判断是否区间重合，重合则合并，不重合则添加新区间。
+
+  判断区间是否重合，只要判断下一个区间的左边界是否在上一个区间内即可。
+* 参考
+- [[https://leetcode.cn/problems/merge-intervals/solution/chi-jing-ran-yi-yan-miao-dong-by-sweetiee/][吃🐳！🤷‍♀️竟然一眼秒懂合并区间！]]
+- [[https://leetcode.cn/problems/merge-intervals/solution/he-bing-qu-jian-by-leetcode-solution/][合并区间]]
