@@ -1,0 +1,9 @@
+* 思路
+ x 和 y 异或，不同位变为 1，相同的位变为 0
+
+ 接着，判断异或结果中，包含 1 的个数
+
+ 可以通过异或结果 和 1 进行与操作去统计。
+
+* 参考
+ - [[https://leetcode.cn/problems/hamming-distance/solution/yi-ming-ju-chi-by-leetcode-solution-u1w7/][汉明距离]]
