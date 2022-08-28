@@ -1,0 +1,8 @@
+* 思路
+  - 遍历数组，用哈希表得到每个数字出现的次数，时间复杂度 O(N)
+  - 快排，排序出前 K 大的数组，通过随机选 pivot，使得平均复杂度为 O(NlogN)
+  - 但是题目要求优于 O(NlogN)，在快排时，根据 pivotIndex 和 k 的关系，只排某一边, 每次规模都减半，时间复杂度变为 O(N) = N + N / 2 + N / 4... = 2N = N
+  - 于是平均复杂度为 O(N) + O(N) = O(N)
+
+* 参考
+- [[https://leetcode.cn/problems/top-k-frequent-elements/solution/qian-k-ge-gao-pin-yuan-su-by-leetcode-solution/][前 K 个高频元素]]
