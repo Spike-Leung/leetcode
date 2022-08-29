@@ -1,0 +1,64 @@
+* 思路
+** 哈希表
+用 set 存储访问过的节点，如果再次访问到，那么这个节点就是环的入口。
+
+#+begin_src js
+  var detectCycle = function(head) {
+    const set = new Set()
+
+    while (head) {
+      if (set.has(head)) {
+        return head
+      }
+
+      set.add(head)
+
+      head = head.next
+    }
+
+    return head
+  }
+#+end_src
+
+时间复杂度 O(N), 空间复杂度 O(N)
+
+* 双指针
+定义快慢指针，fast 一次走两步，slow 一次走一步，如果存在环，fast 和
+slow 总会在环中相遇的。
+
+但是相遇的时候，未必是环的入口，此时需要去分析相遇时的情况。
+
+           * *(b)
+ * * *(a) *   *
+           * *
+
+假设，到达环入口前的距离为 a，在环内走了 b 步相遇，还要再走 c 步回到环的入口。
+
+slow 每次走一步，因此，相遇时，slow 走的长度为 a + b
+
+fast 每次走两步，相遇时，fast 走的长度是 a + b + n(b + c)
+
+因为 fast = 2slow，所以有：
+
+a + b + n(b + c) = 2(a + b)
+
+=> a = (n - 1)(b + c) + c
+
+（在这里，因为 b + c 表示一圈，因此想办法凑成 b + c）
+
+根据得到的等式，可以知道从相遇点，再走 (n - 1) 圈和 c 步，就恰好是环的入口。
+
+那么在相遇的时候，让一个指针指向 head，和 slow 一起，每次走一步，当他
+们相遇的时候，就刚好是走了 c 步，到达环的入口。
+
+之后还剩下 n - 1 圈，不管怎么走，都会回到环的入口的位置。
+
+综合下来，实现过程是：
+
+- 设置快慢指针，fast = 2slow，一直走，知道 fast 和 slow 相遇
+- 相遇的时候，让 fast = head，和 slow 一起，每次走一步
+- 当 fast = slow 时，就表明走了 c 步到达环入口，返回此时的 slow 即可。
+
+* 参考
+- [[https://leetcode.cn/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode-solution/][环形链表 II]]
+- [[https://leetcode.cn/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/][环形链表 II（双指针法，清晰图解）]]
