@@ -1,0 +1,144 @@
+* 思路
+** 利用额外数组
+#+begin_src js
+  var sortList = function(head) {
+    if (head === null) {
+      return null
+    }
+
+    const list = []
+
+    // 存到数组
+    while (head) {
+      list.push(head)
+      head = head.next
+    }
+
+    // 升序排序
+    list.sort((a, b) => a.val - b.val)
+
+    let res = null
+
+    // 重新构建链表
+    while (list.length) {
+      const node = list.pop()
+      node.next = res
+      res = node
+    }
+
+    return res
+  }
+#+end_src
+
+时间复杂度主要是排序的时间， O(NlogN) ，要存储所有的节点，空间复杂度 O(N)
+
+但是题目要求，空间复杂度为常数，且时间复杂度为 O(NlogN)
+
+空间复杂度为常数，一般来说就是需要用指针操作。
+
+** 归并排序
+既然涉及到排序问题，就要想到常用的排序方法，而满足时间复杂度为
+O(NlogN) 的排序方法，则是归并排序。
+
+*** 自顶向下
+每次将链表分成两部分，递归对拆分的链表进行归并排序，再将排序好的两个数
+组合并成一个大有序的数组。
+
+拆分需要找到链表中点，可以用快慢指针去找，快指针每次走两步，慢指针每次
+走一步，当快指针到尾时，慢指针指向的就是中点。
+
+时间复杂度 O(NlogN), 递归需要栈空间，空间复杂度为 O(logN)
+
+#+begin_src js
+  var sortList = function(head) {
+    if (head === null) {
+      return null
+    }
+
+    return sort(head, null)
+  }
+
+  function sort(head, tail) {
+    if (head === null) {
+      return null
+    }
+
+    // 排序的节点是不包含 tail 的，当 head.next === tail, 意味着只有一个节点
+    // 此时直接返回这个节点即可，需要注意的是，需要返回一个表示一个节点的链表，tail 有可能不是 null
+    // 对于左半边而言，tail 其实是每次得到的中点，此时需要将 tail 置为 null，才能表示一个节点的链表
+    if (head.next === tail) {
+      head.next = null
+      return head
+    }
+
+    const mid = getMid(head, tail)
+    // 从中点拆分两个链表，递归排序，再将排序得到的有序链表合并
+    return merged(sort(head, mid), sort(mid, tail))
+  }
+
+  function merged(head1, head2) {
+    if (head1 === null) {
+      return head2
+    }
+
+    if (head2 === null) {
+      return head1
+    }
+
+    const dummyNode = new ListNode()
+    let curr = dummyNode
+    let temp1 = head1
+    let temp2 = head2
+
+    while (temp1 !== null && temp2 !== null) {
+      if (temp1.val < temp2.val) {
+        curr.next = temp1
+        temp1 = temp1.next
+      } else {
+        curr.next = temp2
+        temp2 = temp2.next
+      }
+
+      curr = curr.next
+    }
+
+    if (temp1 !== null) {
+      curr.next = temp1
+    } else if (temp2 !== null) {
+      curr.next = temp2
+    }
+
+    return dummyNode.next
+  }
+
+  function getMid(head, tail) {
+    if (head === null) {
+      return null
+    }
+
+    let slow = head
+    let fast = head
+
+    while (fast !== tail) {
+      slow = slow.next
+      fast = fast.next
+
+      if (fast !== tail) {
+        fast = fast.next
+      }
+    }
+
+    return slow
+  }
+#+end_src
+
+*** 自底向上
+自底向上可以避免递归的需要的栈空间，利用指针操作链表，实现空间复杂度为O(1)
+
+将链表先拆成一个个小的，小的合并成大的，不断地合并，直到长度达到或者超过链表长度。
+
+先两两合并，再四四合并，在八八合并...
+
+
+* 参考
+- [[https://leetcode.cn/problems/sort-list/solution/pai-xu-lian-biao-by-leetcode-solution/][排序链表]]
