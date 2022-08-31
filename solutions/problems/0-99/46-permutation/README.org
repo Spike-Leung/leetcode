@@ -1,0 +1,47 @@
+* 思路
+** dfs
+#+begin_src js
+  var permute = function(nums) {
+    const res = []
+
+    function dfs(nums, prev) {
+      // 只剩下一个元素可选了，和之前选择的元素，拼接成一个答案
+      if (nums.length < 2) {
+        res.push([...prev,...nums])
+        return
+      }
+
+      // 遍历所有的数字，从中选一个，再从剩下的数组里选一个
+      for (let i = 0; i < nums.length; i++) {
+        // 除了当前元素外的其他元素
+        const nextNums = nums.slice(0, i).concat(nums.slice(i + 1))
+        // 保存当前选择的序列
+        const nextPrev = [...prev, nums[i]]
+        // 继续选
+        dfs(nextNums, nextPrev)
+      }
+    }
+
+    dfs(nums, [])
+
+    return res
+  };
+
+#+end_src
+** 回溯
+用 dfs 时，一路走到底，每次创建一个临时变量存储之前的路径，不用考虑回头。
+
+而回溯，则是要到头来，要回头，从之前的位置再继续往别的方向尝试。
+
+回溯相对于 dfs，可以不用每次创建很多的临时变量。
+
+回溯需要去维护一份变化的数据，在往下尝试，和往回走的时候去修改这份数据。
+
+在本题中，就是维护一份 path，又由于需要知道选择了什么数字，还需要一个
+visited 的变量，存储当前访问过的元素。
+
+往下递归和回溯的过程中，通过维护 path 和 visited 的状态，
+
+* 参考
+- [[https://leetcode.cn/problems/permutations/solution/quan-pai-lie-by-leetcode-solution-2/][全排列]]
+- [[https://leetcode.cn/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/][回溯算法入门级详解 + 练习]]
