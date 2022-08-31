@@ -1,0 +1,38 @@
+* 思路
+** 暴力解
+每次选一个数字，剩下的数组也做同样的处理，返回所有数字中，值最大的一个。
+
+#+begin_src js
+  var maxCoins = function(nums) {
+    if (nums.length === 0) {
+      return 0
+    }
+
+    if (nums.length === 1) {
+      return nums[0]
+    }
+
+    if (nums.length === 2) {
+      return nums[0] * nums[1] + Math.max(nums[0], nums[1])
+    }
+
+    const res = []
+
+    for (let i = 0; i < nums.length; i++) {
+      const product = (nums[i - 1] || 1) * nums[i] * (nums[i + 1]  || 1)
+      const sum = product + maxCoins(nums.slice(0, i).concat(nums.slice(i + 1)))
+      res.push(sum)
+    }
+
+    return Math.max(...res)
+  }
+#+end_src
+
+可能的组合为 n!, 时间复杂度 O(n!), 太高了。
+
+** 动态规划
+- [[https://leetcode.cn/problems/burst-balloons/solution/chuo-qi-qiu-by-leetcode-solution/][戳气球]]
+
+* 参考
+- [[https://leetcode.cn/problems/burst-balloons/solution/chuo-qi-qiu-by-leetcode-solution/][戳气球]]
+- [[https://leetcode.cn/problems/burst-balloons/solution/zhe-ge-cai-pu-zi-ji-zai-jia-ye-neng-zuo-guan-jian-/][[这个菜谱, 自己在家也能做] 关键思路解释]]
