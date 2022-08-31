@@ -1,0 +1,21 @@
+* 思路
+** 哈希表 + 排序
+#+begin_src js
+  var majorityElement = function(nums) {
+    const map = {}
+
+    // 遍历计数
+    for (const num of nums) {
+      if (map[num]) {
+        map[num]++
+      } else {
+        map[num] = 1
+      }
+    }
+
+    // 倒序排序，返回第一个元素（最大者）的数字
+    return Object.entries(map).sort((a, b) => b[1] - a[1])[0][0]
+  }
+#+end_src
+* 参考
+** [[https://leetcode.cn/problems/majority-element/solution/duo-shu-yuan-su-by-leetcode-solution/][多数元素]]
