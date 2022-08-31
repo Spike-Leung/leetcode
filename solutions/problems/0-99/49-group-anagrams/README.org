@@ -1,0 +1,40 @@
+* 思路
+** 哈希表 + 字符串排序
+#+begin_src js
+  var groupAnagrams = function(strs) {
+    const map = {}
+
+    for (const s of strs) {
+      // 排序字符串，互为异位的字符串，排序后得到的值一定相同
+      const sortS = sortStr(s)
+
+      // 相同的 key 存到一个数组里
+      if (map[sortS]) {
+        map[sortS].push(s)
+      } else {
+        map[sortS] = [s]
+      }
+    }
+
+    // 遍历 map，返回结果
+    return Object.values(map)
+  };
+
+  function sortStr(str) {
+    return [...str].sort().join("")
+  }
+
+#+end_src
+
+时间复杂度： m 个字符，需要对每个字符串排序，设最长的字符串长度为 n，
+每个字符串排序需要 O(nlogn), 每次还需要更新哈希表，复杂度为 O(mnlogn)
+
+** 哈希表 + 计数
+由于字母只包含小写，且互为异位的字符串，对应字符的数量是一样的，可以用
+一个长度为 26 的数组进行计数，从而得到一个唯一 key 作为 哈希表的键，避
+免了排序，从而提高时间效率。
+
+m 个字符串，每个需要遍历一次字符串长度 k，生成简直需要字符集大小 f 的时间，时间复杂度是 O(m(k + f))
+
+* 参考
+- [[https://leetcode.cn/problems/group-anagrams/solution/zi-mu-yi-wei-ci-fen-zu-by-leetcode-solut-gyoc/][字母异位词分组]]
