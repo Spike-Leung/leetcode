@@ -1,0 +1,18 @@
+* 思路
+遍历数组算乘积，判断当前值 以及 当前值和前面得到序列相乘的乘积，取较大者。
+
+max[i] = max(max[i - 1] * nums[i], nums[i])
+
+由于存在负数，正负相乘会变小，但可能前面序列得到一个最小值也是负数，负
+负得正反而得到更大的乘积。
+
+因此还需要维护前面序列的最小值。
+
+min[i] = min(min[i - 1] * nums[i], nums[i])
+
+当前的最大乘积，则为 max(nums[i], max[i - 1] * nums[i], min[i - 1] * nums[i])
+
+再和之前得到的结果做比较，取较大者。
+* 参考
+- [[https://leetcode.cn/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/][乘积最大子数组]]
+- [[https://leetcode.cn/problems/maximum-product-subarray/solution/hua-jie-suan-fa-152-cheng-ji-zui-da-zi-xu-lie-by-g/][画解算法：152. 乘积最大子序列]]
