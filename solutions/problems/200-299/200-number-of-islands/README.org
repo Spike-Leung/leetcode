@@ -1,0 +1,27 @@
+* 思路
+** DFS / BFS
+对整个 grid 遍历，碰到陆地（为 “1” 的格子），则进行 dfs/bfs 扫描，标记
+这块陆地访问过。
+
+每一次 dfs/bfs 都会标记一个岛屿所有连续的陆地。
+
+dfs/bfs 的次数，就是岛屿的数量。
+
+在考虑怎么实现 dfs/bfs 的时候，可以类比二叉树。
+
+以 dfs 为例，二叉树的 dfs 有两个因素组成：
+
+- 基线条件：什么时候停止 dfs ? => root 为 null 的时候
+- 递归条件：怎么往下 dfs？=> 递归左右子树, dfs(root.left), dfs(root.right)
+
+那么，对于网格：
+
+- 基线条件：超出网格边界
+- 递归条件：往四周扩散： 行数+-1，列数+-1
+
+同时，在四周扩散时，可能会访问之前访问过的格子，还需要将访问过的格子进
+行标记，避免重复访问。
+
+* 参考
+- [[https://leetcode.cn/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/][岛屿类问题的通用解法、DFS 遍历框架]]
+- [[https://leetcode.cn/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/][岛屿数量]]
