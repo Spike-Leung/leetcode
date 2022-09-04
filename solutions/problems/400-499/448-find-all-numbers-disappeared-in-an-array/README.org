@@ -1,0 +1,50 @@
+* 思路
+** 恢复位置
+   遍历一遍，如果当前元素和下标不匹配，则和对应下标的元素进行交换，换到它应该在的下标位置。
+
+   如果对应下标位置已经存在合适的值，则停止交换，继续遍历。
+
+   一边遍历，一边交换，最多交换 n 次所有元素应该都会被放在对应下标，此
+   时再遍历一遍，看那个下标对应的值不对，记录对应的值即可。
+
+   #+begin_src js
+     var findDisappearedNumbers = function(nums) {
+       const res = []
+       const n = nums.length
+
+       for (let i = 0; i < n; i++) {
+         let num = nums[i]
+
+
+         // 下标和值对不上则交换
+         while (num - 1 !== i && nums[num - 1] !== num) {
+           swap(nums, i, num - 1)
+           num = nums[i]
+         }
+       }
+
+       // 统计位置不对的元素
+       for (let i = 0; i < n; i++) {
+         if (nums[i] - 1 !== i) {
+           res.push(i + 1)
+         }
+       }
+
+       return res
+     };
+
+     function swap(nums, i, j) {
+       const temp = nums[i]
+       nums[i] = nums[j]
+       nums[j] = temp
+     }
+   #+end_src
+** 累计
+由于数组元素都在 [1, n] 直接，遍历一边，将 nums[i] 对应的下标的值 + n，
+最终，下标存在的元素都会超过 n，下标不存在的元素都小于或等于 n，统计这
+些元素即可。
+
+在找下标时，由于某个下标可能被重复添加，因此还需要进行取模找到正确的下标。
+
+* 参考
+- [[https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/solution/zhao-dao-suo-you-shu-zu-zhong-xiao-shi-d-mabl/][找到所有数组中消失的数字]]
