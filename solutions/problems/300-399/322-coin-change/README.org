@@ -1,0 +1,11 @@
+* 思路
+** bfs
+   尝试所有的硬币，每次计算一个 amount 时都用所有硬币去尝试。
+
+   从每一轮尝试中，取需要硬币数量最少的那个硬币组合。
+
+   画出递归树，会发现存在很多重复计算，因此还需要设置一个备忘录，缓存之前计算过的 amount。
+
+
+* 参考
+- [[https://leetcode.cn/problems/coin-change/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-wei-lai-bu-ke/][动态规划套路详解]]
