@@ -1,0 +1,54 @@
+* 思路
+** 动态规划
+之前先做了打家劫舍3，于是很容易想到这题的思路。
+
+对于每一个房间，都有两种选择，偷或者不偷，而且不能两个连着偷。
+
+于是对于房间 i，它能偷到的最大值可能是：
+
+- 偷第 i 间房间，此时不能偷 i - 1 间，偷到的就是第 i 间房间的钱，和不
+  偷第 i - 1 间能得到的最多的钱
+
+- 不偷第 i 间，此时可以偷 i - 1 间，那么能偷到的，就要看 i - 1 间能偷到的最多是多少
+
+于是，可以用动态规划，得到动态转换方程：
+
+设二维数组，dp[i][0] 表示不偷第 i 间能得到的最多的钱，dp[i][1] 表示偷第 i 间能得到的最多的钱：
+
+于是有：
+
+- dp[i][0] = Math.max(dp[i -1][0], dp[i - 1][1])
+
+- dp[i][1] = nums[i] + dp[i - 1][0]
+
+最终答案就是 Math.max(dp[n - 1][0], dp[n - 1][1])
+
+#+begin_src js
+  var rob = function(nums) {
+    if (nums.length === 0) {
+      return 0
+    }
+    const n = nums.length
+    const dp = Array.from({ length: n }, () => new Array(2).fill(0))
+
+    dp[0][1] = nums[0]
+    dp[0][0] = 0
+
+    for (let i = 1; i < n; i++) {
+      // 不偷当前的房间，则看前面一个房间能偷盗的最多的钱
+      dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1])
+      // 偷当前房间，则看前面房间不偷最多有多少钱
+      dp[i][1] = nums[i] + dp[i - 1][0]
+    }
+
+    return Math.max(dp[n - 1][0], dp[n - 1][1])
+  }
+#+end_src
+
+** 优化空间
+在计算 dp 的时候，发现计算当前房间能偷的钱，取决于前面房间偷或者不偷得
+到的最多的钱，只和上一个房间的情况有关。
+
+所以可以只记录前一个房间的情况，而不需要额外的数组存储所有房间的情况。
+* 参考
+- [[https://leetcode.cn/problems/house-robber/solution/da-jia-jie-she-by-leetcode-solution/][打家劫舍]]
