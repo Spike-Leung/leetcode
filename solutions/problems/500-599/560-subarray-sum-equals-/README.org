@@ -1,0 +1,109 @@
+* 思路
+** 枚举
+枚举所有的子数组组合，累计和，判断是否等于 k
+
+三重循环，复杂度 O(n ^ 3)
+
+#+begin_src js
+  var subarraySum = function(nums, k) {
+    let count = 0
+    const n = nums.length
+
+    for (let i = 0; i < n; i++) {
+      for (let j = i; j < n; j++) {
+        let sum = 0
+
+        // 累计 [i, j] 之间的和，判断是否满足 k
+        for (let l = i; l <= j; l++) {
+          sum += nums[l]
+        }
+
+        if (sum === k) {
+          count++
+        }
+      }
+    }
+
+    return count
+  }
+#+end_src
+** 枚举优化
+枚举的时候，累计 [i, j] 的和，对于 [i, j + 1] 来说，[i, j] 的和已经累
+计过了，因此 [i, j + 1] 没必要在循环去累计一次，利用之前累计的和即可。
+
+少了一层循环，时间复杂度 O(n ^ 2)
+
+#+begin_src js
+  var subarraySum = function(nums, k) {
+    let count = 0
+    const n = nums.length
+
+    for (let i = 0; i < n; i++) {
+      // 存储上一次累计的和，[i, j - 1]
+      let sum = 0;
+
+      for (let j = i; j < n; j++) {
+        sum += nums[j]
+
+        if (sum === k) {
+          count++
+        }
+      }
+    }
+
+    return count
+  }
+#+end_src
+
+** 前缀和
+枚举时，每次都要累计 [i, j] 之间的和，这种统计一个连续区间的和, 可以利
+用前缀和来做。
+
+如果处理得到了前缀和 prefixSum，那么 [i, j] 之间的和，即为
+prefixSum[j] - prefixSum[i - 1]
+
+对于这道题，可以先生成前缀和，然后枚举所有的[i, j], 统计和满足 k 的数量。
+#+begin_src js
+  var subarraySum = function(nums, k) {
+    let count = 0
+    const n = nums.length
+    const prefixSum = [nums[0]]
+
+    for (let i = 1; i < n; i++) {
+      prefixSum[i] = nums[i] + prefixSum[i - 1]
+    }
+
+    for (let i = 0; i < n; i++) {
+      for (let j = i; j < n; j++) {
+        if (prefixSum[j] - (prefixSum[i - 1] || 0) === k) {
+          count++
+        }
+      }
+    }
+
+    return count
+  }
+#+end_src
+
+这样，构建前缀和时间复杂度 O(n), 枚举区间时间复杂度 O(n ^ 2), 总体上比
+枚举还多了 O(n) 的时间
+
+** 前缀和优化
+使用前缀和时，目的是找到 i，j (j <= i), 满足 prefixSum[i] - prefixSum[j] == k
+
+转换一下，可以得到 prefixSum[j] = prefixSum[i] - k
+
+可以遍历数组，用一个变量 prefixSum 存储当前遍历到的元素，对应的前缀和，即 prefixSum = nums[0] + nums[1] + ...nums[i]
+
+那么，在 i 之前，是否存在一个 j (j <=), 满足 prefixSum[j] = prefixSum[i] - k 呢？
+
+也就是说在 i 之前，是否存在前缀和，满足 =之前的前缀和 = 当前前缀和 - k= ？如果存在，是否存在多个？
+
+于是，可以利用一个哈希表，存储之前得到的前缀和，map[prefixSum] =
+prefixSumCount，哈希表的键为前缀和的值，值为这个前缀和出现的次数。
+
+那么遍历一次数组，一边计算前缀和，一边构建哈希表，一边统计数量，一次遍历就可以完成统计，时间复杂度为 O(n)
+
+* 参考
+- [[https://leetcode.cn/problems/subarray-sum-equals-k/solution/he-wei-kde-zi-shu-zu-by-leetcode-solution/][和为K的子数组]]
+- [[https://leetcode.cn/problems/subarray-sum-equals-k/solution/dai-ni-da-tong-qian-zhui-he-cong-zui-ben-fang-fa-y/][前缀和的运用，一步步优化 | 560. 和为K的子数组]]
