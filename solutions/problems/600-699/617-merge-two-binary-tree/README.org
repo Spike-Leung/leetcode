@@ -1,0 +1,30 @@
+* 思路
+从任一非空的树开始，同步遍历两棵树。
+
+如果某个节点，两棵树都有，则合并其值。
+
+如果有个节点，只有其中一棵树有，则直接取那个树的节点。
+
+** DFS
+#+begin_src js
+  var mergeTrees = function(root1, root2) {
+    if (root1 === null) {
+      return root2
+    }
+
+    if (root2 === null) {
+      return root1
+    }
+
+    let mergedRoot = new TreeNode(root1.val + root2.val)
+
+    mergedRoot.left = mergeTrees(root1.left, root2.left)
+    mergedRoot.right = mergeTrees(root1.right, root2.right)
+
+    return mergedRoot
+  }
+#+end_src
+
+** BFS
+
+* 参考
