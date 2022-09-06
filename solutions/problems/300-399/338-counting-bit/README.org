@@ -1,0 +1,66 @@
+* 思路
+** 遍历 + 右移 + 与操作
+遍历获取每一个数字，对于每一个数字 x，执行 x & 1，不断右移，知道 x 等
+于 0，统计 1 的个数。
+
+#+begin_src js
+  var countBits = function(n) {
+    const ans = []
+
+    for (let i = 0; i <= n; i++) {
+      let count = 0
+      let num = i
+
+      while (num !== 0) {
+        num & 1 === 1 && count++
+        num >>= 1
+      }
+
+      ans.push(count)
+    }
+
+    return ans
+  }
+#+end_src
+** 利用奇偶性二进制的特性
+- 0: 0
+- 1: 1
+- 2: 10
+- 3: 11
+- 4: 100
+- 5: 101
+- 6: 110
+
+可以发现，对于奇数，1 的个数，就是它前面的偶数的 1 的个数 + 1
+
+对于偶数，由于低位是 0，因此，右移后，1 的个数不变，于是对于 4，右移一位是 2，4 和 2 的 1 的个数是相同的。
+
+于是可以得出这样的转换：
+
+如果 x 是奇数，那么 count[x] = count[x - 1] + 1, 即等于前面偶数的 1 的个数 + 1
+
+如果 x 是偶数，那么 count[x] = count[x >> 1]，偶数的 1 的个数，和右移后的偶数的 1 的个数是一样的。
+
+对于 0，1 的个数为 0，即 count[0] = 0
+
+于是就可以遍历一遍得出答案了。
+
+#+begin_src js
+  var countBits = function(n) {
+    const ans = [0]
+
+    for (let i = 1; i <= n; i++) {
+      if (i % 2 === 1) {
+        ans[i] = ans[i - 1] + 1
+      } else {
+        ans[i] = ans[i >> 1]
+      }
+    }
+
+    return ans
+  }
+#+end_src
+
+* 参考
+- [[https://leetcode.cn/problems/counting-bits/solution/bi-te-wei-ji-shu-by-leetcode-solution-0t1i/][比特位计数]]
+- [[https://leetcode.cn/problems/counting-bits/solution/hen-qing-xi-de-si-lu-by-duadua/][利用奇偶性进行计算]]
