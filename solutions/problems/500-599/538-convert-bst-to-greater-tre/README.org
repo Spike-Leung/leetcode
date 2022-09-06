@@ -1,0 +1,66 @@
+* 思路
+** 中序遍历 + 前缀和
+对于二叉搜索树，中序遍历可以得到一个升序的数组，然后统计前缀和，就可以
+方便的知道比某个值大的所有值的和。
+
+然后遍历所有的节点，算出一个和，更新节点的值。
+
+#+begin_src js
+  var convertBST = function(root) {
+    if (!root) {
+      return null
+    }
+
+    const vals = []
+    const prefixSum = []
+
+    // 中序遍历统计数值
+    function inorderTraverse(root) {
+      if (!root) {
+        return
+      }
+
+      root.left && inorderTraverse(root.left)
+      vals.push(root.val)
+      root.right && inorderTraverse(root.right)
+    }
+
+    inorderTraverse(root)
+
+    prefixSum[0] = vals[0]
+
+    const n = vals.length
+
+    // 构造前缀和
+    for (let i = 1; i < n; i++) {
+      prefixSum[i] = prefixSum[i - 1] + vals[i]
+    }
+
+    let count = 0
+    // 中序遍历，根据访问顺序计算当前节点的值
+    function inorder(root) {
+      if (!root) {
+        return
+      }
+
+      root.left && inorder(root.left)
+      root.val = prefixSum[n - 1] - (count === 0 ? 0 : prefixSum[count - 1])
+      count++
+      root.right && inorder(root.right)
+    }
+
+    inorder(root)
+
+    return root
+  };
+#+end_src
+
+** 反向中序遍历
+根据搜索二叉树的性质，右边节点都是大于根节点的。
+
+因此可以方向中序遍历，用一个变量累计右边节点的和。
+
+遍历的到根节点的时候，可以得到右边节点的和，那么对于根节点，它的值就是
+它当前的值 + 右边节点的和（大于等于当前节点的值的和）
+* 参考
+- [[https://leetcode.cn/problems/convert-bst-to-greater-tree/solution/ba-er-cha-sou-suo-shu-zhuan-huan-wei-lei-jia-sh-14/][把二叉搜索树转换为累加树]]
