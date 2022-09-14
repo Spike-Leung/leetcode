@@ -1,0 +1,27 @@
+* 思路
+枚举取找一下，[],[1],[1,2],[1,2,3] 到此为止，选到头了，需要把 [1,2,3] 的 2，3 去掉，取 3，得到 [1,3]
+
+可以发现当找到头时，需要回退，从另一个状态往下找，因此考虑回溯法。
+
+用回溯法，首先考虑把递归树画出来：
+
+#+begin_src js
+                 []
+             /   |     \
+            [1] [2]  [3]
+           /  \    \
+       [1,2] [1,3]  [2,3]
+        /
+     [1,2,3]
+#+end_src
+
+观察每一次递归时的状态变化：
+
+- 路径 (path) ：从 [] -> [1] -> [1,2] ... , 然后到头后回退 [1,2,3] -> [1,2] -> [1]
+- 从第几个元素开始递归 (start)： 0 -> 1 -> 2
+- 递归结束条件：start 超过了有边界，再没有数字可以选择了
+
+
+* 参考
+- [[https://leetcode.cn/problems/subsets/solution/hui-su-python-dai-ma-by-liweiwei1419/][回溯 + 位运算技巧（Java、Python）]]
+- [[https://leetcode.cn/problems/subsets/solution/c-zong-jie-liao-hui-su-wen-ti-lei-xing-dai-ni-gao-/][C++ 总结了回溯问题类型 带你搞懂回溯算法(大量例题)]]
