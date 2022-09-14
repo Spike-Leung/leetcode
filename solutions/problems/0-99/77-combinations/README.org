@@ -1,0 +1,4 @@
+* 思路
+回溯法。
+* 参考
+- [[https://leetcode.cn/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/][回溯算法 + 剪枝（Java）]]
