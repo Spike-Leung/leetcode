@@ -1,0 +1,4 @@
+* 思路
+回溯 + 剪枝，画递归树理解即可。
+* 参考
+- [[https://leetcode.cn/problems/combination-sum-ii/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-3/][回溯算法 + 剪枝（Java、Python）]]
