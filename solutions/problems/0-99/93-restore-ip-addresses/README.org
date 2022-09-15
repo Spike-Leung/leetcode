@@ -1,0 +1,4 @@
+* 思路
+回溯法，画递归图分析。
+* 参考
+- [[https://leetcode.cn/problems/restore-ip-addresses/solution/hui-su-suan-fa-hua-tu-fen-xi-jian-zhi-tiao-jian-by/][回溯算法（画图分析剪枝条件）]]
