@@ -1,0 +1,8 @@
+* 思路
+遍历一遍，将被包围的 O 变成 X 即可，但有的 O 可能连接到了边界上，需要先将这些连接到边界的 O 找出来。
+
+可以通过 DFS，从边界开始扫描，找到一个在边界 的 O，则进行四个方向的 DFS，将所有连接到边界的 O 变成一个别的表示，例如 B。
+
+处理结束后，矩阵剩下的 O 就都是被包围的 O 了，此时只需要扫描一遍矩阵，将 O 变成 X，将 B 变回原来的 O。
+* 参考
+- [[https://leetcode.cn/problems/surrounded-regions/solution/dfs-bfs-bing-cha-ji-by-powcai/][DFS + BFS + 并查集]]
