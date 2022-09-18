@@ -5,6 +5,6 @@
 
 周围岛屿的面积，可以使用并查集去实现，将所有的 1 构建到对应的岛屿集合中，统计每个岛屿集合的面积。
 * 参考
-- [[https://leetcode.cn/problems/making-a-large-island/solution/by-lcbin-f4c1/][[Python3/Java/C++/Go] 一题双解：并查集 & DFS（附算法模板）]]
+- [[https://leetcode.cn/problems/making-a-large-island/solution/by-lcbin-f4c1/][一题双解：并查集 & DFS（附算法模板）]]
 - [[https://leetcode.cn/problems/making-a-large-island/solution/by-muse-77-37hi/][【爪哇缪斯】图解LeetCode]]
 - [[https://suanfa8.com/union-find/][并查集基础问题]]
