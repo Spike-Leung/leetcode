@@ -1,0 +1,4 @@
+* 思路
+
+* 参考
+- [[https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/solution/by-lfool-d9o7/][经典回溯算法：集合划分问题]]
