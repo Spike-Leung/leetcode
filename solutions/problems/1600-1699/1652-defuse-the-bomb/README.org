@@ -1,0 +1,42 @@
+* 思路
+** 模拟
+按题目要求模拟操作即可，时间复杂度为 O(n ^ 2)
+#+begin_src js
+  var decrypt = function(code, k) {
+    const length = code.length
+    const res = new Array(length).fill(0)
+
+    if (k === 0) {
+      return res
+    }
+
+    if (k > 0) {
+      return res.map((_, index) => {
+        let sum = 0
+
+        for (let i = k; i > 0; i--) {
+          sum += code[(index + i) % length]
+        }
+
+        return sum
+      })
+    } else {
+      return res.map((_, index) => {
+        let sum = 0
+
+        for (let i = k; i < 0; i++) {
+          sum += code[(index + i + length) % length]
+        }
+
+        return sum
+      })
+    }
+
+  };
+#+end_src
+** 滑动窗口
+计算下标 0，取值 k 位的和 sum ，作为一个窗口，code[l..r]
+
+对每个数字，移动窗口计算新的和，每次 l + 1, r + 1，从 sum 中减去移出的值，加上进入窗口的值。
+* 参考
+- [[https://leetcode.cn/problems/defuse-the-bomb/solution/chai-zha-dan-by-leetcode-solution-01x3/][拆炸弹]]
