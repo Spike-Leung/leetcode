@@ -1,0 +1,62 @@
+* 思路
+** 枚举每一位
+给定任意数字，拆分每一位的数字，判断这些数字组合是否有效：
+- 至少包含一个可以有效翻转的数字： [2,5,6,9]
+- 不包含翻转无效的数字：[3,4,7]
+
+用一个数组存储，满足的数字设置为 true，否则设置为 false，最后统计 true 的个数。
+
+#+begin_src js
+  var rotatedDigits = function(n) {
+    const invalidNums =  [3,4,7]
+    const validNums = [2,5,6,9]
+    const dp = [false,false,true,false,false,true,true,false,false,true]
+
+    for (let i = 10; i <= n; i++) {
+      const nums = `${i}`.split("")
+      let validNumCount = 0
+      let invalidNumCount = 0
+
+      for (const s of nums) {
+        invalidNums.includes(+s) && invalidNumCount++
+        validNums.includes(+s) && validNumCount++
+      }
+
+      dp[i] = invalidNumCount === 0 && validNumCount > 0
+    }
+
+    let count = 0
+    for (let i = 0; i <= n; i++) {
+      dp[i] && count++
+    }
+
+    return count
+  }
+#+end_src
+** 官解的写法
+通过一个数组，0，1，-1 标识不同含义的数字，利用 charCodeAt 方法计算下
+标，判断数字类型，进而判断整个数是否有效。
+#+begin_src js
+const check = [0, 0, 1, -1, -1, 1, 1, -1, 0, 1];
+  var rotatedDigits = function(n) {
+    let ans = 0;
+    for (let i = 1; i <= n; ++i) {
+      const num = '' + i;
+      let valid = true, diff = false;
+      for (let j = 0; j < num.length; ++j) {
+        const ch = num[j];
+        if (check[ch.charCodeAt() - '0'.charCodeAt()] === -1) {
+          valid = false;
+        } else if (check[ch.charCodeAt() - '0'.charCodeAt()] === 1) {
+          diff = true;
+        }
+      }
+      if (valid && diff) {
+        ++ans;
+      }
+    }
+    return ans;
+  };
+#+end_src
+* 参考
+- [[https://leetcode.cn/problems/rotated-digits/solution/xuan-zhuan-shu-zi-by-leetcode-solution-q9bh/][旋转数字]]
