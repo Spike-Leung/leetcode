@@ -1,0 +1,28 @@
+* 思路
+脑筋急转弯类型的题目。
+
+题目中有两个变换：
+
+- XL -> LX
+- RX -> XR
+
+也就说，L 可以一直和 X 交换，换到左边， R 可以一直和 X 换换到右边。
+
+那么，从 start 换到 end，start 中 L 的位置要大于等于 end 中的 L 的位置，
+因为 start 中的 L 往左边移动才变成 end 的。
+
+同理，start 中的 R 应该小于等于 end 中的 R。
+
+又因为交换都是和 X 交换，因此，L 和 R 的相对位置是固定的，L 不会跨过 R，
+R 也不会跨过 L。
+
+也就是说，如果把所有的 X 拿掉，start 能转换成 end 的话，start 中的 LR
+的相对位置，应该是和 end 中 LR 的相对位置是一样的。
+
+于是，可以利用双指针，一个遍历 start, 一个遍历 end, 不断跳过 X，判断每
+个非 X 的字符是否相同，相同时，是否满足 start 和 end 中 L 和 R 的相对
+关系（start 中 L 大于等于 end 中 L 的下标位置），如果都满足，则能够完整转换。
+
+* 参考
+- [[https://leetcode.cn/problems/swap-adjacent-in-lr-string/solution/zai-lrzi-fu-chuan-zhong-jiao-huan-xiang-rjaw8/][在LR字符串中交换相邻字符]]
+-[[https://leetcode.cn/problems/swap-adjacent-in-lr-string/solution/by-ac_oier-ye71/][【宫水三叶】双指针运用题]]
