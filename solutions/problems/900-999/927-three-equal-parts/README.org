@@ -1,0 +1,39 @@
+* 思路
+** 枚举
+时间复杂度 O(N ^ 2), 毫无意外地超时
+#+begin_src js
+  var threeEqualParts = function(arr) {
+    const n = arr.length
+
+    for (let i = 0; i < n; i++) {
+      for (let j = n - 1; j > i + 1; j--) {
+        const part1 = toNumber(arr, 0, i + 1)
+        const part2 = toNumber(arr, i + 1, j)
+        const part3 = toNumber(arr, j)
+
+        if (part1 === part2 && part1 === part3) {
+          return [i, j]
+        }
+      }
+    }
+
+    return [-1, -1]
+  };
+
+  function toNumber(arr, start, end) {
+    return Number.parseInt(arr.slice(start, end).join(""), 2)
+  }
+#+end_src
+** 根据三部分的特性划分
+这类型的题目，可以考虑如果拆分每个部分，会有什么特征，尝试寻找突破口。
+
+对于本题，如果拆分成 3 部分，每部分 1 的个数应该是相同的，因此可以判断
+1 的数量是否足以被 3 整除，无法整除则无法均分成 3 部分。
+
+那么就可以从数组中，找到 3 部分的起始点（根据 1 的数量去找，会跳过前置
+0），然后遍历判断 3 个部分的每一个元素是否相同。
+
+这样时间复杂度就只有 O(N)
+
+* 参考
+- [[https://leetcode.cn/problems/three-equal-parts/solution/by-lcbin-7ir1/][[Python3/Java/C++/Go] 一题一解：计数 + 三指针（简洁代码）]]
