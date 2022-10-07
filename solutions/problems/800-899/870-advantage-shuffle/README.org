@@ -1,0 +1,18 @@
+* 思路
+要尽可能多地取得优势，则遍历 nums2, 对于每一个 nums2 中的元素，从
+nums1 中找一个刚好比它大一点的数，作为这次比较的结果，直到比对完所有的
+元素。
+
+如果从 nums1 中去查找，即使排序后每次查找也要些时间，可以考虑将两个数
+组都排序后进行比较。
+
+排序后，只要用两个指针i, j，分别指向 nums1 和 nums2，比较 nums1[i] 与 nums2[j] 的值。
+
+如果 nums1[i] > nums2[j], 那么则将 nums1[i] 放到 nums2[j] 这个值排序前的下标位置。
+
+如果 nums1[i] <= nums2[j]，那么 nums1[i] 无法取得优势，作为弃子，去抵
+消 nums2 中当前较大的值，也就是从 nums2 的末尾开始找一个还没被抵消的值，
+进行抵消，放到这个值在排序前的下标位置。
+
+* 参考
+- [[https://leetcode.cn/problems/advantage-shuffle/solution/you-shi-xi-pai-by-leetcode-solution-sqsf/][优势洗牌]]
