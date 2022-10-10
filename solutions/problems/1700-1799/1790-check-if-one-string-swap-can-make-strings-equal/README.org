@@ -1,0 +1,9 @@
+* 思路
+首先比较两个字符串是否相等，相等直接返回 true
+
+不相等，则统计两个字符串不相同的字符下标，如果数量超过 2 个，则无法通过最多一次交换变成一样的，返回 false
+
+如果只有两个字符不同，如果交换后相等，则 s1[index1] == s2[index2] && s1[index2] =​= s2[index1] 应该成立
+
+* 参考
+- [[https://leetcode.cn/problems/check-if-one-string-swap-can-make-strings-equal/solution/jin-zhi-xing-yi-ci-zi-fu-chuan-jiao-huan-j8si/][仅执行一次字符串交换能否使两个字符串相等]]
