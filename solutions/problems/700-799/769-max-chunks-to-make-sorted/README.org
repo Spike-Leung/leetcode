@@ -1,0 +1,3 @@
+* 思路
+* 参考
+- [[https://leetcode.cn/problems/max-chunks-to-make-sorted/solutions/1886333/zui-duo-neng-wan-cheng-pai-xu-de-kuai-by-gc4k/][最多能完成排序的块]]
