@@ -1,0 +1,41 @@
+* 思路
+对于字符串 =bcdaa=, 每一个单独的字符可以作为一个子序列，子序列加一个字符，
+就变成一个新的子序列，可以一直加，直到子序列长度和字符串一样长。
+
+于是，可以考虑，从一个字符开始，逐个添加字符，直到达到字符串长度，统计
+所有的子序列数量。
+
+那么，对于 =bcdaa=, 逐个遍历字符，考虑将当前字符作为结尾，然后在前面添加字符：
+
+- =b=: b
+- =c=: bc, c
+- =d=: bd, bcd, cd, d
+- =a=: ba, bca, ca, bda, bcda, cda, da, a
+- =a=: ba, bca, ca, bda, bcda, cda, da, a, baa, bca, caa, bdaa, bcdaa, cdaa, daa, aa, a
+
+观察，可以得到以下结论：
+
+对于以字符 'a' 结尾的子序列，可以由以下几个部分组成：
+- 自身作为一个字符
+- 所有前面字符结尾的子序列 + 当前字符 （b结尾的，c结尾的，d结尾的，a结尾的 + a）
+
+但是又发现，当字符重复时，以后者结尾的序列（第二个 ‘a’），包含了前者的
+序列 （第一个 ‘a’），当统计所有的子序列时，由于后者包含了前者，因此，
+只需要统计后者的子序列数量，进一步来说，当有多个 ’a’ 时只需要统计最后
+一个 ’a’ 的子序列数量即可。
+
+那么，可以用一个变量（last）记录每个字符，最后一次出现时, 所构成的子序
+列数量，last.a, last.b .... 然后对于当前遍历的字子序列数量为：
+
+当前遍历字符作为一个子串 +  前面最后一次出现的字符的数量之和
+
+1 + sum(last.a + last.b + ... last.z)
+
+最后，所有子序列数量就是，最后一个 a 结尾的子序列数量 + 最有一个 b 结尾的子序列数量 + ... + 最后一个 z 结尾的子序列数量：
+
+sum(last.a + last.b + .... + last.z)
+
+* 参考
+- [[https://leetcode.cn/problems/distinct-subsequences-ii/solutions/1888523/bu-tong-de-zi-xu-lie-ii-by-leetcode-solu-k2h5/?orderBy=most_votes][不同的子序列 II]]
+- [[https://leetcode.cn/problems/distinct-subsequences-ii/solutions/978424/zhe-cai-shi-jian-dan-yi-dong-de-dong-tai-pwfv/?orderBy=most_votes][这才是简单易懂的动态规划]]
+- [[https://leetcode.cn/problems/distinct-subsequences-ii/solutions/1592183/by-da-yu-bt-jy18/?orderBy=most_votes][26N解法流程，统计从a~~z每个字符结尾的子序列个数。]]
