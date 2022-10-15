@@ -1,0 +1,4 @@
+* 思路
+
+* 参考
+- [[https://leetcode.cn/problems/possible-bipartition/solutions/1893341/ke-neng-de-er-fen-fa-by-leetcode-solutio-guo7/][可能的二分法]]
