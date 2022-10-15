@@ -1,0 +1,4 @@
+* 思路
+模拟入栈出栈即可。
+* 参考
+- [[https://leetcode.cn/problems/build-an-array-with-stack-operations/solutions/1890865/yong-zhan-cao-zuo-gou-jian-shu-zu-by-lee-omde/][用栈操作构建数组]]
