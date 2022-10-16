@@ -1,0 +1,46 @@
+* 思路
+** 模拟
+#+begin_src javascript
+  var totalFruit = function(fruits) {
+    const n = fruits.length
+    let totalCount = 0
+    let i = 0
+
+    while(i < n) {
+      // 第一种类型
+      const firstType = fruits[i]
+      let secondTypeIndex = i
+      let count = 0
+
+      // 找到第一个类型不同的树的下标
+      while (fruits[secondTypeIndex] === firstType) {
+        secondTypeIndex++
+      }
+
+      // 第二种类型
+      const secondType = fruits[secondTypeIndex]
+
+      // 统计第一种类型的数量
+      count += (secondTypeIndex - i)
+
+      let j = secondTypeIndex
+
+      // 从第二种类型下标开始统计，如果后面出现第一种或者第二种类型，则累积数量
+      while (j < n && (fruits[j] === firstType || fruits[j] === secondType)) {
+        count++
+        j++
+      }
+
+      // 计算最大值
+      totalCount = Math.max(totalCount, count)
+
+      // 从下一个类型重新开始计数
+      i = secondTypeIndex
+    }
+
+    return totalCount
+  };
+#+end_src
+
+* 参考
+- [[https://leetcode.cn/problems/fruit-into-baskets/solutions/1893352/shui-guo-cheng-lan-by-leetcode-solution-1uyu/][水果成篮]]
