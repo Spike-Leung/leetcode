@@ -1,0 +1,6 @@
+* 思路
+模拟，如果还剩下 3 个三明治，同时还剩下 3 个学生，但三个学生都重新排队
+了还是没人领取三明治，说明没人吃了，此时停止模拟，返回剩下的学生数量。
+
+* 参考
+- [[https://leetcode.cn/problems/number-of-students-unable-to-eat-lunch/solutions/1900373/wu-fa-chi-wu-can-de-xue-sheng-shu-liang-fv3f5/][无法吃午餐的学生数量]]
