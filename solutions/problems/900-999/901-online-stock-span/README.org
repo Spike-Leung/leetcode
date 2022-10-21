@@ -1,0 +1,5 @@
+* 思路
+简单单调栈应用题。
+* 参考
+- [[https://leetcode.cn/problems/online-stock-span/solutions/1906765/gu-piao-jie-ge-kua-du-by-leetcode-soluti-5cm7/][股票价格跨度]]
+- [[https://taxodium.ink/post/monotone-stack/][单调栈]]
