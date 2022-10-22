@@ -1,0 +1,4 @@
+* 思路
+
+* 参考
+-[[https://leetcode.cn/problems/maximum-profit-in-job-scheduling/solutions/1913143/by-ac_oier-rgup/][【宫水三叶】详解「序列 DP + 二分」经典运用]]
