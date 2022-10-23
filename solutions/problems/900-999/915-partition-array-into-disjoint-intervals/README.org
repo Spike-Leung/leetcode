@@ -1,0 +1,11 @@
+* 思路
+可以想到，分割点的位置，left 的最大值应该小于等于 right 的最小值。
+
+因此，可以遍历一次，维护一份最小值，minRight，其中 minRight[i] 表示 Math.min(nums[i], nums[i + 1], ...nums[n - 1])
+
+然后再遍历一次，维护一个 maxLeft，表示当前 left 中最大的值，maxLeft = Math.max(nums[0], ... nums[i])
+
+找到第一个 i 满足， maxLeft <= minRight[i + 1], 此时 i + 1 即为 left 的长度
+
+* 参考
+- [[https://leetcode.cn/problems/partition-array-into-disjoint-intervals/solutions/1913934/fen-ge-shu-zu-by-leetcode-solution-t4pm/][分割数组]]
