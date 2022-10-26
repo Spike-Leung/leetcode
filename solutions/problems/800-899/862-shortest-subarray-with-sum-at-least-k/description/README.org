@@ -1,0 +1,4 @@
+* TODO 思路
+
+* 参考
+- [[https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/solutions/1925036/liang-zhang-tu-miao-dong-dan-diao-dui-li-9fvh/][两张图秒懂单调队列（Python/Java/C++/Go）]]
