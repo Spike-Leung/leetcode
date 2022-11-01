@@ -1,0 +1,16 @@
+* 思路
+模拟字符串的演变，统计 1 的个数。
+
+首先要自己去写一写，能够根据规则，去将神奇字符串写出来。
+
+然后观察生成的规律，分组只能是一个数字，或者两个数字，每个分组相邻的数字都不同，要不是 1，要不是 2
+
+生成多少数字，是根据字符对应的数字决定的；生成什么数字，只要去判断前一个生成了什么，生成一个不同的即可。
+
+于是，可以使用双指针，一个指针指向的字符，决定要生成多少个。一个指针指向最后一个字符，通过它来判断现在应该生成什么字符。
+
+一边生成，一边统计 1 的个数，直到长度达到 n （j >= n）
+
+* 参考
+- [[https://leetcode.cn/problems/magical-string/solutions/1936845/shen-qi-zi-fu-chuan-by-leetcode-solution-y5dg/][神奇字符串]]
+- [[https://leetcode.cn/problems/magical-string/solutions/1938214/by-endlesscheng-z8o1/][一个动画秒懂本题+简洁写法（Python/Java/C++/Go）]]
