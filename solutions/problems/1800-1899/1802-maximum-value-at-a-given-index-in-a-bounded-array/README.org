@@ -1,4 +1,23 @@
 * 思路
+题目要让 nums[index] 是数组中最大，且尽可能取一个大值
+
+那么可以考虑，让 nums[index] 取最大值，两边其它数字一次减 1 （保证相邻数字差 <= 1）
+
+这样两边不断递减构造得到的数组，和不会很大，容易满足题目中不超过 maxSum 的要求
+
+然后考虑 nums[index] 的取值，可以从 1 ~ maxSum 中去尝试
+
+对每一个 1 ~ maxSum，两边递减构造数组，求和判断是否满足小于 maxSum，找到满足条件的最大 nums[index] 即可
+
+暴力遍历，1 ~ maxSum 有 m 个数字，对每个数字，要统计整个数组的和，数组长度为 n，因此复杂度为 m * n
+
+由于两侧构造时是依次递减，符合等差数列，又可以利用等差数列求和减少复杂度
+
+在 1 ~ maxSum 中寻找时，又可以通过二分查找快速地缩小范围
+
+最终复杂度可以降低到 logN
+
+
 
 * 参考
 - [[https://leetcode.cn/problems/maximum-value-at-a-given-index-in-a-bounded-array/solutions/2043854/by-lao-song-2f-n5b6/][用贪心策略，从「暴力搜索」优化到「二分查找」]]
