@@ -1,0 +1,4 @@
+* 思路
+
+* 参考
+- [[https://leetcode.cn/problems/maximum-value-at-a-given-index-in-a-bounded-array/solutions/2043854/by-lao-song-2f-n5b6/][用贪心策略，从「暴力搜索」优化到「二分查找」]]
