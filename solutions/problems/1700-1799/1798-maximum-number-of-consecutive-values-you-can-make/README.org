@@ -1,0 +1,17 @@
+* 思路
+从 0 开始构造，假设用 coins 中的数字，可以构造 [0, x] 区间的连续数字
+
+那么，再从 coins 里取一个没有用过的数字 y
+
+加上这个数字，可以得到区间  [y, x + y]
+
+于是就可以得到 [0, x], [y, x + y] 两段区间，当 y <= x + 1 时，可以使得两段区间合并为连续的区间。
+
+成为 [0, x + y]， 也就是 y 不能大于 x
+
+从 [0, 0] 区间开始，对 coins 按升序排序，从最小的开始取值进行判断，最终的右区间就是答案。
+
+
+
+* 参考
+- [[https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/solutions/2090079/ni-neng-gou-zao-chu-lian-xu-zhi-de-zui-d-wci4/][你能构造出连续值的最大数目]]
