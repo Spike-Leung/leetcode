@@ -1,0 +1,9 @@
+* 思路
+1. 按照人，将其所有的打卡时间归到一组
+2. 对时间分组升序排序
+3. 从头开始比较时间，把第 1 个时间和第 3 个比较，看是否满足在一小时内，如果满足，则记录这个人的名字；
+   如果不符合，则继续比较 2，4；以此类推
+4. 将的到的人名排序
+
+* 参考
+- [[https://leetcode.cn/problems/alert-using-same-key-card-three-or-more-times-in-a-one-hour-period/solutions/2095526/jing-gao-yi-xiao-shi-nei-shi-yong-xiang-ioeiw/][警告一小时内使用相同员工卡大于等于三次的人]]
