@@ -1,0 +1,5 @@
+* 思路
+模拟，每次从数量最大的两个去接水，直到全部接完。
+
+* 参考
+- [[https://leetcode.cn/problems/minimum-amount-of-time-to-fill-cups/solutions/2103691/zhuang-man-bei-zi-xu-yao-de-zui-duan-zon-c7y4/][装满杯子需要的最短总时长]]
