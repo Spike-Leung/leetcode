@@ -1,0 +1,86 @@
+* 思路
+最开始的思路, 因为字符串不平衡，肯定有某些字符，数量超过了 n / 4
+
+又因为替换子串是连续的，容易想到是一个范围，且范围是浮动的，容易想到用滑动窗口去实现
+
+从满足条件的滑动串口中，找到最小的窗口大小，就是答案。
+
+怎样算是满足条件？
+
+遍历找到那些字符的数量多了，滑动窗口中应该包含这些多的字符，将多的字符替换成少的字符，就能让字符串平衡
+
+于是便一边滑动，一边统计是否包含符合数量的，多余的字符。
+
+但是这么做，会使得滑动窗口中，可能包含了更多的字符，例如对于字符串 "WQWRQQQW"
+
+平均字符数是 2，W 多了 1 个，Q 多了两个，于是应该找一个字串，使其包含 1 个 W 和 2 个 Q。
+
+从头开始找，直到满足条件，就会找到 WQWRQ，这里面包含了 2 个 W, 在左边界滑动时，还需要去计算多统计的数量，很麻烦，也容易错。
+
+#+begin_src javascript
+  // https://leetcode.cn/problems/replace-the-substring-for-balanced-string/
+  /**
+   ,* @param {string} s
+   ,* @return {number}
+   ,*/
+  var balancedString = function(s) {
+    let minSubStrLength = Number.MAX_SAFE_INTEGER
+    const length = s.length
+    const avgLength = length / 4
+    const countMap = {
+      Q: 0,
+      W: 0,
+      E: 0,
+      R: 0
+    }
+
+    for (const c of s) {
+      countMap[c]++
+    }
+
+    const exceedChars = []
+
+    Object.keys(countMap).forEach((k) => {
+      const diff = countMap[k] - avgLength
+      countMap[k] =  diff > 0 ? diff : 0
+      exceedChars.push(k)
+    })
+
+    let l = 0, r = 0
+    while (r < length) {
+      while (r < length && !check(countMap)) {
+        const char = s[r]
+        exceedChars.includes(char) && countMap[char] > 0 && countMap[char]--
+        r++
+      }
+
+      minSubStrLength = Math.min(minSubStrLength, r - l)
+
+      while (l < length && check(countMap)) {
+        const char = s[l]
+        if (exceedChars.includes(char)) {
+          countMap[char]++
+        }
+        l++
+      }
+    }
+
+    return minSubStrLength
+  };
+
+  function check(countMap) {
+    return Object.values(countMap).reduce((acc, curr) => acc += curr, 0) === 0
+  }
+  module.exports = balancedString
+
+#+end_src
+
+这个时候，可以反向思考。
+
+如果子串能够替换成功，那么除了子串，剩下的左右两边的字符，所有字符的数量应该小于或者等于 n / 4, 如果任意一个字符数量大于 n / 4,
+那么，即使替换了子串，依旧还有多于 n / 4 的，无法平衡字符串。
+
+于是在滑窗时，只要去考虑滑窗外的字符的数量是否都小于等于 n / 4，满足的则是一个可行的子串，找到最小子串即可。
+* 参考
+- [[https://leetcode.cn/problems/replace-the-substring-for-balanced-string/solutions/2107520/ti-huan-zi-chuan-de-dao-ping-heng-zi-fu-f8fk8/][替换子串得到平衡字符串]]
+- [[https://leetcode.cn/problems/replace-the-substring-for-balanced-string/solutions/2108942/javahua-dong-chuang-kou-de-fan-xiang-si-2dz8w/][[java]滑动窗口的反向思维]]
