@@ -1,0 +1,6 @@
+* 思路
+- 枚举所有的 x， y
+- 因为 f(x, y) < f(x + 1, y) ，单调递增，可以利用二分查找，固定 x，快速查找 y
+
+* 参考
+- [[https://leetcode.cn/problems/find-positive-integer-solution-for-a-given-equation/solutions/2117301/zhao-chu-gei-ding-fang-cheng-de-zheng-zh-kie6/][找出给定方程的正整数解]]
