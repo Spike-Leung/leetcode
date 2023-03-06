@@ -1,0 +1,9 @@
+* 思路
+题目说是可以随时停，听了之后免费轮转，那么后面只会产生运作费用，而没有收益，所以如果中间停止的话，
+后面的利润肯定是越来越少的，所以其实不必考虑停了之后的事情。
+
+每次轮转，可以计算每次获得的利润，模拟这个构成，记录最大利润，最小轮转次数，如果满足则返回即可。
+
+
+* 参考
+- [[https://leetcode.cn/problems/maximum-profit-of-operating-a-centennial-wheel/solutions/2147029/jing-ying-mo-tian-lun-de-zui-da-li-run-b-4mdh/][经营摩天轮的最大利润]]
